@@ -1,0 +1,3330 @@
+
+proj.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000019bc  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000019bc  00001a50  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000a  00800062  00800062  00001a52  2**0
+                  ALLOC
+  3 .stab         00001d58  00000000  00000000  00001a54  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000b66  00000000  00000000  000037ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      00000012  00000000  00000000  00004312  2**0
+                  CONTENTS, READONLY
+  6 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00004324  2**2
+                  CONTENTS, READONLY, OCTETS
+  7 .debug_aranges 000000c0  00000000  00000000  00004360  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .debug_info   000005ca  00000000  00000000  00004420  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .debug_abbrev 0000051b  00000000  00000000  000049ea  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 10 .debug_line   0000046d  00000000  00000000  00004f05  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 11 .debug_str    000001f8  00000000  00000000  00005372  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+       4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      30:	0c 94 18 07 	jmp	0xe30	; 0xe30 <__vector_12>
+      34:	0c 94 22 0a 	jmp	0x1444	; 0x1444 <__vector_13>
+      38:	0c 94 d3 0a 	jmp	0x15a6	; 0x15a6 <__vector_14>
+      3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+      54:	11 24       	eor	r1, r1
+      56:	1f be       	out	0x3f, r1	; 63
+      58:	cf e5       	ldi	r28, 0x5F	; 95
+      5a:	d8 e0       	ldi	r29, 0x08	; 8
+      5c:	de bf       	out	0x3e, r29	; 62
+      5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+      60:	10 e0       	ldi	r17, 0x00	; 0
+      62:	a0 e6       	ldi	r26, 0x60	; 96
+      64:	b0 e0       	ldi	r27, 0x00	; 0
+      66:	ec eb       	ldi	r30, 0xBC	; 188
+      68:	f9 e1       	ldi	r31, 0x19	; 25
+      6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+      6c:	05 90       	lpm	r0, Z+
+      6e:	0d 92       	st	X+, r0
+      70:	a2 36       	cpi	r26, 0x62	; 98
+      72:	b1 07       	cpc	r27, r17
+      74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+      76:	20 e0       	ldi	r18, 0x00	; 0
+      78:	a2 e6       	ldi	r26, 0x62	; 98
+      7a:	b0 e0       	ldi	r27, 0x00	; 0
+      7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+      7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+      80:	ac 36       	cpi	r26, 0x6C	; 108
+      82:	b2 07       	cpc	r27, r18
+      84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+      86:	0e 94 1c 0b 	call	0x1638	; 0x1638 <main>
+      8a:	0c 94 dc 0c 	jmp	0x19b8	; 0x19b8 <_exit>
+
+0000008e <__bad_interrupt>:
+      8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <MCAL_DIO_u8SetPinDir>:
+      92:	cf 93       	push	r28
+      94:	df 93       	push	r29
+      96:	00 d0       	rcall	.+0      	; 0x98 <MCAL_DIO_u8SetPinDir+0x6>
+      98:	00 d0       	rcall	.+0      	; 0x9a <MCAL_DIO_u8SetPinDir+0x8>
+      9a:	cd b7       	in	r28, 0x3d	; 61
+      9c:	de b7       	in	r29, 0x3e	; 62
+      9e:	8a 83       	std	Y+2, r24	; 0x02
+      a0:	6b 83       	std	Y+3, r22	; 0x03
+      a2:	4c 83       	std	Y+4, r20	; 0x04
+      a4:	81 e0       	ldi	r24, 0x01	; 1
+      a6:	89 83       	std	Y+1, r24	; 0x01
+      a8:	8b 81       	ldd	r24, Y+3	; 0x03
+      aa:	88 30       	cpi	r24, 0x08	; 8
+      ac:	08 f0       	brcs	.+2      	; 0xb0 <MCAL_DIO_u8SetPinDir+0x1e>
+      ae:	a6 c0       	rjmp	.+332    	; 0x1fc <MCAL_DIO_u8SetPinDir+0x16a>
+      b0:	8a 81       	ldd	r24, Y+2	; 0x02
+      b2:	88 2f       	mov	r24, r24
+      b4:	90 e0       	ldi	r25, 0x00	; 0
+      b6:	83 30       	cpi	r24, 0x03	; 3
+      b8:	91 05       	cpc	r25, r1
+      ba:	09 f4       	brne	.+2      	; 0xbe <MCAL_DIO_u8SetPinDir+0x2c>
+      bc:	7a c0       	rjmp	.+244    	; 0x1b2 <MCAL_DIO_u8SetPinDir+0x120>
+      be:	84 30       	cpi	r24, 0x04	; 4
+      c0:	91 05       	cpc	r25, r1
+      c2:	0c f0       	brlt	.+2      	; 0xc6 <MCAL_DIO_u8SetPinDir+0x34>
+      c4:	99 c0       	rjmp	.+306    	; 0x1f8 <MCAL_DIO_u8SetPinDir+0x166>
+      c6:	82 30       	cpi	r24, 0x02	; 2
+      c8:	91 05       	cpc	r25, r1
+      ca:	09 f4       	brne	.+2      	; 0xce <MCAL_DIO_u8SetPinDir+0x3c>
+      cc:	4f c0       	rjmp	.+158    	; 0x16c <MCAL_DIO_u8SetPinDir+0xda>
+      ce:	83 30       	cpi	r24, 0x03	; 3
+      d0:	91 05       	cpc	r25, r1
+      d2:	0c f0       	brlt	.+2      	; 0xd6 <MCAL_DIO_u8SetPinDir+0x44>
+      d4:	91 c0       	rjmp	.+290    	; 0x1f8 <MCAL_DIO_u8SetPinDir+0x166>
+      d6:	00 97       	sbiw	r24, 0x00	; 0
+      d8:	19 f0       	breq	.+6      	; 0xe0 <MCAL_DIO_u8SetPinDir+0x4e>
+      da:	01 97       	sbiw	r24, 0x01	; 1
+      dc:	21 f1       	breq	.+72     	; 0x126 <MCAL_DIO_u8SetPinDir+0x94>
+      de:	8c c0       	rjmp	.+280    	; 0x1f8 <MCAL_DIO_u8SetPinDir+0x166>
+      e0:	8a e3       	ldi	r24, 0x3A	; 58
+      e2:	90 e0       	ldi	r25, 0x00	; 0
+      e4:	fc 01       	movw	r30, r24
+      e6:	80 81       	ld	r24, Z
+      e8:	48 2f       	mov	r20, r24
+      ea:	8b 81       	ldd	r24, Y+3	; 0x03
+      ec:	28 2f       	mov	r18, r24
+      ee:	30 e0       	ldi	r19, 0x00	; 0
+      f0:	81 e0       	ldi	r24, 0x01	; 1
+      f2:	90 e0       	ldi	r25, 0x00	; 0
+      f4:	02 c0       	rjmp	.+4      	; 0xfa <MCAL_DIO_u8SetPinDir+0x68>
+      f6:	88 0f       	add	r24, r24
+      f8:	99 1f       	adc	r25, r25
+      fa:	2a 95       	dec	r18
+      fc:	e2 f7       	brpl	.-8      	; 0xf6 <MCAL_DIO_u8SetPinDir+0x64>
+      fe:	80 95       	com	r24
+     100:	48 23       	and	r20, r24
+     102:	8c 81       	ldd	r24, Y+4	; 0x04
+     104:	88 2f       	mov	r24, r24
+     106:	90 e0       	ldi	r25, 0x00	; 0
+     108:	2b 81       	ldd	r18, Y+3	; 0x03
+     10a:	22 2f       	mov	r18, r18
+     10c:	30 e0       	ldi	r19, 0x00	; 0
+     10e:	02 c0       	rjmp	.+4      	; 0x114 <MCAL_DIO_u8SetPinDir+0x82>
+     110:	88 0f       	add	r24, r24
+     112:	99 1f       	adc	r25, r25
+     114:	2a 95       	dec	r18
+     116:	e2 f7       	brpl	.-8      	; 0x110 <MCAL_DIO_u8SetPinDir+0x7e>
+     118:	24 2f       	mov	r18, r20
+     11a:	28 2b       	or	r18, r24
+     11c:	8a e3       	ldi	r24, 0x3A	; 58
+     11e:	90 e0       	ldi	r25, 0x00	; 0
+     120:	fc 01       	movw	r30, r24
+     122:	20 83       	st	Z, r18
+     124:	6c c0       	rjmp	.+216    	; 0x1fe <MCAL_DIO_u8SetPinDir+0x16c>
+     126:	87 e3       	ldi	r24, 0x37	; 55
+     128:	90 e0       	ldi	r25, 0x00	; 0
+     12a:	fc 01       	movw	r30, r24
+     12c:	80 81       	ld	r24, Z
+     12e:	48 2f       	mov	r20, r24
+     130:	8b 81       	ldd	r24, Y+3	; 0x03
+     132:	28 2f       	mov	r18, r24
+     134:	30 e0       	ldi	r19, 0x00	; 0
+     136:	81 e0       	ldi	r24, 0x01	; 1
+     138:	90 e0       	ldi	r25, 0x00	; 0
+     13a:	02 c0       	rjmp	.+4      	; 0x140 <MCAL_DIO_u8SetPinDir+0xae>
+     13c:	88 0f       	add	r24, r24
+     13e:	99 1f       	adc	r25, r25
+     140:	2a 95       	dec	r18
+     142:	e2 f7       	brpl	.-8      	; 0x13c <MCAL_DIO_u8SetPinDir+0xaa>
+     144:	80 95       	com	r24
+     146:	48 23       	and	r20, r24
+     148:	8c 81       	ldd	r24, Y+4	; 0x04
+     14a:	88 2f       	mov	r24, r24
+     14c:	90 e0       	ldi	r25, 0x00	; 0
+     14e:	2b 81       	ldd	r18, Y+3	; 0x03
+     150:	22 2f       	mov	r18, r18
+     152:	30 e0       	ldi	r19, 0x00	; 0
+     154:	02 c0       	rjmp	.+4      	; 0x15a <MCAL_DIO_u8SetPinDir+0xc8>
+     156:	88 0f       	add	r24, r24
+     158:	99 1f       	adc	r25, r25
+     15a:	2a 95       	dec	r18
+     15c:	e2 f7       	brpl	.-8      	; 0x156 <MCAL_DIO_u8SetPinDir+0xc4>
+     15e:	24 2f       	mov	r18, r20
+     160:	28 2b       	or	r18, r24
+     162:	87 e3       	ldi	r24, 0x37	; 55
+     164:	90 e0       	ldi	r25, 0x00	; 0
+     166:	fc 01       	movw	r30, r24
+     168:	20 83       	st	Z, r18
+     16a:	49 c0       	rjmp	.+146    	; 0x1fe <MCAL_DIO_u8SetPinDir+0x16c>
+     16c:	84 e3       	ldi	r24, 0x34	; 52
+     16e:	90 e0       	ldi	r25, 0x00	; 0
+     170:	fc 01       	movw	r30, r24
+     172:	80 81       	ld	r24, Z
+     174:	48 2f       	mov	r20, r24
+     176:	8b 81       	ldd	r24, Y+3	; 0x03
+     178:	28 2f       	mov	r18, r24
+     17a:	30 e0       	ldi	r19, 0x00	; 0
+     17c:	81 e0       	ldi	r24, 0x01	; 1
+     17e:	90 e0       	ldi	r25, 0x00	; 0
+     180:	02 c0       	rjmp	.+4      	; 0x186 <MCAL_DIO_u8SetPinDir+0xf4>
+     182:	88 0f       	add	r24, r24
+     184:	99 1f       	adc	r25, r25
+     186:	2a 95       	dec	r18
+     188:	e2 f7       	brpl	.-8      	; 0x182 <MCAL_DIO_u8SetPinDir+0xf0>
+     18a:	80 95       	com	r24
+     18c:	48 23       	and	r20, r24
+     18e:	8c 81       	ldd	r24, Y+4	; 0x04
+     190:	88 2f       	mov	r24, r24
+     192:	90 e0       	ldi	r25, 0x00	; 0
+     194:	2b 81       	ldd	r18, Y+3	; 0x03
+     196:	22 2f       	mov	r18, r18
+     198:	30 e0       	ldi	r19, 0x00	; 0
+     19a:	02 c0       	rjmp	.+4      	; 0x1a0 <MCAL_DIO_u8SetPinDir+0x10e>
+     19c:	88 0f       	add	r24, r24
+     19e:	99 1f       	adc	r25, r25
+     1a0:	2a 95       	dec	r18
+     1a2:	e2 f7       	brpl	.-8      	; 0x19c <MCAL_DIO_u8SetPinDir+0x10a>
+     1a4:	24 2f       	mov	r18, r20
+     1a6:	28 2b       	or	r18, r24
+     1a8:	84 e3       	ldi	r24, 0x34	; 52
+     1aa:	90 e0       	ldi	r25, 0x00	; 0
+     1ac:	fc 01       	movw	r30, r24
+     1ae:	20 83       	st	Z, r18
+     1b0:	26 c0       	rjmp	.+76     	; 0x1fe <MCAL_DIO_u8SetPinDir+0x16c>
+     1b2:	81 e3       	ldi	r24, 0x31	; 49
+     1b4:	90 e0       	ldi	r25, 0x00	; 0
+     1b6:	fc 01       	movw	r30, r24
+     1b8:	80 81       	ld	r24, Z
+     1ba:	48 2f       	mov	r20, r24
+     1bc:	8b 81       	ldd	r24, Y+3	; 0x03
+     1be:	28 2f       	mov	r18, r24
+     1c0:	30 e0       	ldi	r19, 0x00	; 0
+     1c2:	81 e0       	ldi	r24, 0x01	; 1
+     1c4:	90 e0       	ldi	r25, 0x00	; 0
+     1c6:	02 c0       	rjmp	.+4      	; 0x1cc <MCAL_DIO_u8SetPinDir+0x13a>
+     1c8:	88 0f       	add	r24, r24
+     1ca:	99 1f       	adc	r25, r25
+     1cc:	2a 95       	dec	r18
+     1ce:	e2 f7       	brpl	.-8      	; 0x1c8 <MCAL_DIO_u8SetPinDir+0x136>
+     1d0:	80 95       	com	r24
+     1d2:	48 23       	and	r20, r24
+     1d4:	8c 81       	ldd	r24, Y+4	; 0x04
+     1d6:	88 2f       	mov	r24, r24
+     1d8:	90 e0       	ldi	r25, 0x00	; 0
+     1da:	2b 81       	ldd	r18, Y+3	; 0x03
+     1dc:	22 2f       	mov	r18, r18
+     1de:	30 e0       	ldi	r19, 0x00	; 0
+     1e0:	02 c0       	rjmp	.+4      	; 0x1e6 <MCAL_DIO_u8SetPinDir+0x154>
+     1e2:	88 0f       	add	r24, r24
+     1e4:	99 1f       	adc	r25, r25
+     1e6:	2a 95       	dec	r18
+     1e8:	e2 f7       	brpl	.-8      	; 0x1e2 <MCAL_DIO_u8SetPinDir+0x150>
+     1ea:	24 2f       	mov	r18, r20
+     1ec:	28 2b       	or	r18, r24
+     1ee:	81 e3       	ldi	r24, 0x31	; 49
+     1f0:	90 e0       	ldi	r25, 0x00	; 0
+     1f2:	fc 01       	movw	r30, r24
+     1f4:	20 83       	st	Z, r18
+     1f6:	03 c0       	rjmp	.+6      	; 0x1fe <MCAL_DIO_u8SetPinDir+0x16c>
+     1f8:	19 82       	std	Y+1, r1	; 0x01
+     1fa:	01 c0       	rjmp	.+2      	; 0x1fe <MCAL_DIO_u8SetPinDir+0x16c>
+     1fc:	19 82       	std	Y+1, r1	; 0x01
+     1fe:	89 81       	ldd	r24, Y+1	; 0x01
+     200:	0f 90       	pop	r0
+     202:	0f 90       	pop	r0
+     204:	0f 90       	pop	r0
+     206:	0f 90       	pop	r0
+     208:	df 91       	pop	r29
+     20a:	cf 91       	pop	r28
+     20c:	08 95       	ret
+
+0000020e <MCAL_DIO_u8SetPortDir>:
+     20e:	cf 93       	push	r28
+     210:	df 93       	push	r29
+     212:	00 d0       	rcall	.+0      	; 0x214 <MCAL_DIO_u8SetPortDir+0x6>
+     214:	0f 92       	push	r0
+     216:	cd b7       	in	r28, 0x3d	; 61
+     218:	de b7       	in	r29, 0x3e	; 62
+     21a:	8a 83       	std	Y+2, r24	; 0x02
+     21c:	6b 83       	std	Y+3, r22	; 0x03
+     21e:	81 e0       	ldi	r24, 0x01	; 1
+     220:	89 83       	std	Y+1, r24	; 0x01
+     222:	8a 81       	ldd	r24, Y+2	; 0x02
+     224:	88 2f       	mov	r24, r24
+     226:	90 e0       	ldi	r25, 0x00	; 0
+     228:	83 30       	cpi	r24, 0x03	; 3
+     22a:	91 05       	cpc	r25, r1
+     22c:	01 f1       	breq	.+64     	; 0x26e <MCAL_DIO_u8SetPortDir+0x60>
+     22e:	84 30       	cpi	r24, 0x04	; 4
+     230:	91 05       	cpc	r25, r1
+     232:	1c f5       	brge	.+70     	; 0x27a <MCAL_DIO_u8SetPortDir+0x6c>
+     234:	82 30       	cpi	r24, 0x02	; 2
+     236:	91 05       	cpc	r25, r1
+     238:	a1 f0       	breq	.+40     	; 0x262 <MCAL_DIO_u8SetPortDir+0x54>
+     23a:	83 30       	cpi	r24, 0x03	; 3
+     23c:	91 05       	cpc	r25, r1
+     23e:	ec f4       	brge	.+58     	; 0x27a <MCAL_DIO_u8SetPortDir+0x6c>
+     240:	00 97       	sbiw	r24, 0x00	; 0
+     242:	19 f0       	breq	.+6      	; 0x24a <MCAL_DIO_u8SetPortDir+0x3c>
+     244:	01 97       	sbiw	r24, 0x01	; 1
+     246:	39 f0       	breq	.+14     	; 0x256 <MCAL_DIO_u8SetPortDir+0x48>
+     248:	18 c0       	rjmp	.+48     	; 0x27a <MCAL_DIO_u8SetPortDir+0x6c>
+     24a:	8a e3       	ldi	r24, 0x3A	; 58
+     24c:	90 e0       	ldi	r25, 0x00	; 0
+     24e:	2b 81       	ldd	r18, Y+3	; 0x03
+     250:	fc 01       	movw	r30, r24
+     252:	20 83       	st	Z, r18
+     254:	14 c0       	rjmp	.+40     	; 0x27e <MCAL_DIO_u8SetPortDir+0x70>
+     256:	8a e3       	ldi	r24, 0x3A	; 58
+     258:	90 e0       	ldi	r25, 0x00	; 0
+     25a:	2b 81       	ldd	r18, Y+3	; 0x03
+     25c:	fc 01       	movw	r30, r24
+     25e:	20 83       	st	Z, r18
+     260:	0e c0       	rjmp	.+28     	; 0x27e <MCAL_DIO_u8SetPortDir+0x70>
+     262:	8a e3       	ldi	r24, 0x3A	; 58
+     264:	90 e0       	ldi	r25, 0x00	; 0
+     266:	2b 81       	ldd	r18, Y+3	; 0x03
+     268:	fc 01       	movw	r30, r24
+     26a:	20 83       	st	Z, r18
+     26c:	08 c0       	rjmp	.+16     	; 0x27e <MCAL_DIO_u8SetPortDir+0x70>
+     26e:	8a e3       	ldi	r24, 0x3A	; 58
+     270:	90 e0       	ldi	r25, 0x00	; 0
+     272:	2b 81       	ldd	r18, Y+3	; 0x03
+     274:	fc 01       	movw	r30, r24
+     276:	20 83       	st	Z, r18
+     278:	02 c0       	rjmp	.+4      	; 0x27e <MCAL_DIO_u8SetPortDir+0x70>
+     27a:	19 82       	std	Y+1, r1	; 0x01
+     27c:	00 00       	nop
+     27e:	89 81       	ldd	r24, Y+1	; 0x01
+     280:	0f 90       	pop	r0
+     282:	0f 90       	pop	r0
+     284:	0f 90       	pop	r0
+     286:	df 91       	pop	r29
+     288:	cf 91       	pop	r28
+     28a:	08 95       	ret
+
+0000028c <MCAL_DIO_u8SetPinValue>:
+     28c:	cf 93       	push	r28
+     28e:	df 93       	push	r29
+     290:	00 d0       	rcall	.+0      	; 0x292 <MCAL_DIO_u8SetPinValue+0x6>
+     292:	00 d0       	rcall	.+0      	; 0x294 <MCAL_DIO_u8SetPinValue+0x8>
+     294:	cd b7       	in	r28, 0x3d	; 61
+     296:	de b7       	in	r29, 0x3e	; 62
+     298:	8a 83       	std	Y+2, r24	; 0x02
+     29a:	6b 83       	std	Y+3, r22	; 0x03
+     29c:	4c 83       	std	Y+4, r20	; 0x04
+     29e:	81 e0       	ldi	r24, 0x01	; 1
+     2a0:	89 83       	std	Y+1, r24	; 0x01
+     2a2:	8b 81       	ldd	r24, Y+3	; 0x03
+     2a4:	88 30       	cpi	r24, 0x08	; 8
+     2a6:	08 f0       	brcs	.+2      	; 0x2aa <MCAL_DIO_u8SetPinValue+0x1e>
+     2a8:	a6 c0       	rjmp	.+332    	; 0x3f6 <MCAL_DIO_u8SetPinValue+0x16a>
+     2aa:	8a 81       	ldd	r24, Y+2	; 0x02
+     2ac:	88 2f       	mov	r24, r24
+     2ae:	90 e0       	ldi	r25, 0x00	; 0
+     2b0:	83 30       	cpi	r24, 0x03	; 3
+     2b2:	91 05       	cpc	r25, r1
+     2b4:	09 f4       	brne	.+2      	; 0x2b8 <MCAL_DIO_u8SetPinValue+0x2c>
+     2b6:	7a c0       	rjmp	.+244    	; 0x3ac <MCAL_DIO_u8SetPinValue+0x120>
+     2b8:	84 30       	cpi	r24, 0x04	; 4
+     2ba:	91 05       	cpc	r25, r1
+     2bc:	0c f0       	brlt	.+2      	; 0x2c0 <MCAL_DIO_u8SetPinValue+0x34>
+     2be:	99 c0       	rjmp	.+306    	; 0x3f2 <MCAL_DIO_u8SetPinValue+0x166>
+     2c0:	82 30       	cpi	r24, 0x02	; 2
+     2c2:	91 05       	cpc	r25, r1
+     2c4:	09 f4       	brne	.+2      	; 0x2c8 <MCAL_DIO_u8SetPinValue+0x3c>
+     2c6:	4f c0       	rjmp	.+158    	; 0x366 <MCAL_DIO_u8SetPinValue+0xda>
+     2c8:	83 30       	cpi	r24, 0x03	; 3
+     2ca:	91 05       	cpc	r25, r1
+     2cc:	0c f0       	brlt	.+2      	; 0x2d0 <MCAL_DIO_u8SetPinValue+0x44>
+     2ce:	91 c0       	rjmp	.+290    	; 0x3f2 <MCAL_DIO_u8SetPinValue+0x166>
+     2d0:	00 97       	sbiw	r24, 0x00	; 0
+     2d2:	19 f0       	breq	.+6      	; 0x2da <MCAL_DIO_u8SetPinValue+0x4e>
+     2d4:	01 97       	sbiw	r24, 0x01	; 1
+     2d6:	21 f1       	breq	.+72     	; 0x320 <MCAL_DIO_u8SetPinValue+0x94>
+     2d8:	8c c0       	rjmp	.+280    	; 0x3f2 <MCAL_DIO_u8SetPinValue+0x166>
+     2da:	8b e3       	ldi	r24, 0x3B	; 59
+     2dc:	90 e0       	ldi	r25, 0x00	; 0
+     2de:	fc 01       	movw	r30, r24
+     2e0:	80 81       	ld	r24, Z
+     2e2:	48 2f       	mov	r20, r24
+     2e4:	8b 81       	ldd	r24, Y+3	; 0x03
+     2e6:	28 2f       	mov	r18, r24
+     2e8:	30 e0       	ldi	r19, 0x00	; 0
+     2ea:	81 e0       	ldi	r24, 0x01	; 1
+     2ec:	90 e0       	ldi	r25, 0x00	; 0
+     2ee:	02 c0       	rjmp	.+4      	; 0x2f4 <MCAL_DIO_u8SetPinValue+0x68>
+     2f0:	88 0f       	add	r24, r24
+     2f2:	99 1f       	adc	r25, r25
+     2f4:	2a 95       	dec	r18
+     2f6:	e2 f7       	brpl	.-8      	; 0x2f0 <MCAL_DIO_u8SetPinValue+0x64>
+     2f8:	80 95       	com	r24
+     2fa:	48 23       	and	r20, r24
+     2fc:	8c 81       	ldd	r24, Y+4	; 0x04
+     2fe:	88 2f       	mov	r24, r24
+     300:	90 e0       	ldi	r25, 0x00	; 0
+     302:	2b 81       	ldd	r18, Y+3	; 0x03
+     304:	22 2f       	mov	r18, r18
+     306:	30 e0       	ldi	r19, 0x00	; 0
+     308:	02 c0       	rjmp	.+4      	; 0x30e <MCAL_DIO_u8SetPinValue+0x82>
+     30a:	88 0f       	add	r24, r24
+     30c:	99 1f       	adc	r25, r25
+     30e:	2a 95       	dec	r18
+     310:	e2 f7       	brpl	.-8      	; 0x30a <MCAL_DIO_u8SetPinValue+0x7e>
+     312:	24 2f       	mov	r18, r20
+     314:	28 2b       	or	r18, r24
+     316:	8b e3       	ldi	r24, 0x3B	; 59
+     318:	90 e0       	ldi	r25, 0x00	; 0
+     31a:	fc 01       	movw	r30, r24
+     31c:	20 83       	st	Z, r18
+     31e:	6c c0       	rjmp	.+216    	; 0x3f8 <MCAL_DIO_u8SetPinValue+0x16c>
+     320:	88 e3       	ldi	r24, 0x38	; 56
+     322:	90 e0       	ldi	r25, 0x00	; 0
+     324:	fc 01       	movw	r30, r24
+     326:	80 81       	ld	r24, Z
+     328:	48 2f       	mov	r20, r24
+     32a:	8b 81       	ldd	r24, Y+3	; 0x03
+     32c:	28 2f       	mov	r18, r24
+     32e:	30 e0       	ldi	r19, 0x00	; 0
+     330:	81 e0       	ldi	r24, 0x01	; 1
+     332:	90 e0       	ldi	r25, 0x00	; 0
+     334:	02 c0       	rjmp	.+4      	; 0x33a <MCAL_DIO_u8SetPinValue+0xae>
+     336:	88 0f       	add	r24, r24
+     338:	99 1f       	adc	r25, r25
+     33a:	2a 95       	dec	r18
+     33c:	e2 f7       	brpl	.-8      	; 0x336 <MCAL_DIO_u8SetPinValue+0xaa>
+     33e:	80 95       	com	r24
+     340:	48 23       	and	r20, r24
+     342:	8c 81       	ldd	r24, Y+4	; 0x04
+     344:	88 2f       	mov	r24, r24
+     346:	90 e0       	ldi	r25, 0x00	; 0
+     348:	2b 81       	ldd	r18, Y+3	; 0x03
+     34a:	22 2f       	mov	r18, r18
+     34c:	30 e0       	ldi	r19, 0x00	; 0
+     34e:	02 c0       	rjmp	.+4      	; 0x354 <MCAL_DIO_u8SetPinValue+0xc8>
+     350:	88 0f       	add	r24, r24
+     352:	99 1f       	adc	r25, r25
+     354:	2a 95       	dec	r18
+     356:	e2 f7       	brpl	.-8      	; 0x350 <MCAL_DIO_u8SetPinValue+0xc4>
+     358:	24 2f       	mov	r18, r20
+     35a:	28 2b       	or	r18, r24
+     35c:	88 e3       	ldi	r24, 0x38	; 56
+     35e:	90 e0       	ldi	r25, 0x00	; 0
+     360:	fc 01       	movw	r30, r24
+     362:	20 83       	st	Z, r18
+     364:	49 c0       	rjmp	.+146    	; 0x3f8 <MCAL_DIO_u8SetPinValue+0x16c>
+     366:	85 e3       	ldi	r24, 0x35	; 53
+     368:	90 e0       	ldi	r25, 0x00	; 0
+     36a:	fc 01       	movw	r30, r24
+     36c:	80 81       	ld	r24, Z
+     36e:	48 2f       	mov	r20, r24
+     370:	8b 81       	ldd	r24, Y+3	; 0x03
+     372:	28 2f       	mov	r18, r24
+     374:	30 e0       	ldi	r19, 0x00	; 0
+     376:	81 e0       	ldi	r24, 0x01	; 1
+     378:	90 e0       	ldi	r25, 0x00	; 0
+     37a:	02 c0       	rjmp	.+4      	; 0x380 <MCAL_DIO_u8SetPinValue+0xf4>
+     37c:	88 0f       	add	r24, r24
+     37e:	99 1f       	adc	r25, r25
+     380:	2a 95       	dec	r18
+     382:	e2 f7       	brpl	.-8      	; 0x37c <MCAL_DIO_u8SetPinValue+0xf0>
+     384:	80 95       	com	r24
+     386:	48 23       	and	r20, r24
+     388:	8c 81       	ldd	r24, Y+4	; 0x04
+     38a:	88 2f       	mov	r24, r24
+     38c:	90 e0       	ldi	r25, 0x00	; 0
+     38e:	2b 81       	ldd	r18, Y+3	; 0x03
+     390:	22 2f       	mov	r18, r18
+     392:	30 e0       	ldi	r19, 0x00	; 0
+     394:	02 c0       	rjmp	.+4      	; 0x39a <MCAL_DIO_u8SetPinValue+0x10e>
+     396:	88 0f       	add	r24, r24
+     398:	99 1f       	adc	r25, r25
+     39a:	2a 95       	dec	r18
+     39c:	e2 f7       	brpl	.-8      	; 0x396 <MCAL_DIO_u8SetPinValue+0x10a>
+     39e:	24 2f       	mov	r18, r20
+     3a0:	28 2b       	or	r18, r24
+     3a2:	85 e3       	ldi	r24, 0x35	; 53
+     3a4:	90 e0       	ldi	r25, 0x00	; 0
+     3a6:	fc 01       	movw	r30, r24
+     3a8:	20 83       	st	Z, r18
+     3aa:	26 c0       	rjmp	.+76     	; 0x3f8 <MCAL_DIO_u8SetPinValue+0x16c>
+     3ac:	82 e3       	ldi	r24, 0x32	; 50
+     3ae:	90 e0       	ldi	r25, 0x00	; 0
+     3b0:	fc 01       	movw	r30, r24
+     3b2:	80 81       	ld	r24, Z
+     3b4:	48 2f       	mov	r20, r24
+     3b6:	8b 81       	ldd	r24, Y+3	; 0x03
+     3b8:	28 2f       	mov	r18, r24
+     3ba:	30 e0       	ldi	r19, 0x00	; 0
+     3bc:	81 e0       	ldi	r24, 0x01	; 1
+     3be:	90 e0       	ldi	r25, 0x00	; 0
+     3c0:	02 c0       	rjmp	.+4      	; 0x3c6 <MCAL_DIO_u8SetPinValue+0x13a>
+     3c2:	88 0f       	add	r24, r24
+     3c4:	99 1f       	adc	r25, r25
+     3c6:	2a 95       	dec	r18
+     3c8:	e2 f7       	brpl	.-8      	; 0x3c2 <MCAL_DIO_u8SetPinValue+0x136>
+     3ca:	80 95       	com	r24
+     3cc:	48 23       	and	r20, r24
+     3ce:	8c 81       	ldd	r24, Y+4	; 0x04
+     3d0:	88 2f       	mov	r24, r24
+     3d2:	90 e0       	ldi	r25, 0x00	; 0
+     3d4:	2b 81       	ldd	r18, Y+3	; 0x03
+     3d6:	22 2f       	mov	r18, r18
+     3d8:	30 e0       	ldi	r19, 0x00	; 0
+     3da:	02 c0       	rjmp	.+4      	; 0x3e0 <MCAL_DIO_u8SetPinValue+0x154>
+     3dc:	88 0f       	add	r24, r24
+     3de:	99 1f       	adc	r25, r25
+     3e0:	2a 95       	dec	r18
+     3e2:	e2 f7       	brpl	.-8      	; 0x3dc <MCAL_DIO_u8SetPinValue+0x150>
+     3e4:	24 2f       	mov	r18, r20
+     3e6:	28 2b       	or	r18, r24
+     3e8:	82 e3       	ldi	r24, 0x32	; 50
+     3ea:	90 e0       	ldi	r25, 0x00	; 0
+     3ec:	fc 01       	movw	r30, r24
+     3ee:	20 83       	st	Z, r18
+     3f0:	03 c0       	rjmp	.+6      	; 0x3f8 <MCAL_DIO_u8SetPinValue+0x16c>
+     3f2:	19 82       	std	Y+1, r1	; 0x01
+     3f4:	01 c0       	rjmp	.+2      	; 0x3f8 <MCAL_DIO_u8SetPinValue+0x16c>
+     3f6:	19 82       	std	Y+1, r1	; 0x01
+     3f8:	89 81       	ldd	r24, Y+1	; 0x01
+     3fa:	0f 90       	pop	r0
+     3fc:	0f 90       	pop	r0
+     3fe:	0f 90       	pop	r0
+     400:	0f 90       	pop	r0
+     402:	df 91       	pop	r29
+     404:	cf 91       	pop	r28
+     406:	08 95       	ret
+
+00000408 <MCAL_DIO_u8SetPortValue>:
+     408:	cf 93       	push	r28
+     40a:	df 93       	push	r29
+     40c:	00 d0       	rcall	.+0      	; 0x40e <MCAL_DIO_u8SetPortValue+0x6>
+     40e:	0f 92       	push	r0
+     410:	cd b7       	in	r28, 0x3d	; 61
+     412:	de b7       	in	r29, 0x3e	; 62
+     414:	8a 83       	std	Y+2, r24	; 0x02
+     416:	6b 83       	std	Y+3, r22	; 0x03
+     418:	81 e0       	ldi	r24, 0x01	; 1
+     41a:	89 83       	std	Y+1, r24	; 0x01
+     41c:	8a 81       	ldd	r24, Y+2	; 0x02
+     41e:	88 2f       	mov	r24, r24
+     420:	90 e0       	ldi	r25, 0x00	; 0
+     422:	83 30       	cpi	r24, 0x03	; 3
+     424:	91 05       	cpc	r25, r1
+     426:	01 f1       	breq	.+64     	; 0x468 <MCAL_DIO_u8SetPortValue+0x60>
+     428:	84 30       	cpi	r24, 0x04	; 4
+     42a:	91 05       	cpc	r25, r1
+     42c:	1c f5       	brge	.+70     	; 0x474 <MCAL_DIO_u8SetPortValue+0x6c>
+     42e:	82 30       	cpi	r24, 0x02	; 2
+     430:	91 05       	cpc	r25, r1
+     432:	a1 f0       	breq	.+40     	; 0x45c <MCAL_DIO_u8SetPortValue+0x54>
+     434:	83 30       	cpi	r24, 0x03	; 3
+     436:	91 05       	cpc	r25, r1
+     438:	ec f4       	brge	.+58     	; 0x474 <MCAL_DIO_u8SetPortValue+0x6c>
+     43a:	00 97       	sbiw	r24, 0x00	; 0
+     43c:	19 f0       	breq	.+6      	; 0x444 <MCAL_DIO_u8SetPortValue+0x3c>
+     43e:	01 97       	sbiw	r24, 0x01	; 1
+     440:	39 f0       	breq	.+14     	; 0x450 <MCAL_DIO_u8SetPortValue+0x48>
+     442:	18 c0       	rjmp	.+48     	; 0x474 <MCAL_DIO_u8SetPortValue+0x6c>
+     444:	8b e3       	ldi	r24, 0x3B	; 59
+     446:	90 e0       	ldi	r25, 0x00	; 0
+     448:	2b 81       	ldd	r18, Y+3	; 0x03
+     44a:	fc 01       	movw	r30, r24
+     44c:	20 83       	st	Z, r18
+     44e:	14 c0       	rjmp	.+40     	; 0x478 <MCAL_DIO_u8SetPortValue+0x70>
+     450:	88 e3       	ldi	r24, 0x38	; 56
+     452:	90 e0       	ldi	r25, 0x00	; 0
+     454:	2b 81       	ldd	r18, Y+3	; 0x03
+     456:	fc 01       	movw	r30, r24
+     458:	20 83       	st	Z, r18
+     45a:	0e c0       	rjmp	.+28     	; 0x478 <MCAL_DIO_u8SetPortValue+0x70>
+     45c:	85 e3       	ldi	r24, 0x35	; 53
+     45e:	90 e0       	ldi	r25, 0x00	; 0
+     460:	2b 81       	ldd	r18, Y+3	; 0x03
+     462:	fc 01       	movw	r30, r24
+     464:	20 83       	st	Z, r18
+     466:	08 c0       	rjmp	.+16     	; 0x478 <MCAL_DIO_u8SetPortValue+0x70>
+     468:	82 e3       	ldi	r24, 0x32	; 50
+     46a:	90 e0       	ldi	r25, 0x00	; 0
+     46c:	2b 81       	ldd	r18, Y+3	; 0x03
+     46e:	fc 01       	movw	r30, r24
+     470:	20 83       	st	Z, r18
+     472:	02 c0       	rjmp	.+4      	; 0x478 <MCAL_DIO_u8SetPortValue+0x70>
+     474:	19 82       	std	Y+1, r1	; 0x01
+     476:	00 00       	nop
+     478:	89 81       	ldd	r24, Y+1	; 0x01
+     47a:	0f 90       	pop	r0
+     47c:	0f 90       	pop	r0
+     47e:	0f 90       	pop	r0
+     480:	df 91       	pop	r29
+     482:	cf 91       	pop	r28
+     484:	08 95       	ret
+
+00000486 <MCAL_DIO_u8GetPinValue>:
+     486:	cf 93       	push	r28
+     488:	df 93       	push	r29
+     48a:	00 d0       	rcall	.+0      	; 0x48c <MCAL_DIO_u8GetPinValue+0x6>
+     48c:	00 d0       	rcall	.+0      	; 0x48e <MCAL_DIO_u8GetPinValue+0x8>
+     48e:	0f 92       	push	r0
+     490:	cd b7       	in	r28, 0x3d	; 61
+     492:	de b7       	in	r29, 0x3e	; 62
+     494:	8a 83       	std	Y+2, r24	; 0x02
+     496:	6b 83       	std	Y+3, r22	; 0x03
+     498:	5d 83       	std	Y+5, r21	; 0x05
+     49a:	4c 83       	std	Y+4, r20	; 0x04
+     49c:	81 e0       	ldi	r24, 0x01	; 1
+     49e:	89 83       	std	Y+1, r24	; 0x01
+     4a0:	8b 81       	ldd	r24, Y+3	; 0x03
+     4a2:	88 30       	cpi	r24, 0x08	; 8
+     4a4:	08 f0       	brcs	.+2      	; 0x4a8 <MCAL_DIO_u8GetPinValue+0x22>
+     4a6:	6d c0       	rjmp	.+218    	; 0x582 <MCAL_DIO_u8GetPinValue+0xfc>
+     4a8:	8a 81       	ldd	r24, Y+2	; 0x02
+     4aa:	88 2f       	mov	r24, r24
+     4ac:	90 e0       	ldi	r25, 0x00	; 0
+     4ae:	83 30       	cpi	r24, 0x03	; 3
+     4b0:	91 05       	cpc	r25, r1
+     4b2:	09 f4       	brne	.+2      	; 0x4b6 <MCAL_DIO_u8GetPinValue+0x30>
+     4b4:	4f c0       	rjmp	.+158    	; 0x554 <MCAL_DIO_u8GetPinValue+0xce>
+     4b6:	84 30       	cpi	r24, 0x04	; 4
+     4b8:	91 05       	cpc	r25, r1
+     4ba:	0c f0       	brlt	.+2      	; 0x4be <MCAL_DIO_u8GetPinValue+0x38>
+     4bc:	60 c0       	rjmp	.+192    	; 0x57e <MCAL_DIO_u8GetPinValue+0xf8>
+     4be:	82 30       	cpi	r24, 0x02	; 2
+     4c0:	91 05       	cpc	r25, r1
+     4c2:	99 f1       	breq	.+102    	; 0x52a <MCAL_DIO_u8GetPinValue+0xa4>
+     4c4:	83 30       	cpi	r24, 0x03	; 3
+     4c6:	91 05       	cpc	r25, r1
+     4c8:	0c f0       	brlt	.+2      	; 0x4cc <MCAL_DIO_u8GetPinValue+0x46>
+     4ca:	59 c0       	rjmp	.+178    	; 0x57e <MCAL_DIO_u8GetPinValue+0xf8>
+     4cc:	00 97       	sbiw	r24, 0x00	; 0
+     4ce:	19 f0       	breq	.+6      	; 0x4d6 <MCAL_DIO_u8GetPinValue+0x50>
+     4d0:	01 97       	sbiw	r24, 0x01	; 1
+     4d2:	b1 f0       	breq	.+44     	; 0x500 <MCAL_DIO_u8GetPinValue+0x7a>
+     4d4:	54 c0       	rjmp	.+168    	; 0x57e <MCAL_DIO_u8GetPinValue+0xf8>
+     4d6:	89 e3       	ldi	r24, 0x39	; 57
+     4d8:	90 e0       	ldi	r25, 0x00	; 0
+     4da:	fc 01       	movw	r30, r24
+     4dc:	80 81       	ld	r24, Z
+     4de:	88 2f       	mov	r24, r24
+     4e0:	90 e0       	ldi	r25, 0x00	; 0
+     4e2:	2b 81       	ldd	r18, Y+3	; 0x03
+     4e4:	22 2f       	mov	r18, r18
+     4e6:	30 e0       	ldi	r19, 0x00	; 0
+     4e8:	02 c0       	rjmp	.+4      	; 0x4ee <MCAL_DIO_u8GetPinValue+0x68>
+     4ea:	95 95       	asr	r25
+     4ec:	87 95       	ror	r24
+     4ee:	2a 95       	dec	r18
+     4f0:	e2 f7       	brpl	.-8      	; 0x4ea <MCAL_DIO_u8GetPinValue+0x64>
+     4f2:	28 2f       	mov	r18, r24
+     4f4:	21 70       	andi	r18, 0x01	; 1
+     4f6:	8c 81       	ldd	r24, Y+4	; 0x04
+     4f8:	9d 81       	ldd	r25, Y+5	; 0x05
+     4fa:	fc 01       	movw	r30, r24
+     4fc:	20 83       	st	Z, r18
+     4fe:	42 c0       	rjmp	.+132    	; 0x584 <MCAL_DIO_u8GetPinValue+0xfe>
+     500:	86 e3       	ldi	r24, 0x36	; 54
+     502:	90 e0       	ldi	r25, 0x00	; 0
+     504:	fc 01       	movw	r30, r24
+     506:	80 81       	ld	r24, Z
+     508:	88 2f       	mov	r24, r24
+     50a:	90 e0       	ldi	r25, 0x00	; 0
+     50c:	2b 81       	ldd	r18, Y+3	; 0x03
+     50e:	22 2f       	mov	r18, r18
+     510:	30 e0       	ldi	r19, 0x00	; 0
+     512:	02 c0       	rjmp	.+4      	; 0x518 <MCAL_DIO_u8GetPinValue+0x92>
+     514:	95 95       	asr	r25
+     516:	87 95       	ror	r24
+     518:	2a 95       	dec	r18
+     51a:	e2 f7       	brpl	.-8      	; 0x514 <MCAL_DIO_u8GetPinValue+0x8e>
+     51c:	28 2f       	mov	r18, r24
+     51e:	21 70       	andi	r18, 0x01	; 1
+     520:	8c 81       	ldd	r24, Y+4	; 0x04
+     522:	9d 81       	ldd	r25, Y+5	; 0x05
+     524:	fc 01       	movw	r30, r24
+     526:	20 83       	st	Z, r18
+     528:	2d c0       	rjmp	.+90     	; 0x584 <MCAL_DIO_u8GetPinValue+0xfe>
+     52a:	83 e3       	ldi	r24, 0x33	; 51
+     52c:	90 e0       	ldi	r25, 0x00	; 0
+     52e:	fc 01       	movw	r30, r24
+     530:	80 81       	ld	r24, Z
+     532:	88 2f       	mov	r24, r24
+     534:	90 e0       	ldi	r25, 0x00	; 0
+     536:	2b 81       	ldd	r18, Y+3	; 0x03
+     538:	22 2f       	mov	r18, r18
+     53a:	30 e0       	ldi	r19, 0x00	; 0
+     53c:	02 c0       	rjmp	.+4      	; 0x542 <MCAL_DIO_u8GetPinValue+0xbc>
+     53e:	95 95       	asr	r25
+     540:	87 95       	ror	r24
+     542:	2a 95       	dec	r18
+     544:	e2 f7       	brpl	.-8      	; 0x53e <MCAL_DIO_u8GetPinValue+0xb8>
+     546:	28 2f       	mov	r18, r24
+     548:	21 70       	andi	r18, 0x01	; 1
+     54a:	8c 81       	ldd	r24, Y+4	; 0x04
+     54c:	9d 81       	ldd	r25, Y+5	; 0x05
+     54e:	fc 01       	movw	r30, r24
+     550:	20 83       	st	Z, r18
+     552:	18 c0       	rjmp	.+48     	; 0x584 <MCAL_DIO_u8GetPinValue+0xfe>
+     554:	80 e3       	ldi	r24, 0x30	; 48
+     556:	90 e0       	ldi	r25, 0x00	; 0
+     558:	fc 01       	movw	r30, r24
+     55a:	80 81       	ld	r24, Z
+     55c:	88 2f       	mov	r24, r24
+     55e:	90 e0       	ldi	r25, 0x00	; 0
+     560:	2b 81       	ldd	r18, Y+3	; 0x03
+     562:	22 2f       	mov	r18, r18
+     564:	30 e0       	ldi	r19, 0x00	; 0
+     566:	02 c0       	rjmp	.+4      	; 0x56c <MCAL_DIO_u8GetPinValue+0xe6>
+     568:	95 95       	asr	r25
+     56a:	87 95       	ror	r24
+     56c:	2a 95       	dec	r18
+     56e:	e2 f7       	brpl	.-8      	; 0x568 <MCAL_DIO_u8GetPinValue+0xe2>
+     570:	28 2f       	mov	r18, r24
+     572:	21 70       	andi	r18, 0x01	; 1
+     574:	8c 81       	ldd	r24, Y+4	; 0x04
+     576:	9d 81       	ldd	r25, Y+5	; 0x05
+     578:	fc 01       	movw	r30, r24
+     57a:	20 83       	st	Z, r18
+     57c:	03 c0       	rjmp	.+6      	; 0x584 <MCAL_DIO_u8GetPinValue+0xfe>
+     57e:	19 82       	std	Y+1, r1	; 0x01
+     580:	01 c0       	rjmp	.+2      	; 0x584 <MCAL_DIO_u8GetPinValue+0xfe>
+     582:	19 82       	std	Y+1, r1	; 0x01
+     584:	89 81       	ldd	r24, Y+1	; 0x01
+     586:	0f 90       	pop	r0
+     588:	0f 90       	pop	r0
+     58a:	0f 90       	pop	r0
+     58c:	0f 90       	pop	r0
+     58e:	0f 90       	pop	r0
+     590:	df 91       	pop	r29
+     592:	cf 91       	pop	r28
+     594:	08 95       	ret
+
+00000596 <MCAL_DIO_u8GetPortValue>:
+     596:	cf 93       	push	r28
+     598:	df 93       	push	r29
+     59a:	00 d0       	rcall	.+0      	; 0x59c <MCAL_DIO_u8GetPortValue+0x6>
+     59c:	00 d0       	rcall	.+0      	; 0x59e <MCAL_DIO_u8GetPortValue+0x8>
+     59e:	cd b7       	in	r28, 0x3d	; 61
+     5a0:	de b7       	in	r29, 0x3e	; 62
+     5a2:	8a 83       	std	Y+2, r24	; 0x02
+     5a4:	7c 83       	std	Y+4, r23	; 0x04
+     5a6:	6b 83       	std	Y+3, r22	; 0x03
+     5a8:	81 e0       	ldi	r24, 0x01	; 1
+     5aa:	89 83       	std	Y+1, r24	; 0x01
+     5ac:	8a 81       	ldd	r24, Y+2	; 0x02
+     5ae:	88 2f       	mov	r24, r24
+     5b0:	90 e0       	ldi	r25, 0x00	; 0
+     5b2:	83 30       	cpi	r24, 0x03	; 3
+     5b4:	91 05       	cpc	r25, r1
+     5b6:	49 f1       	breq	.+82     	; 0x60a <MCAL_DIO_u8GetPortValue+0x74>
+     5b8:	84 30       	cpi	r24, 0x04	; 4
+     5ba:	91 05       	cpc	r25, r1
+     5bc:	7c f5       	brge	.+94     	; 0x61c <MCAL_DIO_u8GetPortValue+0x86>
+     5be:	82 30       	cpi	r24, 0x02	; 2
+     5c0:	91 05       	cpc	r25, r1
+     5c2:	d1 f0       	breq	.+52     	; 0x5f8 <MCAL_DIO_u8GetPortValue+0x62>
+     5c4:	83 30       	cpi	r24, 0x03	; 3
+     5c6:	91 05       	cpc	r25, r1
+     5c8:	4c f5       	brge	.+82     	; 0x61c <MCAL_DIO_u8GetPortValue+0x86>
+     5ca:	00 97       	sbiw	r24, 0x00	; 0
+     5cc:	19 f0       	breq	.+6      	; 0x5d4 <MCAL_DIO_u8GetPortValue+0x3e>
+     5ce:	01 97       	sbiw	r24, 0x01	; 1
+     5d0:	51 f0       	breq	.+20     	; 0x5e6 <MCAL_DIO_u8GetPortValue+0x50>
+     5d2:	24 c0       	rjmp	.+72     	; 0x61c <MCAL_DIO_u8GetPortValue+0x86>
+     5d4:	89 e3       	ldi	r24, 0x39	; 57
+     5d6:	90 e0       	ldi	r25, 0x00	; 0
+     5d8:	fc 01       	movw	r30, r24
+     5da:	20 81       	ld	r18, Z
+     5dc:	8b 81       	ldd	r24, Y+3	; 0x03
+     5de:	9c 81       	ldd	r25, Y+4	; 0x04
+     5e0:	fc 01       	movw	r30, r24
+     5e2:	20 83       	st	Z, r18
+     5e4:	1d c0       	rjmp	.+58     	; 0x620 <MCAL_DIO_u8GetPortValue+0x8a>
+     5e6:	86 e3       	ldi	r24, 0x36	; 54
+     5e8:	90 e0       	ldi	r25, 0x00	; 0
+     5ea:	fc 01       	movw	r30, r24
+     5ec:	20 81       	ld	r18, Z
+     5ee:	8b 81       	ldd	r24, Y+3	; 0x03
+     5f0:	9c 81       	ldd	r25, Y+4	; 0x04
+     5f2:	fc 01       	movw	r30, r24
+     5f4:	20 83       	st	Z, r18
+     5f6:	14 c0       	rjmp	.+40     	; 0x620 <MCAL_DIO_u8GetPortValue+0x8a>
+     5f8:	83 e3       	ldi	r24, 0x33	; 51
+     5fa:	90 e0       	ldi	r25, 0x00	; 0
+     5fc:	fc 01       	movw	r30, r24
+     5fe:	20 81       	ld	r18, Z
+     600:	8b 81       	ldd	r24, Y+3	; 0x03
+     602:	9c 81       	ldd	r25, Y+4	; 0x04
+     604:	fc 01       	movw	r30, r24
+     606:	20 83       	st	Z, r18
+     608:	0b c0       	rjmp	.+22     	; 0x620 <MCAL_DIO_u8GetPortValue+0x8a>
+     60a:	80 e3       	ldi	r24, 0x30	; 48
+     60c:	90 e0       	ldi	r25, 0x00	; 0
+     60e:	fc 01       	movw	r30, r24
+     610:	20 81       	ld	r18, Z
+     612:	8b 81       	ldd	r24, Y+3	; 0x03
+     614:	9c 81       	ldd	r25, Y+4	; 0x04
+     616:	fc 01       	movw	r30, r24
+     618:	20 83       	st	Z, r18
+     61a:	02 c0       	rjmp	.+4      	; 0x620 <MCAL_DIO_u8GetPortValue+0x8a>
+     61c:	19 82       	std	Y+1, r1	; 0x01
+     61e:	00 00       	nop
+     620:	89 81       	ldd	r24, Y+1	; 0x01
+     622:	0f 90       	pop	r0
+     624:	0f 90       	pop	r0
+     626:	0f 90       	pop	r0
+     628:	0f 90       	pop	r0
+     62a:	df 91       	pop	r29
+     62c:	cf 91       	pop	r28
+     62e:	08 95       	ret
+
+00000630 <MCAL_DIO_u8SetPinInputType>:
+     630:	cf 93       	push	r28
+     632:	df 93       	push	r29
+     634:	00 d0       	rcall	.+0      	; 0x636 <MCAL_DIO_u8SetPinInputType+0x6>
+     636:	00 d0       	rcall	.+0      	; 0x638 <MCAL_DIO_u8SetPinInputType+0x8>
+     638:	cd b7       	in	r28, 0x3d	; 61
+     63a:	de b7       	in	r29, 0x3e	; 62
+     63c:	8a 83       	std	Y+2, r24	; 0x02
+     63e:	6b 83       	std	Y+3, r22	; 0x03
+     640:	4c 83       	std	Y+4, r20	; 0x04
+     642:	81 e0       	ldi	r24, 0x01	; 1
+     644:	89 83       	std	Y+1, r24	; 0x01
+     646:	8b 81       	ldd	r24, Y+3	; 0x03
+     648:	88 30       	cpi	r24, 0x08	; 8
+     64a:	08 f0       	brcs	.+2      	; 0x64e <MCAL_DIO_u8SetPinInputType+0x1e>
+     64c:	a6 c0       	rjmp	.+332    	; 0x79a <MCAL_DIO_u8SetPinInputType+0x16a>
+     64e:	8a 81       	ldd	r24, Y+2	; 0x02
+     650:	88 2f       	mov	r24, r24
+     652:	90 e0       	ldi	r25, 0x00	; 0
+     654:	83 30       	cpi	r24, 0x03	; 3
+     656:	91 05       	cpc	r25, r1
+     658:	09 f4       	brne	.+2      	; 0x65c <MCAL_DIO_u8SetPinInputType+0x2c>
+     65a:	7a c0       	rjmp	.+244    	; 0x750 <MCAL_DIO_u8SetPinInputType+0x120>
+     65c:	84 30       	cpi	r24, 0x04	; 4
+     65e:	91 05       	cpc	r25, r1
+     660:	0c f0       	brlt	.+2      	; 0x664 <MCAL_DIO_u8SetPinInputType+0x34>
+     662:	99 c0       	rjmp	.+306    	; 0x796 <MCAL_DIO_u8SetPinInputType+0x166>
+     664:	82 30       	cpi	r24, 0x02	; 2
+     666:	91 05       	cpc	r25, r1
+     668:	09 f4       	brne	.+2      	; 0x66c <MCAL_DIO_u8SetPinInputType+0x3c>
+     66a:	4f c0       	rjmp	.+158    	; 0x70a <MCAL_DIO_u8SetPinInputType+0xda>
+     66c:	83 30       	cpi	r24, 0x03	; 3
+     66e:	91 05       	cpc	r25, r1
+     670:	0c f0       	brlt	.+2      	; 0x674 <MCAL_DIO_u8SetPinInputType+0x44>
+     672:	91 c0       	rjmp	.+290    	; 0x796 <MCAL_DIO_u8SetPinInputType+0x166>
+     674:	00 97       	sbiw	r24, 0x00	; 0
+     676:	19 f0       	breq	.+6      	; 0x67e <MCAL_DIO_u8SetPinInputType+0x4e>
+     678:	01 97       	sbiw	r24, 0x01	; 1
+     67a:	21 f1       	breq	.+72     	; 0x6c4 <MCAL_DIO_u8SetPinInputType+0x94>
+     67c:	8c c0       	rjmp	.+280    	; 0x796 <MCAL_DIO_u8SetPinInputType+0x166>
+     67e:	8b e3       	ldi	r24, 0x3B	; 59
+     680:	90 e0       	ldi	r25, 0x00	; 0
+     682:	fc 01       	movw	r30, r24
+     684:	80 81       	ld	r24, Z
+     686:	48 2f       	mov	r20, r24
+     688:	8b 81       	ldd	r24, Y+3	; 0x03
+     68a:	28 2f       	mov	r18, r24
+     68c:	30 e0       	ldi	r19, 0x00	; 0
+     68e:	81 e0       	ldi	r24, 0x01	; 1
+     690:	90 e0       	ldi	r25, 0x00	; 0
+     692:	02 c0       	rjmp	.+4      	; 0x698 <MCAL_DIO_u8SetPinInputType+0x68>
+     694:	88 0f       	add	r24, r24
+     696:	99 1f       	adc	r25, r25
+     698:	2a 95       	dec	r18
+     69a:	e2 f7       	brpl	.-8      	; 0x694 <MCAL_DIO_u8SetPinInputType+0x64>
+     69c:	80 95       	com	r24
+     69e:	48 23       	and	r20, r24
+     6a0:	8c 81       	ldd	r24, Y+4	; 0x04
+     6a2:	88 2f       	mov	r24, r24
+     6a4:	90 e0       	ldi	r25, 0x00	; 0
+     6a6:	2b 81       	ldd	r18, Y+3	; 0x03
+     6a8:	22 2f       	mov	r18, r18
+     6aa:	30 e0       	ldi	r19, 0x00	; 0
+     6ac:	02 c0       	rjmp	.+4      	; 0x6b2 <MCAL_DIO_u8SetPinInputType+0x82>
+     6ae:	88 0f       	add	r24, r24
+     6b0:	99 1f       	adc	r25, r25
+     6b2:	2a 95       	dec	r18
+     6b4:	e2 f7       	brpl	.-8      	; 0x6ae <MCAL_DIO_u8SetPinInputType+0x7e>
+     6b6:	24 2f       	mov	r18, r20
+     6b8:	28 2b       	or	r18, r24
+     6ba:	8b e3       	ldi	r24, 0x3B	; 59
+     6bc:	90 e0       	ldi	r25, 0x00	; 0
+     6be:	fc 01       	movw	r30, r24
+     6c0:	20 83       	st	Z, r18
+     6c2:	6c c0       	rjmp	.+216    	; 0x79c <MCAL_DIO_u8SetPinInputType+0x16c>
+     6c4:	88 e3       	ldi	r24, 0x38	; 56
+     6c6:	90 e0       	ldi	r25, 0x00	; 0
+     6c8:	fc 01       	movw	r30, r24
+     6ca:	80 81       	ld	r24, Z
+     6cc:	48 2f       	mov	r20, r24
+     6ce:	8b 81       	ldd	r24, Y+3	; 0x03
+     6d0:	28 2f       	mov	r18, r24
+     6d2:	30 e0       	ldi	r19, 0x00	; 0
+     6d4:	81 e0       	ldi	r24, 0x01	; 1
+     6d6:	90 e0       	ldi	r25, 0x00	; 0
+     6d8:	02 c0       	rjmp	.+4      	; 0x6de <MCAL_DIO_u8SetPinInputType+0xae>
+     6da:	88 0f       	add	r24, r24
+     6dc:	99 1f       	adc	r25, r25
+     6de:	2a 95       	dec	r18
+     6e0:	e2 f7       	brpl	.-8      	; 0x6da <MCAL_DIO_u8SetPinInputType+0xaa>
+     6e2:	80 95       	com	r24
+     6e4:	48 23       	and	r20, r24
+     6e6:	8c 81       	ldd	r24, Y+4	; 0x04
+     6e8:	88 2f       	mov	r24, r24
+     6ea:	90 e0       	ldi	r25, 0x00	; 0
+     6ec:	2b 81       	ldd	r18, Y+3	; 0x03
+     6ee:	22 2f       	mov	r18, r18
+     6f0:	30 e0       	ldi	r19, 0x00	; 0
+     6f2:	02 c0       	rjmp	.+4      	; 0x6f8 <MCAL_DIO_u8SetPinInputType+0xc8>
+     6f4:	88 0f       	add	r24, r24
+     6f6:	99 1f       	adc	r25, r25
+     6f8:	2a 95       	dec	r18
+     6fa:	e2 f7       	brpl	.-8      	; 0x6f4 <MCAL_DIO_u8SetPinInputType+0xc4>
+     6fc:	24 2f       	mov	r18, r20
+     6fe:	28 2b       	or	r18, r24
+     700:	88 e3       	ldi	r24, 0x38	; 56
+     702:	90 e0       	ldi	r25, 0x00	; 0
+     704:	fc 01       	movw	r30, r24
+     706:	20 83       	st	Z, r18
+     708:	49 c0       	rjmp	.+146    	; 0x79c <MCAL_DIO_u8SetPinInputType+0x16c>
+     70a:	85 e3       	ldi	r24, 0x35	; 53
+     70c:	90 e0       	ldi	r25, 0x00	; 0
+     70e:	fc 01       	movw	r30, r24
+     710:	80 81       	ld	r24, Z
+     712:	48 2f       	mov	r20, r24
+     714:	8b 81       	ldd	r24, Y+3	; 0x03
+     716:	28 2f       	mov	r18, r24
+     718:	30 e0       	ldi	r19, 0x00	; 0
+     71a:	81 e0       	ldi	r24, 0x01	; 1
+     71c:	90 e0       	ldi	r25, 0x00	; 0
+     71e:	02 c0       	rjmp	.+4      	; 0x724 <MCAL_DIO_u8SetPinInputType+0xf4>
+     720:	88 0f       	add	r24, r24
+     722:	99 1f       	adc	r25, r25
+     724:	2a 95       	dec	r18
+     726:	e2 f7       	brpl	.-8      	; 0x720 <MCAL_DIO_u8SetPinInputType+0xf0>
+     728:	80 95       	com	r24
+     72a:	48 23       	and	r20, r24
+     72c:	8c 81       	ldd	r24, Y+4	; 0x04
+     72e:	88 2f       	mov	r24, r24
+     730:	90 e0       	ldi	r25, 0x00	; 0
+     732:	2b 81       	ldd	r18, Y+3	; 0x03
+     734:	22 2f       	mov	r18, r18
+     736:	30 e0       	ldi	r19, 0x00	; 0
+     738:	02 c0       	rjmp	.+4      	; 0x73e <MCAL_DIO_u8SetPinInputType+0x10e>
+     73a:	88 0f       	add	r24, r24
+     73c:	99 1f       	adc	r25, r25
+     73e:	2a 95       	dec	r18
+     740:	e2 f7       	brpl	.-8      	; 0x73a <MCAL_DIO_u8SetPinInputType+0x10a>
+     742:	24 2f       	mov	r18, r20
+     744:	28 2b       	or	r18, r24
+     746:	85 e3       	ldi	r24, 0x35	; 53
+     748:	90 e0       	ldi	r25, 0x00	; 0
+     74a:	fc 01       	movw	r30, r24
+     74c:	20 83       	st	Z, r18
+     74e:	26 c0       	rjmp	.+76     	; 0x79c <MCAL_DIO_u8SetPinInputType+0x16c>
+     750:	82 e3       	ldi	r24, 0x32	; 50
+     752:	90 e0       	ldi	r25, 0x00	; 0
+     754:	fc 01       	movw	r30, r24
+     756:	80 81       	ld	r24, Z
+     758:	48 2f       	mov	r20, r24
+     75a:	8b 81       	ldd	r24, Y+3	; 0x03
+     75c:	28 2f       	mov	r18, r24
+     75e:	30 e0       	ldi	r19, 0x00	; 0
+     760:	81 e0       	ldi	r24, 0x01	; 1
+     762:	90 e0       	ldi	r25, 0x00	; 0
+     764:	02 c0       	rjmp	.+4      	; 0x76a <MCAL_DIO_u8SetPinInputType+0x13a>
+     766:	88 0f       	add	r24, r24
+     768:	99 1f       	adc	r25, r25
+     76a:	2a 95       	dec	r18
+     76c:	e2 f7       	brpl	.-8      	; 0x766 <MCAL_DIO_u8SetPinInputType+0x136>
+     76e:	80 95       	com	r24
+     770:	48 23       	and	r20, r24
+     772:	8c 81       	ldd	r24, Y+4	; 0x04
+     774:	88 2f       	mov	r24, r24
+     776:	90 e0       	ldi	r25, 0x00	; 0
+     778:	2b 81       	ldd	r18, Y+3	; 0x03
+     77a:	22 2f       	mov	r18, r18
+     77c:	30 e0       	ldi	r19, 0x00	; 0
+     77e:	02 c0       	rjmp	.+4      	; 0x784 <MCAL_DIO_u8SetPinInputType+0x154>
+     780:	88 0f       	add	r24, r24
+     782:	99 1f       	adc	r25, r25
+     784:	2a 95       	dec	r18
+     786:	e2 f7       	brpl	.-8      	; 0x780 <MCAL_DIO_u8SetPinInputType+0x150>
+     788:	24 2f       	mov	r18, r20
+     78a:	28 2b       	or	r18, r24
+     78c:	82 e3       	ldi	r24, 0x32	; 50
+     78e:	90 e0       	ldi	r25, 0x00	; 0
+     790:	fc 01       	movw	r30, r24
+     792:	20 83       	st	Z, r18
+     794:	03 c0       	rjmp	.+6      	; 0x79c <MCAL_DIO_u8SetPinInputType+0x16c>
+     796:	19 82       	std	Y+1, r1	; 0x01
+     798:	01 c0       	rjmp	.+2      	; 0x79c <MCAL_DIO_u8SetPinInputType+0x16c>
+     79a:	19 82       	std	Y+1, r1	; 0x01
+     79c:	89 81       	ldd	r24, Y+1	; 0x01
+     79e:	0f 90       	pop	r0
+     7a0:	0f 90       	pop	r0
+     7a2:	0f 90       	pop	r0
+     7a4:	0f 90       	pop	r0
+     7a6:	df 91       	pop	r29
+     7a8:	cf 91       	pop	r28
+     7aa:	08 95       	ret
+
+000007ac <MCAL_DIO_u8SetPortInputType>:
+     7ac:	cf 93       	push	r28
+     7ae:	df 93       	push	r29
+     7b0:	00 d0       	rcall	.+0      	; 0x7b2 <MCAL_DIO_u8SetPortInputType+0x6>
+     7b2:	0f 92       	push	r0
+     7b4:	cd b7       	in	r28, 0x3d	; 61
+     7b6:	de b7       	in	r29, 0x3e	; 62
+     7b8:	8a 83       	std	Y+2, r24	; 0x02
+     7ba:	6b 83       	std	Y+3, r22	; 0x03
+     7bc:	81 e0       	ldi	r24, 0x01	; 1
+     7be:	89 83       	std	Y+1, r24	; 0x01
+     7c0:	8a 81       	ldd	r24, Y+2	; 0x02
+     7c2:	88 2f       	mov	r24, r24
+     7c4:	90 e0       	ldi	r25, 0x00	; 0
+     7c6:	83 30       	cpi	r24, 0x03	; 3
+     7c8:	91 05       	cpc	r25, r1
+     7ca:	01 f1       	breq	.+64     	; 0x80c <MCAL_DIO_u8SetPortInputType+0x60>
+     7cc:	84 30       	cpi	r24, 0x04	; 4
+     7ce:	91 05       	cpc	r25, r1
+     7d0:	1c f5       	brge	.+70     	; 0x818 <MCAL_DIO_u8SetPortInputType+0x6c>
+     7d2:	82 30       	cpi	r24, 0x02	; 2
+     7d4:	91 05       	cpc	r25, r1
+     7d6:	a1 f0       	breq	.+40     	; 0x800 <MCAL_DIO_u8SetPortInputType+0x54>
+     7d8:	83 30       	cpi	r24, 0x03	; 3
+     7da:	91 05       	cpc	r25, r1
+     7dc:	ec f4       	brge	.+58     	; 0x818 <MCAL_DIO_u8SetPortInputType+0x6c>
+     7de:	00 97       	sbiw	r24, 0x00	; 0
+     7e0:	19 f0       	breq	.+6      	; 0x7e8 <MCAL_DIO_u8SetPortInputType+0x3c>
+     7e2:	01 97       	sbiw	r24, 0x01	; 1
+     7e4:	39 f0       	breq	.+14     	; 0x7f4 <MCAL_DIO_u8SetPortInputType+0x48>
+     7e6:	18 c0       	rjmp	.+48     	; 0x818 <MCAL_DIO_u8SetPortInputType+0x6c>
+     7e8:	8b e3       	ldi	r24, 0x3B	; 59
+     7ea:	90 e0       	ldi	r25, 0x00	; 0
+     7ec:	2b 81       	ldd	r18, Y+3	; 0x03
+     7ee:	fc 01       	movw	r30, r24
+     7f0:	20 83       	st	Z, r18
+     7f2:	14 c0       	rjmp	.+40     	; 0x81c <MCAL_DIO_u8SetPortInputType+0x70>
+     7f4:	88 e3       	ldi	r24, 0x38	; 56
+     7f6:	90 e0       	ldi	r25, 0x00	; 0
+     7f8:	2b 81       	ldd	r18, Y+3	; 0x03
+     7fa:	fc 01       	movw	r30, r24
+     7fc:	20 83       	st	Z, r18
+     7fe:	0e c0       	rjmp	.+28     	; 0x81c <MCAL_DIO_u8SetPortInputType+0x70>
+     800:	85 e3       	ldi	r24, 0x35	; 53
+     802:	90 e0       	ldi	r25, 0x00	; 0
+     804:	2b 81       	ldd	r18, Y+3	; 0x03
+     806:	fc 01       	movw	r30, r24
+     808:	20 83       	st	Z, r18
+     80a:	08 c0       	rjmp	.+16     	; 0x81c <MCAL_DIO_u8SetPortInputType+0x70>
+     80c:	82 e3       	ldi	r24, 0x32	; 50
+     80e:	90 e0       	ldi	r25, 0x00	; 0
+     810:	2b 81       	ldd	r18, Y+3	; 0x03
+     812:	fc 01       	movw	r30, r24
+     814:	20 83       	st	Z, r18
+     816:	02 c0       	rjmp	.+4      	; 0x81c <MCAL_DIO_u8SetPortInputType+0x70>
+     818:	19 82       	std	Y+1, r1	; 0x01
+     81a:	00 00       	nop
+     81c:	89 81       	ldd	r24, Y+1	; 0x01
+     81e:	0f 90       	pop	r0
+     820:	0f 90       	pop	r0
+     822:	0f 90       	pop	r0
+     824:	df 91       	pop	r29
+     826:	cf 91       	pop	r28
+     828:	08 95       	ret
+
+0000082a <MCAL_SPI_MasterInit>:
+     82a:	cf 93       	push	r28
+     82c:	df 93       	push	r29
+     82e:	00 d0       	rcall	.+0      	; 0x830 <MCAL_SPI_MasterInit+0x6>
+     830:	cd b7       	in	r28, 0x3d	; 61
+     832:	de b7       	in	r29, 0x3e	; 62
+     834:	8a 83       	std	Y+2, r24	; 0x02
+     836:	81 e0       	ldi	r24, 0x01	; 1
+     838:	89 83       	std	Y+1, r24	; 0x01
+     83a:	8d e2       	ldi	r24, 0x2D	; 45
+     83c:	90 e0       	ldi	r25, 0x00	; 0
+     83e:	fc 01       	movw	r30, r24
+     840:	20 81       	ld	r18, Z
+     842:	8d e2       	ldi	r24, 0x2D	; 45
+     844:	90 e0       	ldi	r25, 0x00	; 0
+     846:	2f 7d       	andi	r18, 0xDF	; 223
+     848:	fc 01       	movw	r30, r24
+     84a:	20 83       	st	Z, r18
+     84c:	8d e2       	ldi	r24, 0x2D	; 45
+     84e:	90 e0       	ldi	r25, 0x00	; 0
+     850:	fc 01       	movw	r30, r24
+     852:	20 81       	ld	r18, Z
+     854:	8d e2       	ldi	r24, 0x2D	; 45
+     856:	90 e0       	ldi	r25, 0x00	; 0
+     858:	28 60       	ori	r18, 0x08	; 8
+     85a:	fc 01       	movw	r30, r24
+     85c:	20 83       	st	Z, r18
+     85e:	8d e2       	ldi	r24, 0x2D	; 45
+     860:	90 e0       	ldi	r25, 0x00	; 0
+     862:	fc 01       	movw	r30, r24
+     864:	20 81       	ld	r18, Z
+     866:	8d e2       	ldi	r24, 0x2D	; 45
+     868:	90 e0       	ldi	r25, 0x00	; 0
+     86a:	24 60       	ori	r18, 0x04	; 4
+     86c:	fc 01       	movw	r30, r24
+     86e:	20 83       	st	Z, r18
+     870:	41 e0       	ldi	r20, 0x01	; 1
+     872:	65 e0       	ldi	r22, 0x05	; 5
+     874:	81 e0       	ldi	r24, 0x01	; 1
+     876:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     87a:	40 e0       	ldi	r20, 0x00	; 0
+     87c:	66 e0       	ldi	r22, 0x06	; 6
+     87e:	81 e0       	ldi	r24, 0x01	; 1
+     880:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     884:	41 e0       	ldi	r20, 0x01	; 1
+     886:	67 e0       	ldi	r22, 0x07	; 7
+     888:	81 e0       	ldi	r24, 0x01	; 1
+     88a:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     88e:	41 e0       	ldi	r20, 0x01	; 1
+     890:	64 e0       	ldi	r22, 0x04	; 4
+     892:	81 e0       	ldi	r24, 0x01	; 1
+     894:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     898:	41 e0       	ldi	r20, 0x01	; 1
+     89a:	67 e0       	ldi	r22, 0x07	; 7
+     89c:	81 e0       	ldi	r24, 0x01	; 1
+     89e:	0e 94 46 01 	call	0x28c	; 0x28c <MCAL_DIO_u8SetPinValue>
+     8a2:	8d e2       	ldi	r24, 0x2D	; 45
+     8a4:	90 e0       	ldi	r25, 0x00	; 0
+     8a6:	fc 01       	movw	r30, r24
+     8a8:	20 81       	ld	r18, Z
+     8aa:	8d e2       	ldi	r24, 0x2D	; 45
+     8ac:	90 e0       	ldi	r25, 0x00	; 0
+     8ae:	20 61       	ori	r18, 0x10	; 16
+     8b0:	fc 01       	movw	r30, r24
+     8b2:	20 83       	st	Z, r18
+     8b4:	8d e2       	ldi	r24, 0x2D	; 45
+     8b6:	90 e0       	ldi	r25, 0x00	; 0
+     8b8:	fc 01       	movw	r30, r24
+     8ba:	20 81       	ld	r18, Z
+     8bc:	8d e2       	ldi	r24, 0x2D	; 45
+     8be:	90 e0       	ldi	r25, 0x00	; 0
+     8c0:	2e 7f       	andi	r18, 0xFE	; 254
+     8c2:	fc 01       	movw	r30, r24
+     8c4:	20 83       	st	Z, r18
+     8c6:	8d e2       	ldi	r24, 0x2D	; 45
+     8c8:	90 e0       	ldi	r25, 0x00	; 0
+     8ca:	fc 01       	movw	r30, r24
+     8cc:	20 81       	ld	r18, Z
+     8ce:	8d e2       	ldi	r24, 0x2D	; 45
+     8d0:	90 e0       	ldi	r25, 0x00	; 0
+     8d2:	2d 7f       	andi	r18, 0xFD	; 253
+     8d4:	fc 01       	movw	r30, r24
+     8d6:	20 83       	st	Z, r18
+     8d8:	8e e2       	ldi	r24, 0x2E	; 46
+     8da:	90 e0       	ldi	r25, 0x00	; 0
+     8dc:	fc 01       	movw	r30, r24
+     8de:	20 81       	ld	r18, Z
+     8e0:	8e e2       	ldi	r24, 0x2E	; 46
+     8e2:	90 e0       	ldi	r25, 0x00	; 0
+     8e4:	2e 7f       	andi	r18, 0xFE	; 254
+     8e6:	fc 01       	movw	r30, r24
+     8e8:	20 83       	st	Z, r18
+     8ea:	8a 81       	ldd	r24, Y+2	; 0x02
+     8ec:	83 30       	cpi	r24, 0x03	; 3
+     8ee:	b0 f5       	brcc	.+108    	; 0x95c <__stack+0xfd>
+     8f0:	8d e2       	ldi	r24, 0x2D	; 45
+     8f2:	90 e0       	ldi	r25, 0x00	; 0
+     8f4:	fc 01       	movw	r30, r24
+     8f6:	80 81       	ld	r24, Z
+     8f8:	88 2f       	mov	r24, r24
+     8fa:	90 e0       	ldi	r25, 0x00	; 0
+     8fc:	9c 01       	movw	r18, r24
+     8fe:	2c 7f       	andi	r18, 0xFC	; 252
+     900:	33 27       	eor	r19, r19
+     902:	8a 81       	ldd	r24, Y+2	; 0x02
+     904:	88 2f       	mov	r24, r24
+     906:	90 e0       	ldi	r25, 0x00	; 0
+     908:	83 70       	andi	r24, 0x03	; 3
+     90a:	99 27       	eor	r25, r25
+     90c:	28 2b       	or	r18, r24
+     90e:	39 2b       	or	r19, r25
+     910:	8d e2       	ldi	r24, 0x2D	; 45
+     912:	90 e0       	ldi	r25, 0x00	; 0
+     914:	fc 01       	movw	r30, r24
+     916:	80 81       	ld	r24, Z
+     918:	98 2f       	mov	r25, r24
+     91a:	82 2f       	mov	r24, r18
+     91c:	29 2f       	mov	r18, r25
+     91e:	28 2b       	or	r18, r24
+     920:	8d e2       	ldi	r24, 0x2D	; 45
+     922:	90 e0       	ldi	r25, 0x00	; 0
+     924:	fc 01       	movw	r30, r24
+     926:	20 83       	st	Z, r18
+     928:	8a 81       	ldd	r24, Y+2	; 0x02
+     92a:	84 30       	cpi	r24, 0x04	; 4
+     92c:	48 f0       	brcs	.+18     	; 0x940 <__stack+0xe1>
+     92e:	8e e2       	ldi	r24, 0x2E	; 46
+     930:	90 e0       	ldi	r25, 0x00	; 0
+     932:	fc 01       	movw	r30, r24
+     934:	20 81       	ld	r18, Z
+     936:	8e e2       	ldi	r24, 0x2E	; 46
+     938:	90 e0       	ldi	r25, 0x00	; 0
+     93a:	21 60       	ori	r18, 0x01	; 1
+     93c:	fc 01       	movw	r30, r24
+     93e:	20 83       	st	Z, r18
+     940:	8d e2       	ldi	r24, 0x2D	; 45
+     942:	90 e0       	ldi	r25, 0x00	; 0
+     944:	fc 01       	movw	r30, r24
+     946:	20 81       	ld	r18, Z
+     948:	8d e2       	ldi	r24, 0x2D	; 45
+     94a:	90 e0       	ldi	r25, 0x00	; 0
+     94c:	20 64       	ori	r18, 0x40	; 64
+     94e:	fc 01       	movw	r30, r24
+     950:	20 83       	st	Z, r18
+     952:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <Call_Back_Master+0x1>
+     956:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <Call_Back_Master>
+     95a:	01 c0       	rjmp	.+2      	; 0x95e <__stack+0xff>
+     95c:	19 82       	std	Y+1, r1	; 0x01
+     95e:	89 81       	ldd	r24, Y+1	; 0x01
+     960:	0f 90       	pop	r0
+     962:	0f 90       	pop	r0
+     964:	df 91       	pop	r29
+     966:	cf 91       	pop	r28
+     968:	08 95       	ret
+
+0000096a <MCAL_SPI_SlaveInit>:
+     96a:	cf 93       	push	r28
+     96c:	df 93       	push	r29
+     96e:	0f 92       	push	r0
+     970:	cd b7       	in	r28, 0x3d	; 61
+     972:	de b7       	in	r29, 0x3e	; 62
+     974:	81 e0       	ldi	r24, 0x01	; 1
+     976:	89 83       	std	Y+1, r24	; 0x01
+     978:	8d e2       	ldi	r24, 0x2D	; 45
+     97a:	90 e0       	ldi	r25, 0x00	; 0
+     97c:	fc 01       	movw	r30, r24
+     97e:	20 81       	ld	r18, Z
+     980:	8d e2       	ldi	r24, 0x2D	; 45
+     982:	90 e0       	ldi	r25, 0x00	; 0
+     984:	2f 7d       	andi	r18, 0xDF	; 223
+     986:	fc 01       	movw	r30, r24
+     988:	20 83       	st	Z, r18
+     98a:	8d e2       	ldi	r24, 0x2D	; 45
+     98c:	90 e0       	ldi	r25, 0x00	; 0
+     98e:	fc 01       	movw	r30, r24
+     990:	20 81       	ld	r18, Z
+     992:	8d e2       	ldi	r24, 0x2D	; 45
+     994:	90 e0       	ldi	r25, 0x00	; 0
+     996:	28 60       	ori	r18, 0x08	; 8
+     998:	fc 01       	movw	r30, r24
+     99a:	20 83       	st	Z, r18
+     99c:	8d e2       	ldi	r24, 0x2D	; 45
+     99e:	90 e0       	ldi	r25, 0x00	; 0
+     9a0:	fc 01       	movw	r30, r24
+     9a2:	20 81       	ld	r18, Z
+     9a4:	8d e2       	ldi	r24, 0x2D	; 45
+     9a6:	90 e0       	ldi	r25, 0x00	; 0
+     9a8:	24 60       	ori	r18, 0x04	; 4
+     9aa:	fc 01       	movw	r30, r24
+     9ac:	20 83       	st	Z, r18
+     9ae:	40 e0       	ldi	r20, 0x00	; 0
+     9b0:	65 e0       	ldi	r22, 0x05	; 5
+     9b2:	81 e0       	ldi	r24, 0x01	; 1
+     9b4:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     9b8:	41 e0       	ldi	r20, 0x01	; 1
+     9ba:	66 e0       	ldi	r22, 0x06	; 6
+     9bc:	81 e0       	ldi	r24, 0x01	; 1
+     9be:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     9c2:	40 e0       	ldi	r20, 0x00	; 0
+     9c4:	67 e0       	ldi	r22, 0x07	; 7
+     9c6:	81 e0       	ldi	r24, 0x01	; 1
+     9c8:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     9cc:	40 e0       	ldi	r20, 0x00	; 0
+     9ce:	64 e0       	ldi	r22, 0x04	; 4
+     9d0:	81 e0       	ldi	r24, 0x01	; 1
+     9d2:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+     9d6:	8d e2       	ldi	r24, 0x2D	; 45
+     9d8:	90 e0       	ldi	r25, 0x00	; 0
+     9da:	fc 01       	movw	r30, r24
+     9dc:	20 81       	ld	r18, Z
+     9de:	8d e2       	ldi	r24, 0x2D	; 45
+     9e0:	90 e0       	ldi	r25, 0x00	; 0
+     9e2:	2f 7e       	andi	r18, 0xEF	; 239
+     9e4:	fc 01       	movw	r30, r24
+     9e6:	20 83       	st	Z, r18
+     9e8:	8d e2       	ldi	r24, 0x2D	; 45
+     9ea:	90 e0       	ldi	r25, 0x00	; 0
+     9ec:	fc 01       	movw	r30, r24
+     9ee:	20 81       	ld	r18, Z
+     9f0:	8d e2       	ldi	r24, 0x2D	; 45
+     9f2:	90 e0       	ldi	r25, 0x00	; 0
+     9f4:	20 64       	ori	r18, 0x40	; 64
+     9f6:	fc 01       	movw	r30, r24
+     9f8:	20 83       	st	Z, r18
+     9fa:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <Call_Back_Slave+0x1>
+     9fe:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <Call_Back_Slave>
+     a02:	89 81       	ldd	r24, Y+1	; 0x01
+     a04:	0f 90       	pop	r0
+     a06:	df 91       	pop	r29
+     a08:	cf 91       	pop	r28
+     a0a:	08 95       	ret
+
+00000a0c <MCAL_SPI_Master_DataBusyWait>:
+     a0c:	cf 93       	push	r28
+     a0e:	df 93       	push	r29
+     a10:	00 d0       	rcall	.+0      	; 0xa12 <MCAL_SPI_Master_DataBusyWait+0x6>
+     a12:	0f 92       	push	r0
+     a14:	cd b7       	in	r28, 0x3d	; 61
+     a16:	de b7       	in	r29, 0x3e	; 62
+     a18:	89 83       	std	Y+1, r24	; 0x01
+     a1a:	7b 83       	std	Y+3, r23	; 0x03
+     a1c:	6a 83       	std	Y+2, r22	; 0x02
+     a1e:	8d e2       	ldi	r24, 0x2D	; 45
+     a20:	90 e0       	ldi	r25, 0x00	; 0
+     a22:	fc 01       	movw	r30, r24
+     a24:	20 81       	ld	r18, Z
+     a26:	8d e2       	ldi	r24, 0x2D	; 45
+     a28:	90 e0       	ldi	r25, 0x00	; 0
+     a2a:	2f 77       	andi	r18, 0x7F	; 127
+     a2c:	fc 01       	movw	r30, r24
+     a2e:	20 83       	st	Z, r18
+     a30:	8f e2       	ldi	r24, 0x2F	; 47
+     a32:	90 e0       	ldi	r25, 0x00	; 0
+     a34:	29 81       	ldd	r18, Y+1	; 0x01
+     a36:	fc 01       	movw	r30, r24
+     a38:	20 83       	st	Z, r18
+     a3a:	40 e0       	ldi	r20, 0x00	; 0
+     a3c:	64 e0       	ldi	r22, 0x04	; 4
+     a3e:	81 e0       	ldi	r24, 0x01	; 1
+     a40:	0e 94 46 01 	call	0x28c	; 0x28c <MCAL_DIO_u8SetPinValue>
+     a44:	8d e2       	ldi	r24, 0x2D	; 45
+     a46:	90 e0       	ldi	r25, 0x00	; 0
+     a48:	fc 01       	movw	r30, r24
+     a4a:	20 81       	ld	r18, Z
+     a4c:	8d e2       	ldi	r24, 0x2D	; 45
+     a4e:	90 e0       	ldi	r25, 0x00	; 0
+     a50:	20 64       	ori	r18, 0x40	; 64
+     a52:	fc 01       	movw	r30, r24
+     a54:	20 83       	st	Z, r18
+     a56:	00 00       	nop
+     a58:	8e e2       	ldi	r24, 0x2E	; 46
+     a5a:	90 e0       	ldi	r25, 0x00	; 0
+     a5c:	fc 01       	movw	r30, r24
+     a5e:	80 81       	ld	r24, Z
+     a60:	88 1f       	adc	r24, r24
+     a62:	88 27       	eor	r24, r24
+     a64:	88 1f       	adc	r24, r24
+     a66:	88 2f       	mov	r24, r24
+     a68:	90 e0       	ldi	r25, 0x00	; 0
+     a6a:	81 70       	andi	r24, 0x01	; 1
+     a6c:	99 27       	eor	r25, r25
+     a6e:	01 97       	sbiw	r24, 0x01	; 1
+     a70:	99 f7       	brne	.-26     	; 0xa58 <MCAL_SPI_Master_DataBusyWait+0x4c>
+     a72:	8f e2       	ldi	r24, 0x2F	; 47
+     a74:	90 e0       	ldi	r25, 0x00	; 0
+     a76:	fc 01       	movw	r30, r24
+     a78:	20 81       	ld	r18, Z
+     a7a:	8a 81       	ldd	r24, Y+2	; 0x02
+     a7c:	9b 81       	ldd	r25, Y+3	; 0x03
+     a7e:	fc 01       	movw	r30, r24
+     a80:	20 83       	st	Z, r18
+     a82:	8d e2       	ldi	r24, 0x2D	; 45
+     a84:	90 e0       	ldi	r25, 0x00	; 0
+     a86:	fc 01       	movw	r30, r24
+     a88:	20 81       	ld	r18, Z
+     a8a:	8d e2       	ldi	r24, 0x2D	; 45
+     a8c:	90 e0       	ldi	r25, 0x00	; 0
+     a8e:	2f 7b       	andi	r18, 0xBF	; 191
+     a90:	fc 01       	movw	r30, r24
+     a92:	20 83       	st	Z, r18
+     a94:	41 e0       	ldi	r20, 0x01	; 1
+     a96:	64 e0       	ldi	r22, 0x04	; 4
+     a98:	81 e0       	ldi	r24, 0x01	; 1
+     a9a:	0e 94 46 01 	call	0x28c	; 0x28c <MCAL_DIO_u8SetPinValue>
+     a9e:	00 00       	nop
+     aa0:	0f 90       	pop	r0
+     aa2:	0f 90       	pop	r0
+     aa4:	0f 90       	pop	r0
+     aa6:	df 91       	pop	r29
+     aa8:	cf 91       	pop	r28
+     aaa:	08 95       	ret
+
+00000aac <MCAL_SPI_Slave_DataBusyWait>:
+     aac:	cf 93       	push	r28
+     aae:	df 93       	push	r29
+     ab0:	00 d0       	rcall	.+0      	; 0xab2 <MCAL_SPI_Slave_DataBusyWait+0x6>
+     ab2:	0f 92       	push	r0
+     ab4:	cd b7       	in	r28, 0x3d	; 61
+     ab6:	de b7       	in	r29, 0x3e	; 62
+     ab8:	89 83       	std	Y+1, r24	; 0x01
+     aba:	7b 83       	std	Y+3, r23	; 0x03
+     abc:	6a 83       	std	Y+2, r22	; 0x02
+     abe:	8d e2       	ldi	r24, 0x2D	; 45
+     ac0:	90 e0       	ldi	r25, 0x00	; 0
+     ac2:	fc 01       	movw	r30, r24
+     ac4:	20 81       	ld	r18, Z
+     ac6:	8d e2       	ldi	r24, 0x2D	; 45
+     ac8:	90 e0       	ldi	r25, 0x00	; 0
+     aca:	2f 77       	andi	r18, 0x7F	; 127
+     acc:	fc 01       	movw	r30, r24
+     ace:	20 83       	st	Z, r18
+     ad0:	8f e2       	ldi	r24, 0x2F	; 47
+     ad2:	90 e0       	ldi	r25, 0x00	; 0
+     ad4:	29 81       	ldd	r18, Y+1	; 0x01
+     ad6:	fc 01       	movw	r30, r24
+     ad8:	20 83       	st	Z, r18
+     ada:	8d e2       	ldi	r24, 0x2D	; 45
+     adc:	90 e0       	ldi	r25, 0x00	; 0
+     ade:	fc 01       	movw	r30, r24
+     ae0:	20 81       	ld	r18, Z
+     ae2:	8d e2       	ldi	r24, 0x2D	; 45
+     ae4:	90 e0       	ldi	r25, 0x00	; 0
+     ae6:	20 64       	ori	r18, 0x40	; 64
+     ae8:	fc 01       	movw	r30, r24
+     aea:	20 83       	st	Z, r18
+     aec:	00 00       	nop
+     aee:	8e e2       	ldi	r24, 0x2E	; 46
+     af0:	90 e0       	ldi	r25, 0x00	; 0
+     af2:	fc 01       	movw	r30, r24
+     af4:	80 81       	ld	r24, Z
+     af6:	88 1f       	adc	r24, r24
+     af8:	88 27       	eor	r24, r24
+     afa:	88 1f       	adc	r24, r24
+     afc:	88 2f       	mov	r24, r24
+     afe:	90 e0       	ldi	r25, 0x00	; 0
+     b00:	81 70       	andi	r24, 0x01	; 1
+     b02:	99 27       	eor	r25, r25
+     b04:	01 97       	sbiw	r24, 0x01	; 1
+     b06:	99 f7       	brne	.-26     	; 0xaee <MCAL_SPI_Slave_DataBusyWait+0x42>
+     b08:	8f e2       	ldi	r24, 0x2F	; 47
+     b0a:	90 e0       	ldi	r25, 0x00	; 0
+     b0c:	fc 01       	movw	r30, r24
+     b0e:	20 81       	ld	r18, Z
+     b10:	8a 81       	ldd	r24, Y+2	; 0x02
+     b12:	9b 81       	ldd	r25, Y+3	; 0x03
+     b14:	fc 01       	movw	r30, r24
+     b16:	20 83       	st	Z, r18
+     b18:	8d e2       	ldi	r24, 0x2D	; 45
+     b1a:	90 e0       	ldi	r25, 0x00	; 0
+     b1c:	fc 01       	movw	r30, r24
+     b1e:	20 81       	ld	r18, Z
+     b20:	8d e2       	ldi	r24, 0x2D	; 45
+     b22:	90 e0       	ldi	r25, 0x00	; 0
+     b24:	2f 7b       	andi	r18, 0xBF	; 191
+     b26:	fc 01       	movw	r30, r24
+     b28:	20 83       	st	Z, r18
+     b2a:	00 00       	nop
+     b2c:	0f 90       	pop	r0
+     b2e:	0f 90       	pop	r0
+     b30:	0f 90       	pop	r0
+     b32:	df 91       	pop	r29
+     b34:	cf 91       	pop	r28
+     b36:	08 95       	ret
+
+00000b38 <MCAL_SPI_Master_DataCallBack>:
+     b38:	cf 93       	push	r28
+     b3a:	df 93       	push	r29
+     b3c:	00 d0       	rcall	.+0      	; 0xb3e <MCAL_SPI_Master_DataCallBack+0x6>
+     b3e:	0f 92       	push	r0
+     b40:	cd b7       	in	r28, 0x3d	; 61
+     b42:	de b7       	in	r29, 0x3e	; 62
+     b44:	89 83       	std	Y+1, r24	; 0x01
+     b46:	7b 83       	std	Y+3, r23	; 0x03
+     b48:	6a 83       	std	Y+2, r22	; 0x02
+     b4a:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <g_MasterMode>
+     b4e:	8a 30       	cpi	r24, 0x0A	; 10
+     b50:	71 f5       	brne	.+92     	; 0xbae <MCAL_SPI_Master_DataCallBack+0x76>
+     b52:	8f e5       	ldi	r24, 0x5F	; 95
+     b54:	90 e0       	ldi	r25, 0x00	; 0
+     b56:	fc 01       	movw	r30, r24
+     b58:	20 81       	ld	r18, Z
+     b5a:	8f e5       	ldi	r24, 0x5F	; 95
+     b5c:	90 e0       	ldi	r25, 0x00	; 0
+     b5e:	20 68       	ori	r18, 0x80	; 128
+     b60:	fc 01       	movw	r30, r24
+     b62:	20 83       	st	Z, r18
+     b64:	8a 81       	ldd	r24, Y+2	; 0x02
+     b66:	9b 81       	ldd	r25, Y+3	; 0x03
+     b68:	90 93 63 00 	sts	0x0063, r25	; 0x800063 <Call_Back_Master+0x1>
+     b6c:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <Call_Back_Master>
+     b70:	8d e2       	ldi	r24, 0x2D	; 45
+     b72:	90 e0       	ldi	r25, 0x00	; 0
+     b74:	fc 01       	movw	r30, r24
+     b76:	20 81       	ld	r18, Z
+     b78:	8d e2       	ldi	r24, 0x2D	; 45
+     b7a:	90 e0       	ldi	r25, 0x00	; 0
+     b7c:	20 68       	ori	r18, 0x80	; 128
+     b7e:	fc 01       	movw	r30, r24
+     b80:	20 83       	st	Z, r18
+     b82:	8f e2       	ldi	r24, 0x2F	; 47
+     b84:	90 e0       	ldi	r25, 0x00	; 0
+     b86:	29 81       	ldd	r18, Y+1	; 0x01
+     b88:	fc 01       	movw	r30, r24
+     b8a:	20 83       	st	Z, r18
+     b8c:	40 e0       	ldi	r20, 0x00	; 0
+     b8e:	64 e0       	ldi	r22, 0x04	; 4
+     b90:	81 e0       	ldi	r24, 0x01	; 1
+     b92:	0e 94 46 01 	call	0x28c	; 0x28c <MCAL_DIO_u8SetPinValue>
+     b96:	81 e0       	ldi	r24, 0x01	; 1
+     b98:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <g_MasterMode>
+     b9c:	8d e2       	ldi	r24, 0x2D	; 45
+     b9e:	90 e0       	ldi	r25, 0x00	; 0
+     ba0:	fc 01       	movw	r30, r24
+     ba2:	20 81       	ld	r18, Z
+     ba4:	8d e2       	ldi	r24, 0x2D	; 45
+     ba6:	90 e0       	ldi	r25, 0x00	; 0
+     ba8:	20 64       	ori	r18, 0x40	; 64
+     baa:	fc 01       	movw	r30, r24
+     bac:	20 83       	st	Z, r18
+     bae:	00 00       	nop
+     bb0:	0f 90       	pop	r0
+     bb2:	0f 90       	pop	r0
+     bb4:	0f 90       	pop	r0
+     bb6:	df 91       	pop	r29
+     bb8:	cf 91       	pop	r28
+     bba:	08 95       	ret
+
+00000bbc <MCAL_SPI_Slave_DataCallBack>:
+     bbc:	cf 93       	push	r28
+     bbe:	df 93       	push	r29
+     bc0:	00 d0       	rcall	.+0      	; 0xbc2 <MCAL_SPI_Slave_DataCallBack+0x6>
+     bc2:	0f 92       	push	r0
+     bc4:	cd b7       	in	r28, 0x3d	; 61
+     bc6:	de b7       	in	r29, 0x3e	; 62
+     bc8:	89 83       	std	Y+1, r24	; 0x01
+     bca:	7b 83       	std	Y+3, r23	; 0x03
+     bcc:	6a 83       	std	Y+2, r22	; 0x02
+     bce:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <g_MasterMode>
+     bd2:	8a 30       	cpi	r24, 0x0A	; 10
+     bd4:	41 f5       	brne	.+80     	; 0xc26 <MCAL_SPI_Slave_DataCallBack+0x6a>
+     bd6:	8f e5       	ldi	r24, 0x5F	; 95
+     bd8:	90 e0       	ldi	r25, 0x00	; 0
+     bda:	fc 01       	movw	r30, r24
+     bdc:	20 81       	ld	r18, Z
+     bde:	8f e5       	ldi	r24, 0x5F	; 95
+     be0:	90 e0       	ldi	r25, 0x00	; 0
+     be2:	20 68       	ori	r18, 0x80	; 128
+     be4:	fc 01       	movw	r30, r24
+     be6:	20 83       	st	Z, r18
+     be8:	8a 81       	ldd	r24, Y+2	; 0x02
+     bea:	9b 81       	ldd	r25, Y+3	; 0x03
+     bec:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <Call_Back_Slave+0x1>
+     bf0:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <Call_Back_Slave>
+     bf4:	8d e2       	ldi	r24, 0x2D	; 45
+     bf6:	90 e0       	ldi	r25, 0x00	; 0
+     bf8:	fc 01       	movw	r30, r24
+     bfa:	20 81       	ld	r18, Z
+     bfc:	8d e2       	ldi	r24, 0x2D	; 45
+     bfe:	90 e0       	ldi	r25, 0x00	; 0
+     c00:	20 68       	ori	r18, 0x80	; 128
+     c02:	fc 01       	movw	r30, r24
+     c04:	20 83       	st	Z, r18
+     c06:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <g_MasterMode>
+     c0a:	8f e2       	ldi	r24, 0x2F	; 47
+     c0c:	90 e0       	ldi	r25, 0x00	; 0
+     c0e:	29 81       	ldd	r18, Y+1	; 0x01
+     c10:	fc 01       	movw	r30, r24
+     c12:	20 83       	st	Z, r18
+     c14:	8d e2       	ldi	r24, 0x2D	; 45
+     c16:	90 e0       	ldi	r25, 0x00	; 0
+     c18:	fc 01       	movw	r30, r24
+     c1a:	20 81       	ld	r18, Z
+     c1c:	8d e2       	ldi	r24, 0x2D	; 45
+     c1e:	90 e0       	ldi	r25, 0x00	; 0
+     c20:	20 64       	ori	r18, 0x40	; 64
+     c22:	fc 01       	movw	r30, r24
+     c24:	20 83       	st	Z, r18
+     c26:	00 00       	nop
+     c28:	0f 90       	pop	r0
+     c2a:	0f 90       	pop	r0
+     c2c:	0f 90       	pop	r0
+     c2e:	df 91       	pop	r29
+     c30:	cf 91       	pop	r28
+     c32:	08 95       	ret
+
+00000c34 <MCAL_SPI_MasterString>:
+     c34:	cf 93       	push	r28
+     c36:	df 93       	push	r29
+     c38:	cd b7       	in	r28, 0x3d	; 61
+     c3a:	de b7       	in	r29, 0x3e	; 62
+     c3c:	a8 97       	sbiw	r28, 0x28	; 40
+     c3e:	0f b6       	in	r0, 0x3f	; 63
+     c40:	f8 94       	cli
+     c42:	de bf       	out	0x3e, r29	; 62
+     c44:	0f be       	out	0x3f, r0	; 63
+     c46:	cd bf       	out	0x3d, r28	; 61
+     c48:	9a 8b       	std	Y+18, r25	; 0x12
+     c4a:	89 8b       	std	Y+17, r24	; 0x11
+     c4c:	7c 8b       	std	Y+20, r23	; 0x14
+     c4e:	6b 8b       	std	Y+19, r22	; 0x13
+     c50:	1a 82       	std	Y+2, r1	; 0x02
+     c52:	19 82       	std	Y+1, r1	; 0x01
+     c54:	a1 c0       	rjmp	.+322    	; 0xd98 <MCAL_SPI_MasterString+0x164>
+     c56:	29 89       	ldd	r18, Y+17	; 0x11
+     c58:	3a 89       	ldd	r19, Y+18	; 0x12
+     c5a:	89 81       	ldd	r24, Y+1	; 0x01
+     c5c:	9a 81       	ldd	r25, Y+2	; 0x02
+     c5e:	82 0f       	add	r24, r18
+     c60:	93 1f       	adc	r25, r19
+     c62:	dc 01       	movw	r26, r24
+     c64:	2c 91       	ld	r18, X
+     c66:	8b 89       	ldd	r24, Y+19	; 0x13
+     c68:	9c 89       	ldd	r25, Y+20	; 0x14
+     c6a:	bc 01       	movw	r22, r24
+     c6c:	82 2f       	mov	r24, r18
+     c6e:	0e 94 9c 05 	call	0xb38	; 0xb38 <MCAL_SPI_Master_DataCallBack>
+     c72:	89 81       	ldd	r24, Y+1	; 0x01
+     c74:	9a 81       	ldd	r25, Y+2	; 0x02
+     c76:	01 96       	adiw	r24, 0x01	; 1
+     c78:	9a 83       	std	Y+2, r25	; 0x02
+     c7a:	89 83       	std	Y+1, r24	; 0x01
+     c7c:	80 e0       	ldi	r24, 0x00	; 0
+     c7e:	90 e0       	ldi	r25, 0x00	; 0
+     c80:	a0 e8       	ldi	r26, 0x80	; 128
+     c82:	bf e3       	ldi	r27, 0x3F	; 63
+     c84:	8b 83       	std	Y+3, r24	; 0x03
+     c86:	9c 83       	std	Y+4, r25	; 0x04
+     c88:	ad 83       	std	Y+5, r26	; 0x05
+     c8a:	be 83       	std	Y+6, r27	; 0x06
+     c8c:	20 e0       	ldi	r18, 0x00	; 0
+     c8e:	30 e0       	ldi	r19, 0x00	; 0
+     c90:	4a e7       	ldi	r20, 0x7A	; 122
+     c92:	55 e4       	ldi	r21, 0x45	; 69
+     c94:	6b 81       	ldd	r22, Y+3	; 0x03
+     c96:	7c 81       	ldd	r23, Y+4	; 0x04
+     c98:	8d 81       	ldd	r24, Y+5	; 0x05
+     c9a:	9e 81       	ldd	r25, Y+6	; 0x06
+     c9c:	0e 94 47 0c 	call	0x188e	; 0x188e <__mulsf3>
+     ca0:	69 8f       	std	Y+25, r22	; 0x19
+     ca2:	7a 8f       	std	Y+26, r23	; 0x1a
+     ca4:	8b 8f       	std	Y+27, r24	; 0x1b
+     ca6:	9c 8f       	std	Y+28, r25	; 0x1c
+     ca8:	89 8d       	ldd	r24, Y+25	; 0x19
+     caa:	9a 8d       	ldd	r25, Y+26	; 0x1a
+     cac:	ab 8d       	ldd	r26, Y+27	; 0x1b
+     cae:	bc 8d       	ldd	r27, Y+28	; 0x1c
+     cb0:	8f 83       	std	Y+7, r24	; 0x07
+     cb2:	98 87       	std	Y+8, r25	; 0x08
+     cb4:	a9 87       	std	Y+9, r26	; 0x09
+     cb6:	ba 87       	std	Y+10, r27	; 0x0a
+     cb8:	20 e0       	ldi	r18, 0x00	; 0
+     cba:	30 e0       	ldi	r19, 0x00	; 0
+     cbc:	40 e8       	ldi	r20, 0x80	; 128
+     cbe:	5f e3       	ldi	r21, 0x3F	; 63
+     cc0:	6f 81       	ldd	r22, Y+7	; 0x07
+     cc2:	78 85       	ldd	r23, Y+8	; 0x08
+     cc4:	89 85       	ldd	r24, Y+9	; 0x09
+     cc6:	9a 85       	ldd	r25, Y+10	; 0x0a
+     cc8:	0e 94 c1 0b 	call	0x1782	; 0x1782 <__cmpsf2>
+     ccc:	88 23       	and	r24, r24
+     cce:	2c f4       	brge	.+10     	; 0xcda <MCAL_SPI_MasterString+0xa6>
+     cd0:	81 e0       	ldi	r24, 0x01	; 1
+     cd2:	90 e0       	ldi	r25, 0x00	; 0
+     cd4:	9c 87       	std	Y+12, r25	; 0x0c
+     cd6:	8b 87       	std	Y+11, r24	; 0x0b
+     cd8:	54 c0       	rjmp	.+168    	; 0xd82 <MCAL_SPI_MasterString+0x14e>
+     cda:	20 e0       	ldi	r18, 0x00	; 0
+     cdc:	3f ef       	ldi	r19, 0xFF	; 255
+     cde:	4f e7       	ldi	r20, 0x7F	; 127
+     ce0:	57 e4       	ldi	r21, 0x47	; 71
+     ce2:	6f 81       	ldd	r22, Y+7	; 0x07
+     ce4:	78 85       	ldd	r23, Y+8	; 0x08
+     ce6:	89 85       	ldd	r24, Y+9	; 0x09
+     ce8:	9a 85       	ldd	r25, Y+10	; 0x0a
+     cea:	0e 94 42 0c 	call	0x1884	; 0x1884 <__gesf2>
+     cee:	18 16       	cp	r1, r24
+     cf0:	d4 f5       	brge	.+116    	; 0xd66 <MCAL_SPI_MasterString+0x132>
+     cf2:	20 e0       	ldi	r18, 0x00	; 0
+     cf4:	30 e0       	ldi	r19, 0x00	; 0
+     cf6:	40 e2       	ldi	r20, 0x20	; 32
+     cf8:	51 e4       	ldi	r21, 0x41	; 65
+     cfa:	6b 81       	ldd	r22, Y+3	; 0x03
+     cfc:	7c 81       	ldd	r23, Y+4	; 0x04
+     cfe:	8d 81       	ldd	r24, Y+5	; 0x05
+     d00:	9e 81       	ldd	r25, Y+6	; 0x06
+     d02:	0e 94 47 0c 	call	0x188e	; 0x188e <__mulsf3>
+     d06:	6d 8f       	std	Y+29, r22	; 0x1d
+     d08:	7e 8f       	std	Y+30, r23	; 0x1e
+     d0a:	8f 8f       	std	Y+31, r24	; 0x1f
+     d0c:	98 a3       	std	Y+32, r25	; 0x20
+     d0e:	8d 8d       	ldd	r24, Y+29	; 0x1d
+     d10:	9e 8d       	ldd	r25, Y+30	; 0x1e
+     d12:	af 8d       	ldd	r26, Y+31	; 0x1f
+     d14:	b8 a1       	ldd	r27, Y+32	; 0x20
+     d16:	8d 8b       	std	Y+21, r24	; 0x15
+     d18:	9e 8b       	std	Y+22, r25	; 0x16
+     d1a:	af 8b       	std	Y+23, r26	; 0x17
+     d1c:	b8 8f       	std	Y+24, r27	; 0x18
+     d1e:	6d 89       	ldd	r22, Y+21	; 0x15
+     d20:	7e 89       	ldd	r23, Y+22	; 0x16
+     d22:	8f 89       	ldd	r24, Y+23	; 0x17
+     d24:	98 8d       	ldd	r25, Y+24	; 0x18
+     d26:	0e 94 c6 0b 	call	0x178c	; 0x178c <__fixunssfsi>
+     d2a:	69 a3       	std	Y+33, r22	; 0x21
+     d2c:	7a a3       	std	Y+34, r23	; 0x22
+     d2e:	8b a3       	std	Y+35, r24	; 0x23
+     d30:	9c a3       	std	Y+36, r25	; 0x24
+     d32:	a9 a1       	ldd	r26, Y+33	; 0x21
+     d34:	ba a1       	ldd	r27, Y+34	; 0x22
+     d36:	bc 87       	std	Y+12, r27	; 0x0c
+     d38:	ab 87       	std	Y+11, r26	; 0x0b
+     d3a:	10 c0       	rjmp	.+32     	; 0xd5c <MCAL_SPI_MasterString+0x128>
+     d3c:	80 e9       	ldi	r24, 0x90	; 144
+     d3e:	91 e0       	ldi	r25, 0x01	; 1
+     d40:	9e 87       	std	Y+14, r25	; 0x0e
+     d42:	8d 87       	std	Y+13, r24	; 0x0d
+     d44:	8d 85       	ldd	r24, Y+13	; 0x0d
+     d46:	9e 85       	ldd	r25, Y+14	; 0x0e
+     d48:	01 97       	sbiw	r24, 0x01	; 1
+     d4a:	f1 f7       	brne	.-4      	; 0xd48 <MCAL_SPI_MasterString+0x114>
+     d4c:	9e 87       	std	Y+14, r25	; 0x0e
+     d4e:	8d 87       	std	Y+13, r24	; 0x0d
+     d50:	00 00       	nop
+     d52:	8b 85       	ldd	r24, Y+11	; 0x0b
+     d54:	9c 85       	ldd	r25, Y+12	; 0x0c
+     d56:	01 97       	sbiw	r24, 0x01	; 1
+     d58:	9c 87       	std	Y+12, r25	; 0x0c
+     d5a:	8b 87       	std	Y+11, r24	; 0x0b
+     d5c:	8b 85       	ldd	r24, Y+11	; 0x0b
+     d5e:	9c 85       	ldd	r25, Y+12	; 0x0c
+     d60:	89 2b       	or	r24, r25
+     d62:	61 f7       	brne	.-40     	; 0xd3c <MCAL_SPI_MasterString+0x108>
+     d64:	19 c0       	rjmp	.+50     	; 0xd98 <MCAL_SPI_MasterString+0x164>
+     d66:	6f 81       	ldd	r22, Y+7	; 0x07
+     d68:	78 85       	ldd	r23, Y+8	; 0x08
+     d6a:	89 85       	ldd	r24, Y+9	; 0x09
+     d6c:	9a 85       	ldd	r25, Y+10	; 0x0a
+     d6e:	0e 94 c6 0b 	call	0x178c	; 0x178c <__fixunssfsi>
+     d72:	6d a3       	std	Y+37, r22	; 0x25
+     d74:	7e a3       	std	Y+38, r23	; 0x26
+     d76:	8f a3       	std	Y+39, r24	; 0x27
+     d78:	98 a7       	std	Y+40, r25	; 0x28
+     d7a:	ed a1       	ldd	r30, Y+37	; 0x25
+     d7c:	fe a1       	ldd	r31, Y+38	; 0x26
+     d7e:	fc 87       	std	Y+12, r31	; 0x0c
+     d80:	eb 87       	std	Y+11, r30	; 0x0b
+     d82:	8b 85       	ldd	r24, Y+11	; 0x0b
+     d84:	9c 85       	ldd	r25, Y+12	; 0x0c
+     d86:	98 8b       	std	Y+16, r25	; 0x10
+     d88:	8f 87       	std	Y+15, r24	; 0x0f
+     d8a:	8f 85       	ldd	r24, Y+15	; 0x0f
+     d8c:	98 89       	ldd	r25, Y+16	; 0x10
+     d8e:	01 97       	sbiw	r24, 0x01	; 1
+     d90:	f1 f7       	brne	.-4      	; 0xd8e <MCAL_SPI_MasterString+0x15a>
+     d92:	98 8b       	std	Y+16, r25	; 0x10
+     d94:	8f 87       	std	Y+15, r24	; 0x0f
+     d96:	00 00       	nop
+     d98:	29 89       	ldd	r18, Y+17	; 0x11
+     d9a:	3a 89       	ldd	r19, Y+18	; 0x12
+     d9c:	89 81       	ldd	r24, Y+1	; 0x01
+     d9e:	9a 81       	ldd	r25, Y+2	; 0x02
+     da0:	82 0f       	add	r24, r18
+     da2:	93 1f       	adc	r25, r19
+     da4:	dc 01       	movw	r26, r24
+     da6:	8c 91       	ld	r24, X
+     da8:	88 23       	and	r24, r24
+     daa:	09 f0       	breq	.+2      	; 0xdae <MCAL_SPI_MasterString+0x17a>
+     dac:	54 cf       	rjmp	.-344    	; 0xc56 <MCAL_SPI_MasterString+0x22>
+     dae:	00 00       	nop
+     db0:	00 00       	nop
+     db2:	a8 96       	adiw	r28, 0x28	; 40
+     db4:	0f b6       	in	r0, 0x3f	; 63
+     db6:	f8 94       	cli
+     db8:	de bf       	out	0x3e, r29	; 62
+     dba:	0f be       	out	0x3f, r0	; 63
+     dbc:	cd bf       	out	0x3d, r28	; 61
+     dbe:	df 91       	pop	r29
+     dc0:	cf 91       	pop	r28
+     dc2:	08 95       	ret
+
+00000dc4 <MCAL_SPI_SlaveString>:
+     dc4:	cf 93       	push	r28
+     dc6:	df 93       	push	r29
+     dc8:	00 d0       	rcall	.+0      	; 0xdca <MCAL_SPI_SlaveString+0x6>
+     dca:	00 d0       	rcall	.+0      	; 0xdcc <MCAL_SPI_SlaveString+0x8>
+     dcc:	00 d0       	rcall	.+0      	; 0xdce <MCAL_SPI_SlaveString+0xa>
+     dce:	cd b7       	in	r28, 0x3d	; 61
+     dd0:	de b7       	in	r29, 0x3e	; 62
+     dd2:	9c 83       	std	Y+4, r25	; 0x04
+     dd4:	8b 83       	std	Y+3, r24	; 0x03
+     dd6:	7e 83       	std	Y+6, r23	; 0x06
+     dd8:	6d 83       	std	Y+5, r22	; 0x05
+     dda:	1a 82       	std	Y+2, r1	; 0x02
+     ddc:	19 82       	std	Y+1, r1	; 0x01
+     dde:	13 c0       	rjmp	.+38     	; 0xe06 <MCAL_SPI_SlaveString+0x42>
+     de0:	2b 81       	ldd	r18, Y+3	; 0x03
+     de2:	3c 81       	ldd	r19, Y+4	; 0x04
+     de4:	89 81       	ldd	r24, Y+1	; 0x01
+     de6:	9a 81       	ldd	r25, Y+2	; 0x02
+     de8:	82 0f       	add	r24, r18
+     dea:	93 1f       	adc	r25, r19
+     dec:	fc 01       	movw	r30, r24
+     dee:	20 81       	ld	r18, Z
+     df0:	8d 81       	ldd	r24, Y+5	; 0x05
+     df2:	9e 81       	ldd	r25, Y+6	; 0x06
+     df4:	bc 01       	movw	r22, r24
+     df6:	82 2f       	mov	r24, r18
+     df8:	0e 94 de 05 	call	0xbbc	; 0xbbc <MCAL_SPI_Slave_DataCallBack>
+     dfc:	89 81       	ldd	r24, Y+1	; 0x01
+     dfe:	9a 81       	ldd	r25, Y+2	; 0x02
+     e00:	01 96       	adiw	r24, 0x01	; 1
+     e02:	9a 83       	std	Y+2, r25	; 0x02
+     e04:	89 83       	std	Y+1, r24	; 0x01
+     e06:	2b 81       	ldd	r18, Y+3	; 0x03
+     e08:	3c 81       	ldd	r19, Y+4	; 0x04
+     e0a:	89 81       	ldd	r24, Y+1	; 0x01
+     e0c:	9a 81       	ldd	r25, Y+2	; 0x02
+     e0e:	82 0f       	add	r24, r18
+     e10:	93 1f       	adc	r25, r19
+     e12:	fc 01       	movw	r30, r24
+     e14:	80 81       	ld	r24, Z
+     e16:	88 23       	and	r24, r24
+     e18:	19 f7       	brne	.-58     	; 0xde0 <MCAL_SPI_SlaveString+0x1c>
+     e1a:	00 00       	nop
+     e1c:	00 00       	nop
+     e1e:	26 96       	adiw	r28, 0x06	; 6
+     e20:	0f b6       	in	r0, 0x3f	; 63
+     e22:	f8 94       	cli
+     e24:	de bf       	out	0x3e, r29	; 62
+     e26:	0f be       	out	0x3f, r0	; 63
+     e28:	cd bf       	out	0x3d, r28	; 61
+     e2a:	df 91       	pop	r29
+     e2c:	cf 91       	pop	r28
+     e2e:	08 95       	ret
+
+00000e30 <__vector_12>:
+     e30:	1f 92       	push	r1
+     e32:	0f 92       	push	r0
+     e34:	0f b6       	in	r0, 0x3f	; 63
+     e36:	0f 92       	push	r0
+     e38:	11 24       	eor	r1, r1
+     e3a:	2f 93       	push	r18
+     e3c:	3f 93       	push	r19
+     e3e:	4f 93       	push	r20
+     e40:	5f 93       	push	r21
+     e42:	6f 93       	push	r22
+     e44:	7f 93       	push	r23
+     e46:	8f 93       	push	r24
+     e48:	9f 93       	push	r25
+     e4a:	af 93       	push	r26
+     e4c:	bf 93       	push	r27
+     e4e:	ef 93       	push	r30
+     e50:	ff 93       	push	r31
+     e52:	cf 93       	push	r28
+     e54:	df 93       	push	r29
+     e56:	cd b7       	in	r28, 0x3d	; 61
+     e58:	de b7       	in	r29, 0x3e	; 62
+     e5a:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <g_MasterMode>
+     e5e:	81 30       	cpi	r24, 0x01	; 1
+     e60:	49 f5       	brne	.+82     	; 0xeb4 <__vector_12+0x84>
+     e62:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <Call_Back_Master>
+     e66:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <Call_Back_Master+0x1>
+     e6a:	89 2b       	or	r24, r25
+     e6c:	09 f4       	brne	.+2      	; 0xe70 <__vector_12+0x40>
+     e6e:	42 c0       	rjmp	.+132    	; 0xef4 <__vector_12+0xc4>
+     e70:	20 91 62 00 	lds	r18, 0x0062	; 0x800062 <Call_Back_Master>
+     e74:	30 91 63 00 	lds	r19, 0x0063	; 0x800063 <Call_Back_Master+0x1>
+     e78:	8f e2       	ldi	r24, 0x2F	; 47
+     e7a:	90 e0       	ldi	r25, 0x00	; 0
+     e7c:	fc 01       	movw	r30, r24
+     e7e:	80 81       	ld	r24, Z
+     e80:	f9 01       	movw	r30, r18
+     e82:	09 95       	icall
+     e84:	8d e2       	ldi	r24, 0x2D	; 45
+     e86:	90 e0       	ldi	r25, 0x00	; 0
+     e88:	fc 01       	movw	r30, r24
+     e8a:	20 81       	ld	r18, Z
+     e8c:	8d e2       	ldi	r24, 0x2D	; 45
+     e8e:	90 e0       	ldi	r25, 0x00	; 0
+     e90:	2f 7b       	andi	r18, 0xBF	; 191
+     e92:	fc 01       	movw	r30, r24
+     e94:	20 83       	st	Z, r18
+     e96:	8d e2       	ldi	r24, 0x2D	; 45
+     e98:	90 e0       	ldi	r25, 0x00	; 0
+     e9a:	fc 01       	movw	r30, r24
+     e9c:	20 81       	ld	r18, Z
+     e9e:	8d e2       	ldi	r24, 0x2D	; 45
+     ea0:	90 e0       	ldi	r25, 0x00	; 0
+     ea2:	2f 77       	andi	r18, 0x7F	; 127
+     ea4:	fc 01       	movw	r30, r24
+     ea6:	20 83       	st	Z, r18
+     ea8:	41 e0       	ldi	r20, 0x01	; 1
+     eaa:	64 e0       	ldi	r22, 0x04	; 4
+     eac:	81 e0       	ldi	r24, 0x01	; 1
+     eae:	0e 94 46 01 	call	0x28c	; 0x28c <MCAL_DIO_u8SetPinValue>
+     eb2:	20 c0       	rjmp	.+64     	; 0xef4 <__vector_12+0xc4>
+     eb4:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <g_MasterMode>
+     eb8:	88 23       	and	r24, r24
+     eba:	e1 f4       	brne	.+56     	; 0xef4 <__vector_12+0xc4>
+     ebc:	8d e2       	ldi	r24, 0x2D	; 45
+     ebe:	90 e0       	ldi	r25, 0x00	; 0
+     ec0:	fc 01       	movw	r30, r24
+     ec2:	20 81       	ld	r18, Z
+     ec4:	8d e2       	ldi	r24, 0x2D	; 45
+     ec6:	90 e0       	ldi	r25, 0x00	; 0
+     ec8:	2f 77       	andi	r18, 0x7F	; 127
+     eca:	fc 01       	movw	r30, r24
+     ecc:	20 83       	st	Z, r18
+     ece:	20 91 64 00 	lds	r18, 0x0064	; 0x800064 <Call_Back_Slave>
+     ed2:	30 91 65 00 	lds	r19, 0x0065	; 0x800065 <Call_Back_Slave+0x1>
+     ed6:	8f e2       	ldi	r24, 0x2F	; 47
+     ed8:	90 e0       	ldi	r25, 0x00	; 0
+     eda:	fc 01       	movw	r30, r24
+     edc:	80 81       	ld	r24, Z
+     ede:	f9 01       	movw	r30, r18
+     ee0:	09 95       	icall
+     ee2:	8d e2       	ldi	r24, 0x2D	; 45
+     ee4:	90 e0       	ldi	r25, 0x00	; 0
+     ee6:	fc 01       	movw	r30, r24
+     ee8:	20 81       	ld	r18, Z
+     eea:	8d e2       	ldi	r24, 0x2D	; 45
+     eec:	90 e0       	ldi	r25, 0x00	; 0
+     eee:	2f 7b       	andi	r18, 0xBF	; 191
+     ef0:	fc 01       	movw	r30, r24
+     ef2:	20 83       	st	Z, r18
+     ef4:	8a e0       	ldi	r24, 0x0A	; 10
+     ef6:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <g_MasterMode>
+     efa:	00 00       	nop
+     efc:	df 91       	pop	r29
+     efe:	cf 91       	pop	r28
+     f00:	ff 91       	pop	r31
+     f02:	ef 91       	pop	r30
+     f04:	bf 91       	pop	r27
+     f06:	af 91       	pop	r26
+     f08:	9f 91       	pop	r25
+     f0a:	8f 91       	pop	r24
+     f0c:	7f 91       	pop	r23
+     f0e:	6f 91       	pop	r22
+     f10:	5f 91       	pop	r21
+     f12:	4f 91       	pop	r20
+     f14:	3f 91       	pop	r19
+     f16:	2f 91       	pop	r18
+     f18:	0f 90       	pop	r0
+     f1a:	0f be       	out	0x3f, r0	; 63
+     f1c:	0f 90       	pop	r0
+     f1e:	1f 90       	pop	r1
+     f20:	18 95       	reti
+
+00000f22 <MCAL_UART_init>:
+     f22:	2f 92       	push	r2
+     f24:	3f 92       	push	r3
+     f26:	4f 92       	push	r4
+     f28:	5f 92       	push	r5
+     f2a:	6f 92       	push	r6
+     f2c:	7f 92       	push	r7
+     f2e:	8f 92       	push	r8
+     f30:	9f 92       	push	r9
+     f32:	af 92       	push	r10
+     f34:	bf 92       	push	r11
+     f36:	cf 92       	push	r12
+     f38:	df 92       	push	r13
+     f3a:	ef 92       	push	r14
+     f3c:	ff 92       	push	r15
+     f3e:	0f 93       	push	r16
+     f40:	1f 93       	push	r17
+     f42:	cf 93       	push	r28
+     f44:	df 93       	push	r29
+     f46:	00 d0       	rcall	.+0      	; 0xf48 <MCAL_UART_init+0x26>
+     f48:	00 d0       	rcall	.+0      	; 0xf4a <MCAL_UART_init+0x28>
+     f4a:	0f 92       	push	r0
+     f4c:	cd b7       	in	r28, 0x3d	; 61
+     f4e:	de b7       	in	r29, 0x3e	; 62
+     f50:	9d 83       	std	Y+5, r25	; 0x05
+     f52:	8c 83       	std	Y+4, r24	; 0x04
+     f54:	81 e0       	ldi	r24, 0x01	; 1
+     f56:	89 83       	std	Y+1, r24	; 0x01
+     f58:	8c 81       	ldd	r24, Y+4	; 0x04
+     f5a:	9d 81       	ldd	r25, Y+5	; 0x05
+     f5c:	fc 01       	movw	r30, r24
+     f5e:	80 81       	ld	r24, Z
+     f60:	91 81       	ldd	r25, Z+1	; 0x01
+     f62:	a2 81       	ldd	r26, Z+2	; 0x02
+     f64:	b3 81       	ldd	r27, Z+3	; 0x03
+     f66:	4c 01       	movw	r8, r24
+     f68:	5d 01       	movw	r10, r26
+     f6a:	c1 2c       	mov	r12, r1
+     f6c:	d1 2c       	mov	r13, r1
+     f6e:	76 01       	movw	r14, r12
+     f70:	28 2d       	mov	r18, r8
+     f72:	39 2d       	mov	r19, r9
+     f74:	4a 2d       	mov	r20, r10
+     f76:	5b 2d       	mov	r21, r11
+     f78:	6c 2d       	mov	r22, r12
+     f7a:	7d 2d       	mov	r23, r13
+     f7c:	8e 2d       	mov	r24, r14
+     f7e:	9f 2d       	mov	r25, r15
+     f80:	04 e0       	ldi	r16, 0x04	; 4
+     f82:	0e 94 a8 0b 	call	0x1750	; 0x1750 <__ashldi3>
+     f86:	22 2e       	mov	r2, r18
+     f88:	33 2e       	mov	r3, r19
+     f8a:	44 2e       	mov	r4, r20
+     f8c:	55 2e       	mov	r5, r21
+     f8e:	66 2e       	mov	r6, r22
+     f90:	77 2e       	mov	r7, r23
+     f92:	88 2e       	mov	r8, r24
+     f94:	99 2e       	mov	r9, r25
+     f96:	a2 2c       	mov	r10, r2
+     f98:	b3 2c       	mov	r11, r3
+     f9a:	c4 2c       	mov	r12, r4
+     f9c:	d5 2c       	mov	r13, r5
+     f9e:	e6 2c       	mov	r14, r6
+     fa0:	f7 2c       	mov	r15, r7
+     fa2:	08 2d       	mov	r16, r8
+     fa4:	19 2d       	mov	r17, r9
+     fa6:	20 e0       	ldi	r18, 0x00	; 0
+     fa8:	32 e1       	ldi	r19, 0x12	; 18
+     faa:	4a e7       	ldi	r20, 0x7A	; 122
+     fac:	50 e0       	ldi	r21, 0x00	; 0
+     fae:	60 e0       	ldi	r22, 0x00	; 0
+     fb0:	70 e0       	ldi	r23, 0x00	; 0
+     fb2:	80 e0       	ldi	r24, 0x00	; 0
+     fb4:	90 e0       	ldi	r25, 0x00	; 0
+     fb6:	0e 94 4b 0b 	call	0x1696	; 0x1696 <__udivdi3>
+     fba:	82 2e       	mov	r8, r18
+     fbc:	93 2e       	mov	r9, r19
+     fbe:	a4 2e       	mov	r10, r20
+     fc0:	b5 2e       	mov	r11, r21
+     fc2:	c6 2e       	mov	r12, r22
+     fc4:	d7 2e       	mov	r13, r23
+     fc6:	e8 2e       	mov	r14, r24
+     fc8:	f9 2e       	mov	r15, r25
+     fca:	08 2d       	mov	r16, r8
+     fcc:	19 2d       	mov	r17, r9
+     fce:	2a 2d       	mov	r18, r10
+     fd0:	3b 2d       	mov	r19, r11
+     fd2:	4c 2d       	mov	r20, r12
+     fd4:	5d 2d       	mov	r21, r13
+     fd6:	6e 2d       	mov	r22, r14
+     fd8:	7f 2d       	mov	r23, r15
+     fda:	c8 01       	movw	r24, r16
+     fdc:	01 97       	sbiw	r24, 0x01	; 1
+     fde:	9b 83       	std	Y+3, r25	; 0x03
+     fe0:	8a 83       	std	Y+2, r24	; 0x02
+     fe2:	8a 81       	ldd	r24, Y+2	; 0x02
+     fe4:	9b 81       	ldd	r25, Y+3	; 0x03
+     fe6:	8f 3f       	cpi	r24, 0xFF	; 255
+     fe8:	91 05       	cpc	r25, r1
+     fea:	09 f0       	breq	.+2      	; 0xfee <MCAL_UART_init+0xcc>
+     fec:	30 f4       	brcc	.+12     	; 0xffa <MCAL_UART_init+0xd8>
+     fee:	89 e2       	ldi	r24, 0x29	; 41
+     ff0:	90 e0       	ldi	r25, 0x00	; 0
+     ff2:	2a 81       	ldd	r18, Y+2	; 0x02
+     ff4:	fc 01       	movw	r30, r24
+     ff6:	20 83       	st	Z, r18
+     ff8:	16 c0       	rjmp	.+44     	; 0x1026 <MCAL_UART_init+0x104>
+     ffa:	80 e4       	ldi	r24, 0x40	; 64
+     ffc:	90 e0       	ldi	r25, 0x00	; 0
+     ffe:	fc 01       	movw	r30, r24
+    1000:	20 81       	ld	r18, Z
+    1002:	80 e4       	ldi	r24, 0x40	; 64
+    1004:	90 e0       	ldi	r25, 0x00	; 0
+    1006:	2f 77       	andi	r18, 0x7F	; 127
+    1008:	fc 01       	movw	r30, r24
+    100a:	20 83       	st	Z, r18
+    100c:	8a 81       	ldd	r24, Y+2	; 0x02
+    100e:	9b 81       	ldd	r25, Y+3	; 0x03
+    1010:	29 2f       	mov	r18, r25
+    1012:	33 27       	eor	r19, r19
+    1014:	80 e4       	ldi	r24, 0x40	; 64
+    1016:	90 e0       	ldi	r25, 0x00	; 0
+    1018:	fc 01       	movw	r30, r24
+    101a:	20 83       	st	Z, r18
+    101c:	89 e2       	ldi	r24, 0x29	; 41
+    101e:	90 e0       	ldi	r25, 0x00	; 0
+    1020:	2a 81       	ldd	r18, Y+2	; 0x02
+    1022:	fc 01       	movw	r30, r24
+    1024:	20 83       	st	Z, r18
+    1026:	80 e4       	ldi	r24, 0x40	; 64
+    1028:	90 e0       	ldi	r25, 0x00	; 0
+    102a:	fc 01       	movw	r30, r24
+    102c:	20 81       	ld	r18, Z
+    102e:	80 e4       	ldi	r24, 0x40	; 64
+    1030:	90 e0       	ldi	r25, 0x00	; 0
+    1032:	20 68       	ori	r18, 0x80	; 128
+    1034:	fc 01       	movw	r30, r24
+    1036:	20 83       	st	Z, r18
+    1038:	80 e4       	ldi	r24, 0x40	; 64
+    103a:	90 e0       	ldi	r25, 0x00	; 0
+    103c:	fc 01       	movw	r30, r24
+    103e:	20 81       	ld	r18, Z
+    1040:	80 e4       	ldi	r24, 0x40	; 64
+    1042:	90 e0       	ldi	r25, 0x00	; 0
+    1044:	2f 7d       	andi	r18, 0xDF	; 223
+    1046:	fc 01       	movw	r30, r24
+    1048:	20 83       	st	Z, r18
+    104a:	80 e4       	ldi	r24, 0x40	; 64
+    104c:	90 e0       	ldi	r25, 0x00	; 0
+    104e:	fc 01       	movw	r30, r24
+    1050:	20 81       	ld	r18, Z
+    1052:	80 e4       	ldi	r24, 0x40	; 64
+    1054:	90 e0       	ldi	r25, 0x00	; 0
+    1056:	2f 7e       	andi	r18, 0xEF	; 239
+    1058:	fc 01       	movw	r30, r24
+    105a:	20 83       	st	Z, r18
+    105c:	80 e4       	ldi	r24, 0x40	; 64
+    105e:	90 e0       	ldi	r25, 0x00	; 0
+    1060:	fc 01       	movw	r30, r24
+    1062:	20 81       	ld	r18, Z
+    1064:	80 e4       	ldi	r24, 0x40	; 64
+    1066:	90 e0       	ldi	r25, 0x00	; 0
+    1068:	27 7f       	andi	r18, 0xF7	; 247
+    106a:	fc 01       	movw	r30, r24
+    106c:	20 83       	st	Z, r18
+    106e:	80 e4       	ldi	r24, 0x40	; 64
+    1070:	90 e0       	ldi	r25, 0x00	; 0
+    1072:	fc 01       	movw	r30, r24
+    1074:	20 81       	ld	r18, Z
+    1076:	80 e4       	ldi	r24, 0x40	; 64
+    1078:	90 e0       	ldi	r25, 0x00	; 0
+    107a:	2f 7b       	andi	r18, 0xBF	; 191
+    107c:	fc 01       	movw	r30, r24
+    107e:	20 83       	st	Z, r18
+    1080:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <g_CharacterSize>
+    1084:	8c 81       	ldd	r24, Y+4	; 0x04
+    1086:	9d 81       	ldd	r25, Y+5	; 0x05
+    1088:	fc 01       	movw	r30, r24
+    108a:	84 81       	ldd	r24, Z+4	; 0x04
+    108c:	88 23       	and	r24, r24
+    108e:	e1 f4       	brne	.+56     	; 0x10c8 <MCAL_UART_init+0x1a6>
+    1090:	80 e4       	ldi	r24, 0x40	; 64
+    1092:	90 e0       	ldi	r25, 0x00	; 0
+    1094:	fc 01       	movw	r30, r24
+    1096:	20 81       	ld	r18, Z
+    1098:	80 e4       	ldi	r24, 0x40	; 64
+    109a:	90 e0       	ldi	r25, 0x00	; 0
+    109c:	2d 7f       	andi	r18, 0xFD	; 253
+    109e:	fc 01       	movw	r30, r24
+    10a0:	20 83       	st	Z, r18
+    10a2:	80 e4       	ldi	r24, 0x40	; 64
+    10a4:	90 e0       	ldi	r25, 0x00	; 0
+    10a6:	fc 01       	movw	r30, r24
+    10a8:	20 81       	ld	r18, Z
+    10aa:	80 e4       	ldi	r24, 0x40	; 64
+    10ac:	90 e0       	ldi	r25, 0x00	; 0
+    10ae:	2b 7f       	andi	r18, 0xFB	; 251
+    10b0:	fc 01       	movw	r30, r24
+    10b2:	20 83       	st	Z, r18
+    10b4:	8a e2       	ldi	r24, 0x2A	; 42
+    10b6:	90 e0       	ldi	r25, 0x00	; 0
+    10b8:	fc 01       	movw	r30, r24
+    10ba:	20 81       	ld	r18, Z
+    10bc:	8a e2       	ldi	r24, 0x2A	; 42
+    10be:	90 e0       	ldi	r25, 0x00	; 0
+    10c0:	2b 7f       	andi	r18, 0xFB	; 251
+    10c2:	fc 01       	movw	r30, r24
+    10c4:	20 83       	st	Z, r18
+    10c6:	95 c0       	rjmp	.+298    	; 0x11f2 <MCAL_UART_init+0x2d0>
+    10c8:	8c 81       	ldd	r24, Y+4	; 0x04
+    10ca:	9d 81       	ldd	r25, Y+5	; 0x05
+    10cc:	fc 01       	movw	r30, r24
+    10ce:	84 81       	ldd	r24, Z+4	; 0x04
+    10d0:	81 30       	cpi	r24, 0x01	; 1
+    10d2:	29 f5       	brne	.+74     	; 0x111e <MCAL_UART_init+0x1fc>
+    10d4:	8a e2       	ldi	r24, 0x2A	; 42
+    10d6:	90 e0       	ldi	r25, 0x00	; 0
+    10d8:	fc 01       	movw	r30, r24
+    10da:	20 81       	ld	r18, Z
+    10dc:	8a e2       	ldi	r24, 0x2A	; 42
+    10de:	90 e0       	ldi	r25, 0x00	; 0
+    10e0:	28 61       	ori	r18, 0x18	; 24
+    10e2:	fc 01       	movw	r30, r24
+    10e4:	20 83       	st	Z, r18
+    10e6:	80 e4       	ldi	r24, 0x40	; 64
+    10e8:	90 e0       	ldi	r25, 0x00	; 0
+    10ea:	fc 01       	movw	r30, r24
+    10ec:	20 81       	ld	r18, Z
+    10ee:	80 e4       	ldi	r24, 0x40	; 64
+    10f0:	90 e0       	ldi	r25, 0x00	; 0
+    10f2:	22 68       	ori	r18, 0x82	; 130
+    10f4:	fc 01       	movw	r30, r24
+    10f6:	20 83       	st	Z, r18
+    10f8:	80 e4       	ldi	r24, 0x40	; 64
+    10fa:	90 e0       	ldi	r25, 0x00	; 0
+    10fc:	fc 01       	movw	r30, r24
+    10fe:	20 81       	ld	r18, Z
+    1100:	80 e4       	ldi	r24, 0x40	; 64
+    1102:	90 e0       	ldi	r25, 0x00	; 0
+    1104:	2b 7f       	andi	r18, 0xFB	; 251
+    1106:	fc 01       	movw	r30, r24
+    1108:	20 83       	st	Z, r18
+    110a:	8a e2       	ldi	r24, 0x2A	; 42
+    110c:	90 e0       	ldi	r25, 0x00	; 0
+    110e:	fc 01       	movw	r30, r24
+    1110:	20 81       	ld	r18, Z
+    1112:	8a e2       	ldi	r24, 0x2A	; 42
+    1114:	90 e0       	ldi	r25, 0x00	; 0
+    1116:	2b 7f       	andi	r18, 0xFB	; 251
+    1118:	fc 01       	movw	r30, r24
+    111a:	20 83       	st	Z, r18
+    111c:	6a c0       	rjmp	.+212    	; 0x11f2 <MCAL_UART_init+0x2d0>
+    111e:	8c 81       	ldd	r24, Y+4	; 0x04
+    1120:	9d 81       	ldd	r25, Y+5	; 0x05
+    1122:	fc 01       	movw	r30, r24
+    1124:	84 81       	ldd	r24, Z+4	; 0x04
+    1126:	82 30       	cpi	r24, 0x02	; 2
+    1128:	29 f5       	brne	.+74     	; 0x1174 <MCAL_UART_init+0x252>
+    112a:	8a e2       	ldi	r24, 0x2A	; 42
+    112c:	90 e0       	ldi	r25, 0x00	; 0
+    112e:	fc 01       	movw	r30, r24
+    1130:	20 81       	ld	r18, Z
+    1132:	8a e2       	ldi	r24, 0x2A	; 42
+    1134:	90 e0       	ldi	r25, 0x00	; 0
+    1136:	28 61       	ori	r18, 0x18	; 24
+    1138:	fc 01       	movw	r30, r24
+    113a:	20 83       	st	Z, r18
+    113c:	80 e4       	ldi	r24, 0x40	; 64
+    113e:	90 e0       	ldi	r25, 0x00	; 0
+    1140:	fc 01       	movw	r30, r24
+    1142:	20 81       	ld	r18, Z
+    1144:	80 e4       	ldi	r24, 0x40	; 64
+    1146:	90 e0       	ldi	r25, 0x00	; 0
+    1148:	24 68       	ori	r18, 0x84	; 132
+    114a:	fc 01       	movw	r30, r24
+    114c:	20 83       	st	Z, r18
+    114e:	80 e4       	ldi	r24, 0x40	; 64
+    1150:	90 e0       	ldi	r25, 0x00	; 0
+    1152:	fc 01       	movw	r30, r24
+    1154:	20 81       	ld	r18, Z
+    1156:	80 e4       	ldi	r24, 0x40	; 64
+    1158:	90 e0       	ldi	r25, 0x00	; 0
+    115a:	2d 7f       	andi	r18, 0xFD	; 253
+    115c:	fc 01       	movw	r30, r24
+    115e:	20 83       	st	Z, r18
+    1160:	8a e2       	ldi	r24, 0x2A	; 42
+    1162:	90 e0       	ldi	r25, 0x00	; 0
+    1164:	fc 01       	movw	r30, r24
+    1166:	20 81       	ld	r18, Z
+    1168:	8a e2       	ldi	r24, 0x2A	; 42
+    116a:	90 e0       	ldi	r25, 0x00	; 0
+    116c:	2b 7f       	andi	r18, 0xFB	; 251
+    116e:	fc 01       	movw	r30, r24
+    1170:	20 83       	st	Z, r18
+    1172:	3f c0       	rjmp	.+126    	; 0x11f2 <MCAL_UART_init+0x2d0>
+    1174:	8c 81       	ldd	r24, Y+4	; 0x04
+    1176:	9d 81       	ldd	r25, Y+5	; 0x05
+    1178:	fc 01       	movw	r30, r24
+    117a:	84 81       	ldd	r24, Z+4	; 0x04
+    117c:	83 30       	cpi	r24, 0x03	; 3
+    117e:	99 f4       	brne	.+38     	; 0x11a6 <MCAL_UART_init+0x284>
+    1180:	8a e2       	ldi	r24, 0x2A	; 42
+    1182:	90 e0       	ldi	r25, 0x00	; 0
+    1184:	fc 01       	movw	r30, r24
+    1186:	20 81       	ld	r18, Z
+    1188:	8a e2       	ldi	r24, 0x2A	; 42
+    118a:	90 e0       	ldi	r25, 0x00	; 0
+    118c:	28 61       	ori	r18, 0x18	; 24
+    118e:	fc 01       	movw	r30, r24
+    1190:	20 83       	st	Z, r18
+    1192:	80 e4       	ldi	r24, 0x40	; 64
+    1194:	90 e0       	ldi	r25, 0x00	; 0
+    1196:	fc 01       	movw	r30, r24
+    1198:	20 81       	ld	r18, Z
+    119a:	80 e4       	ldi	r24, 0x40	; 64
+    119c:	90 e0       	ldi	r25, 0x00	; 0
+    119e:	26 68       	ori	r18, 0x86	; 134
+    11a0:	fc 01       	movw	r30, r24
+    11a2:	20 83       	st	Z, r18
+    11a4:	26 c0       	rjmp	.+76     	; 0x11f2 <MCAL_UART_init+0x2d0>
+    11a6:	8c 81       	ldd	r24, Y+4	; 0x04
+    11a8:	9d 81       	ldd	r25, Y+5	; 0x05
+    11aa:	fc 01       	movw	r30, r24
+    11ac:	84 81       	ldd	r24, Z+4	; 0x04
+    11ae:	87 30       	cpi	r24, 0x07	; 7
+    11b0:	f9 f4       	brne	.+62     	; 0x11f0 <MCAL_UART_init+0x2ce>
+    11b2:	8a e2       	ldi	r24, 0x2A	; 42
+    11b4:	90 e0       	ldi	r25, 0x00	; 0
+    11b6:	fc 01       	movw	r30, r24
+    11b8:	20 81       	ld	r18, Z
+    11ba:	8a e2       	ldi	r24, 0x2A	; 42
+    11bc:	90 e0       	ldi	r25, 0x00	; 0
+    11be:	24 60       	ori	r18, 0x04	; 4
+    11c0:	fc 01       	movw	r30, r24
+    11c2:	20 83       	st	Z, r18
+    11c4:	8a e2       	ldi	r24, 0x2A	; 42
+    11c6:	90 e0       	ldi	r25, 0x00	; 0
+    11c8:	fc 01       	movw	r30, r24
+    11ca:	20 81       	ld	r18, Z
+    11cc:	8a e2       	ldi	r24, 0x2A	; 42
+    11ce:	90 e0       	ldi	r25, 0x00	; 0
+    11d0:	28 61       	ori	r18, 0x18	; 24
+    11d2:	fc 01       	movw	r30, r24
+    11d4:	20 83       	st	Z, r18
+    11d6:	80 e4       	ldi	r24, 0x40	; 64
+    11d8:	90 e0       	ldi	r25, 0x00	; 0
+    11da:	fc 01       	movw	r30, r24
+    11dc:	20 81       	ld	r18, Z
+    11de:	80 e4       	ldi	r24, 0x40	; 64
+    11e0:	90 e0       	ldi	r25, 0x00	; 0
+    11e2:	26 68       	ori	r18, 0x86	; 134
+    11e4:	fc 01       	movw	r30, r24
+    11e6:	20 83       	st	Z, r18
+    11e8:	81 e0       	ldi	r24, 0x01	; 1
+    11ea:	80 93 67 00 	sts	0x0067, r24	; 0x800067 <g_CharacterSize>
+    11ee:	01 c0       	rjmp	.+2      	; 0x11f2 <MCAL_UART_init+0x2d0>
+    11f0:	19 82       	std	Y+1, r1	; 0x01
+    11f2:	8c 81       	ldd	r24, Y+4	; 0x04
+    11f4:	9d 81       	ldd	r25, Y+5	; 0x05
+    11f6:	fc 01       	movw	r30, r24
+    11f8:	85 81       	ldd	r24, Z+5	; 0x05
+    11fa:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <g_FlagMode>
+    11fe:	8c 81       	ldd	r24, Y+4	; 0x04
+    1200:	9d 81       	ldd	r25, Y+5	; 0x05
+    1202:	fc 01       	movw	r30, r24
+    1204:	85 81       	ldd	r24, Z+5	; 0x05
+    1206:	81 30       	cpi	r24, 0x01	; 1
+    1208:	51 f4       	brne	.+20     	; 0x121e <MCAL_UART_init+0x2fc>
+    120a:	8f e5       	ldi	r24, 0x5F	; 95
+    120c:	90 e0       	ldi	r25, 0x00	; 0
+    120e:	fc 01       	movw	r30, r24
+    1210:	20 81       	ld	r18, Z
+    1212:	8f e5       	ldi	r24, 0x5F	; 95
+    1214:	90 e0       	ldi	r25, 0x00	; 0
+    1216:	20 68       	ori	r18, 0x80	; 128
+    1218:	fc 01       	movw	r30, r24
+    121a:	20 83       	st	Z, r18
+    121c:	1a c0       	rjmp	.+52     	; 0x1252 <MCAL_UART_init+0x330>
+    121e:	8c 81       	ldd	r24, Y+4	; 0x04
+    1220:	9d 81       	ldd	r25, Y+5	; 0x05
+    1222:	fc 01       	movw	r30, r24
+    1224:	85 81       	ldd	r24, Z+5	; 0x05
+    1226:	88 23       	and	r24, r24
+    1228:	99 f4       	brne	.+38     	; 0x1250 <MCAL_UART_init+0x32e>
+    122a:	8a e2       	ldi	r24, 0x2A	; 42
+    122c:	90 e0       	ldi	r25, 0x00	; 0
+    122e:	fc 01       	movw	r30, r24
+    1230:	20 81       	ld	r18, Z
+    1232:	8a e2       	ldi	r24, 0x2A	; 42
+    1234:	90 e0       	ldi	r25, 0x00	; 0
+    1236:	2f 77       	andi	r18, 0x7F	; 127
+    1238:	fc 01       	movw	r30, r24
+    123a:	20 83       	st	Z, r18
+    123c:	8a e2       	ldi	r24, 0x2A	; 42
+    123e:	90 e0       	ldi	r25, 0x00	; 0
+    1240:	fc 01       	movw	r30, r24
+    1242:	20 81       	ld	r18, Z
+    1244:	8a e2       	ldi	r24, 0x2A	; 42
+    1246:	90 e0       	ldi	r25, 0x00	; 0
+    1248:	2f 7d       	andi	r18, 0xDF	; 223
+    124a:	fc 01       	movw	r30, r24
+    124c:	20 83       	st	Z, r18
+    124e:	01 c0       	rjmp	.+2      	; 0x1252 <MCAL_UART_init+0x330>
+    1250:	19 82       	std	Y+1, r1	; 0x01
+    1252:	89 81       	ldd	r24, Y+1	; 0x01
+    1254:	0f 90       	pop	r0
+    1256:	0f 90       	pop	r0
+    1258:	0f 90       	pop	r0
+    125a:	0f 90       	pop	r0
+    125c:	0f 90       	pop	r0
+    125e:	df 91       	pop	r29
+    1260:	cf 91       	pop	r28
+    1262:	1f 91       	pop	r17
+    1264:	0f 91       	pop	r16
+    1266:	ff 90       	pop	r15
+    1268:	ef 90       	pop	r14
+    126a:	df 90       	pop	r13
+    126c:	cf 90       	pop	r12
+    126e:	bf 90       	pop	r11
+    1270:	af 90       	pop	r10
+    1272:	9f 90       	pop	r9
+    1274:	8f 90       	pop	r8
+    1276:	7f 90       	pop	r7
+    1278:	6f 90       	pop	r6
+    127a:	5f 90       	pop	r5
+    127c:	4f 90       	pop	r4
+    127e:	3f 90       	pop	r3
+    1280:	2f 90       	pop	r2
+    1282:	08 95       	ret
+
+00001284 <MCAL_UART_sendByteBusyWait>:
+    1284:	cf 93       	push	r28
+    1286:	df 93       	push	r29
+    1288:	00 d0       	rcall	.+0      	; 0x128a <MCAL_UART_sendByteBusyWait+0x6>
+    128a:	0f 92       	push	r0
+    128c:	cd b7       	in	r28, 0x3d	; 61
+    128e:	de b7       	in	r29, 0x3e	; 62
+    1290:	9b 83       	std	Y+3, r25	; 0x03
+    1292:	8a 83       	std	Y+2, r24	; 0x02
+    1294:	81 e0       	ldi	r24, 0x01	; 1
+    1296:	89 83       	std	Y+1, r24	; 0x01
+    1298:	00 00       	nop
+    129a:	8b e2       	ldi	r24, 0x2B	; 43
+    129c:	90 e0       	ldi	r25, 0x00	; 0
+    129e:	fc 01       	movw	r30, r24
+    12a0:	80 81       	ld	r24, Z
+    12a2:	82 95       	swap	r24
+    12a4:	86 95       	lsr	r24
+    12a6:	87 70       	andi	r24, 0x07	; 7
+    12a8:	88 2f       	mov	r24, r24
+    12aa:	90 e0       	ldi	r25, 0x00	; 0
+    12ac:	81 70       	andi	r24, 0x01	; 1
+    12ae:	99 27       	eor	r25, r25
+    12b0:	01 97       	sbiw	r24, 0x01	; 1
+    12b2:	99 f7       	brne	.-26     	; 0x129a <MCAL_UART_sendByteBusyWait+0x16>
+    12b4:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <g_CharacterSize>
+    12b8:	81 30       	cpi	r24, 0x01	; 1
+    12ba:	e1 f4       	brne	.+56     	; 0x12f4 <MCAL_UART_sendByteBusyWait+0x70>
+    12bc:	80 e4       	ldi	r24, 0x40	; 64
+    12be:	90 e0       	ldi	r25, 0x00	; 0
+    12c0:	fc 01       	movw	r30, r24
+    12c2:	80 81       	ld	r24, Z
+    12c4:	38 2f       	mov	r19, r24
+    12c6:	3f 7b       	andi	r19, 0xBF	; 191
+    12c8:	8a 81       	ldd	r24, Y+2	; 0x02
+    12ca:	9b 81       	ldd	r25, Y+3	; 0x03
+    12cc:	89 2f       	mov	r24, r25
+    12ce:	99 27       	eor	r25, r25
+    12d0:	86 95       	lsr	r24
+    12d2:	82 95       	swap	r24
+    12d4:	88 0f       	add	r24, r24
+    12d6:	88 0f       	add	r24, r24
+    12d8:	80 7c       	andi	r24, 0xC0	; 192
+    12da:	28 2f       	mov	r18, r24
+    12dc:	20 74       	andi	r18, 0x40	; 64
+    12de:	80 e4       	ldi	r24, 0x40	; 64
+    12e0:	90 e0       	ldi	r25, 0x00	; 0
+    12e2:	23 2b       	or	r18, r19
+    12e4:	fc 01       	movw	r30, r24
+    12e6:	20 83       	st	Z, r18
+    12e8:	8c e2       	ldi	r24, 0x2C	; 44
+    12ea:	90 e0       	ldi	r25, 0x00	; 0
+    12ec:	2a 81       	ldd	r18, Y+2	; 0x02
+    12ee:	fc 01       	movw	r30, r24
+    12f0:	20 83       	st	Z, r18
+    12f2:	05 c0       	rjmp	.+10     	; 0x12fe <MCAL_UART_sendByteBusyWait+0x7a>
+    12f4:	8c e2       	ldi	r24, 0x2C	; 44
+    12f6:	90 e0       	ldi	r25, 0x00	; 0
+    12f8:	2a 81       	ldd	r18, Y+2	; 0x02
+    12fa:	fc 01       	movw	r30, r24
+    12fc:	20 83       	st	Z, r18
+    12fe:	89 81       	ldd	r24, Y+1	; 0x01
+    1300:	0f 90       	pop	r0
+    1302:	0f 90       	pop	r0
+    1304:	0f 90       	pop	r0
+    1306:	df 91       	pop	r29
+    1308:	cf 91       	pop	r28
+    130a:	08 95       	ret
+
+0000130c <MCAL_UART_recieveByteBusyWait>:
+    130c:	cf 93       	push	r28
+    130e:	df 93       	push	r29
+    1310:	00 d0       	rcall	.+0      	; 0x1312 <MCAL_UART_recieveByteBusyWait+0x6>
+    1312:	0f 92       	push	r0
+    1314:	cd b7       	in	r28, 0x3d	; 61
+    1316:	de b7       	in	r29, 0x3e	; 62
+    1318:	9b 83       	std	Y+3, r25	; 0x03
+    131a:	8a 83       	std	Y+2, r24	; 0x02
+    131c:	81 e0       	ldi	r24, 0x01	; 1
+    131e:	89 83       	std	Y+1, r24	; 0x01
+    1320:	8a e2       	ldi	r24, 0x2A	; 42
+    1322:	90 e0       	ldi	r25, 0x00	; 0
+    1324:	fc 01       	movw	r30, r24
+    1326:	20 81       	ld	r18, Z
+    1328:	8a e2       	ldi	r24, 0x2A	; 42
+    132a:	90 e0       	ldi	r25, 0x00	; 0
+    132c:	20 61       	ori	r18, 0x10	; 16
+    132e:	fc 01       	movw	r30, r24
+    1330:	20 83       	st	Z, r18
+    1332:	00 00       	nop
+    1334:	8b e2       	ldi	r24, 0x2B	; 43
+    1336:	90 e0       	ldi	r25, 0x00	; 0
+    1338:	fc 01       	movw	r30, r24
+    133a:	80 81       	ld	r24, Z
+    133c:	88 1f       	adc	r24, r24
+    133e:	88 27       	eor	r24, r24
+    1340:	88 1f       	adc	r24, r24
+    1342:	88 2f       	mov	r24, r24
+    1344:	90 e0       	ldi	r25, 0x00	; 0
+    1346:	81 70       	andi	r24, 0x01	; 1
+    1348:	99 27       	eor	r25, r25
+    134a:	01 97       	sbiw	r24, 0x01	; 1
+    134c:	99 f7       	brne	.-26     	; 0x1334 <MCAL_UART_recieveByteBusyWait+0x28>
+    134e:	00 00       	nop
+    1350:	8b e2       	ldi	r24, 0x2B	; 43
+    1352:	90 e0       	ldi	r25, 0x00	; 0
+    1354:	fc 01       	movw	r30, r24
+    1356:	80 81       	ld	r24, Z
+    1358:	82 95       	swap	r24
+    135a:	86 95       	lsr	r24
+    135c:	87 70       	andi	r24, 0x07	; 7
+    135e:	88 2f       	mov	r24, r24
+    1360:	90 e0       	ldi	r25, 0x00	; 0
+    1362:	81 70       	andi	r24, 0x01	; 1
+    1364:	99 27       	eor	r25, r25
+    1366:	01 97       	sbiw	r24, 0x01	; 1
+    1368:	99 f7       	brne	.-26     	; 0x1350 <MCAL_UART_recieveByteBusyWait+0x44>
+    136a:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <g_CharacterSize>
+    136e:	81 30       	cpi	r24, 0x01	; 1
+    1370:	41 f5       	brne	.+80     	; 0x13c2 <MCAL_UART_recieveByteBusyWait+0xb6>
+    1372:	8a 81       	ldd	r24, Y+2	; 0x02
+    1374:	9b 81       	ldd	r25, Y+3	; 0x03
+    1376:	fc 01       	movw	r30, r24
+    1378:	80 81       	ld	r24, Z
+    137a:	91 81       	ldd	r25, Z+1	; 0x01
+    137c:	9c 01       	movw	r18, r24
+    137e:	3d 7f       	andi	r19, 0xFD	; 253
+    1380:	80 e4       	ldi	r24, 0x40	; 64
+    1382:	90 e0       	ldi	r25, 0x00	; 0
+    1384:	fc 01       	movw	r30, r24
+    1386:	80 81       	ld	r24, Z
+    1388:	88 1f       	adc	r24, r24
+    138a:	88 27       	eor	r24, r24
+    138c:	88 1f       	adc	r24, r24
+    138e:	88 2f       	mov	r24, r24
+    1390:	90 e0       	ldi	r25, 0x00	; 0
+    1392:	98 2f       	mov	r25, r24
+    1394:	88 27       	eor	r24, r24
+    1396:	99 0f       	add	r25, r25
+    1398:	88 27       	eor	r24, r24
+    139a:	92 70       	andi	r25, 0x02	; 2
+    139c:	28 2b       	or	r18, r24
+    139e:	39 2b       	or	r19, r25
+    13a0:	8a 81       	ldd	r24, Y+2	; 0x02
+    13a2:	9b 81       	ldd	r25, Y+3	; 0x03
+    13a4:	fc 01       	movw	r30, r24
+    13a6:	31 83       	std	Z+1, r19	; 0x01
+    13a8:	20 83       	st	Z, r18
+    13aa:	8c e2       	ldi	r24, 0x2C	; 44
+    13ac:	90 e0       	ldi	r25, 0x00	; 0
+    13ae:	fc 01       	movw	r30, r24
+    13b0:	80 81       	ld	r24, Z
+    13b2:	28 2f       	mov	r18, r24
+    13b4:	30 e0       	ldi	r19, 0x00	; 0
+    13b6:	8a 81       	ldd	r24, Y+2	; 0x02
+    13b8:	9b 81       	ldd	r25, Y+3	; 0x03
+    13ba:	fc 01       	movw	r30, r24
+    13bc:	31 83       	std	Z+1, r19	; 0x01
+    13be:	20 83       	st	Z, r18
+    13c0:	0b c0       	rjmp	.+22     	; 0x13d8 <MCAL_UART_recieveByteBusyWait+0xcc>
+    13c2:	8c e2       	ldi	r24, 0x2C	; 44
+    13c4:	90 e0       	ldi	r25, 0x00	; 0
+    13c6:	fc 01       	movw	r30, r24
+    13c8:	80 81       	ld	r24, Z
+    13ca:	28 2f       	mov	r18, r24
+    13cc:	30 e0       	ldi	r19, 0x00	; 0
+    13ce:	8a 81       	ldd	r24, Y+2	; 0x02
+    13d0:	9b 81       	ldd	r25, Y+3	; 0x03
+    13d2:	fc 01       	movw	r30, r24
+    13d4:	31 83       	std	Z+1, r19	; 0x01
+    13d6:	20 83       	st	Z, r18
+    13d8:	89 81       	ldd	r24, Y+1	; 0x01
+    13da:	0f 90       	pop	r0
+    13dc:	0f 90       	pop	r0
+    13de:	0f 90       	pop	r0
+    13e0:	df 91       	pop	r29
+    13e2:	cf 91       	pop	r28
+    13e4:	08 95       	ret
+
+000013e6 <MCAL_UART_RecieveCallBack>:
+    13e6:	cf 93       	push	r28
+    13e8:	df 93       	push	r29
+    13ea:	00 d0       	rcall	.+0      	; 0x13ec <MCAL_UART_RecieveCallBack+0x6>
+    13ec:	0f 92       	push	r0
+    13ee:	cd b7       	in	r28, 0x3d	; 61
+    13f0:	de b7       	in	r29, 0x3e	; 62
+    13f2:	9b 83       	std	Y+3, r25	; 0x03
+    13f4:	8a 83       	std	Y+2, r24	; 0x02
+    13f6:	81 e0       	ldi	r24, 0x01	; 1
+    13f8:	89 83       	std	Y+1, r24	; 0x01
+    13fa:	8a 81       	ldd	r24, Y+2	; 0x02
+    13fc:	9b 81       	ldd	r25, Y+3	; 0x03
+    13fe:	89 2b       	or	r24, r25
+    1400:	c9 f0       	breq	.+50     	; 0x1434 <MCAL_UART_RecieveCallBack+0x4e>
+    1402:	8a e2       	ldi	r24, 0x2A	; 42
+    1404:	90 e0       	ldi	r25, 0x00	; 0
+    1406:	fc 01       	movw	r30, r24
+    1408:	20 81       	ld	r18, Z
+    140a:	8a e2       	ldi	r24, 0x2A	; 42
+    140c:	90 e0       	ldi	r25, 0x00	; 0
+    140e:	20 61       	ori	r18, 0x10	; 16
+    1410:	fc 01       	movw	r30, r24
+    1412:	20 83       	st	Z, r18
+    1414:	8a e2       	ldi	r24, 0x2A	; 42
+    1416:	90 e0       	ldi	r25, 0x00	; 0
+    1418:	fc 01       	movw	r30, r24
+    141a:	20 81       	ld	r18, Z
+    141c:	8a e2       	ldi	r24, 0x2A	; 42
+    141e:	90 e0       	ldi	r25, 0x00	; 0
+    1420:	20 68       	ori	r18, 0x80	; 128
+    1422:	fc 01       	movw	r30, r24
+    1424:	20 83       	st	Z, r18
+    1426:	8a 81       	ldd	r24, Y+2	; 0x02
+    1428:	9b 81       	ldd	r25, Y+3	; 0x03
+    142a:	90 93 6b 00 	sts	0x006B, r25	; 0x80006b <UART_RX_CallBack+0x1>
+    142e:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <UART_RX_CallBack>
+    1432:	01 c0       	rjmp	.+2      	; 0x1436 <MCAL_UART_RecieveCallBack+0x50>
+    1434:	19 82       	std	Y+1, r1	; 0x01
+    1436:	89 81       	ldd	r24, Y+1	; 0x01
+    1438:	0f 90       	pop	r0
+    143a:	0f 90       	pop	r0
+    143c:	0f 90       	pop	r0
+    143e:	df 91       	pop	r29
+    1440:	cf 91       	pop	r28
+    1442:	08 95       	ret
+
+00001444 <__vector_13>:
+    1444:	1f 92       	push	r1
+    1446:	0f 92       	push	r0
+    1448:	0f b6       	in	r0, 0x3f	; 63
+    144a:	0f 92       	push	r0
+    144c:	11 24       	eor	r1, r1
+    144e:	2f 93       	push	r18
+    1450:	3f 93       	push	r19
+    1452:	4f 93       	push	r20
+    1454:	5f 93       	push	r21
+    1456:	6f 93       	push	r22
+    1458:	7f 93       	push	r23
+    145a:	8f 93       	push	r24
+    145c:	9f 93       	push	r25
+    145e:	af 93       	push	r26
+    1460:	bf 93       	push	r27
+    1462:	ef 93       	push	r30
+    1464:	ff 93       	push	r31
+    1466:	cf 93       	push	r28
+    1468:	df 93       	push	r29
+    146a:	00 d0       	rcall	.+0      	; 0x146c <__vector_13+0x28>
+    146c:	cd b7       	in	r28, 0x3d	; 61
+    146e:	de b7       	in	r29, 0x3e	; 62
+    1470:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <UART_RX_CallBack>
+    1474:	90 91 6b 00 	lds	r25, 0x006B	; 0x80006b <UART_RX_CallBack+0x1>
+    1478:	89 2b       	or	r24, r25
+    147a:	09 f4       	brne	.+2      	; 0x147e <__vector_13+0x3a>
+    147c:	4f c0       	rjmp	.+158    	; 0x151c <__vector_13+0xd8>
+    147e:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <g_CharacterSize>
+    1482:	81 30       	cpi	r24, 0x01	; 1
+    1484:	69 f5       	brne	.+90     	; 0x14e0 <__vector_13+0x9c>
+    1486:	89 81       	ldd	r24, Y+1	; 0x01
+    1488:	9a 81       	ldd	r25, Y+2	; 0x02
+    148a:	9c 01       	movw	r18, r24
+    148c:	3d 7f       	andi	r19, 0xFD	; 253
+    148e:	80 e4       	ldi	r24, 0x40	; 64
+    1490:	90 e0       	ldi	r25, 0x00	; 0
+    1492:	fc 01       	movw	r30, r24
+    1494:	80 81       	ld	r24, Z
+    1496:	88 1f       	adc	r24, r24
+    1498:	88 27       	eor	r24, r24
+    149a:	88 1f       	adc	r24, r24
+    149c:	88 2f       	mov	r24, r24
+    149e:	90 e0       	ldi	r25, 0x00	; 0
+    14a0:	98 2f       	mov	r25, r24
+    14a2:	88 27       	eor	r24, r24
+    14a4:	99 0f       	add	r25, r25
+    14a6:	88 27       	eor	r24, r24
+    14a8:	92 70       	andi	r25, 0x02	; 2
+    14aa:	82 2b       	or	r24, r18
+    14ac:	93 2b       	or	r25, r19
+    14ae:	9a 83       	std	Y+2, r25	; 0x02
+    14b0:	89 83       	std	Y+1, r24	; 0x01
+    14b2:	00 00       	nop
+    14b4:	8b e2       	ldi	r24, 0x2B	; 43
+    14b6:	90 e0       	ldi	r25, 0x00	; 0
+    14b8:	fc 01       	movw	r30, r24
+    14ba:	80 81       	ld	r24, Z
+    14bc:	82 95       	swap	r24
+    14be:	86 95       	lsr	r24
+    14c0:	87 70       	andi	r24, 0x07	; 7
+    14c2:	88 2f       	mov	r24, r24
+    14c4:	90 e0       	ldi	r25, 0x00	; 0
+    14c6:	81 70       	andi	r24, 0x01	; 1
+    14c8:	99 27       	eor	r25, r25
+    14ca:	01 97       	sbiw	r24, 0x01	; 1
+    14cc:	99 f7       	brne	.-26     	; 0x14b4 <__vector_13+0x70>
+    14ce:	8c e2       	ldi	r24, 0x2C	; 44
+    14d0:	90 e0       	ldi	r25, 0x00	; 0
+    14d2:	fc 01       	movw	r30, r24
+    14d4:	80 81       	ld	r24, Z
+    14d6:	88 2f       	mov	r24, r24
+    14d8:	90 e0       	ldi	r25, 0x00	; 0
+    14da:	9a 83       	std	Y+2, r25	; 0x02
+    14dc:	89 83       	std	Y+1, r24	; 0x01
+    14de:	16 c0       	rjmp	.+44     	; 0x150c <__vector_13+0xc8>
+    14e0:	00 00       	nop
+    14e2:	8b e2       	ldi	r24, 0x2B	; 43
+    14e4:	90 e0       	ldi	r25, 0x00	; 0
+    14e6:	fc 01       	movw	r30, r24
+    14e8:	80 81       	ld	r24, Z
+    14ea:	82 95       	swap	r24
+    14ec:	86 95       	lsr	r24
+    14ee:	87 70       	andi	r24, 0x07	; 7
+    14f0:	88 2f       	mov	r24, r24
+    14f2:	90 e0       	ldi	r25, 0x00	; 0
+    14f4:	81 70       	andi	r24, 0x01	; 1
+    14f6:	99 27       	eor	r25, r25
+    14f8:	01 97       	sbiw	r24, 0x01	; 1
+    14fa:	99 f7       	brne	.-26     	; 0x14e2 <__vector_13+0x9e>
+    14fc:	8c e2       	ldi	r24, 0x2C	; 44
+    14fe:	90 e0       	ldi	r25, 0x00	; 0
+    1500:	fc 01       	movw	r30, r24
+    1502:	80 81       	ld	r24, Z
+    1504:	88 2f       	mov	r24, r24
+    1506:	90 e0       	ldi	r25, 0x00	; 0
+    1508:	9a 83       	std	Y+2, r25	; 0x02
+    150a:	89 83       	std	Y+1, r24	; 0x01
+    150c:	20 91 6a 00 	lds	r18, 0x006A	; 0x80006a <UART_RX_CallBack>
+    1510:	30 91 6b 00 	lds	r19, 0x006B	; 0x80006b <UART_RX_CallBack+0x1>
+    1514:	89 81       	ldd	r24, Y+1	; 0x01
+    1516:	9a 81       	ldd	r25, Y+2	; 0x02
+    1518:	f9 01       	movw	r30, r18
+    151a:	09 95       	icall
+    151c:	00 00       	nop
+    151e:	0f 90       	pop	r0
+    1520:	0f 90       	pop	r0
+    1522:	df 91       	pop	r29
+    1524:	cf 91       	pop	r28
+    1526:	ff 91       	pop	r31
+    1528:	ef 91       	pop	r30
+    152a:	bf 91       	pop	r27
+    152c:	af 91       	pop	r26
+    152e:	9f 91       	pop	r25
+    1530:	8f 91       	pop	r24
+    1532:	7f 91       	pop	r23
+    1534:	6f 91       	pop	r22
+    1536:	5f 91       	pop	r21
+    1538:	4f 91       	pop	r20
+    153a:	3f 91       	pop	r19
+    153c:	2f 91       	pop	r18
+    153e:	0f 90       	pop	r0
+    1540:	0f be       	out	0x3f, r0	; 63
+    1542:	0f 90       	pop	r0
+    1544:	1f 90       	pop	r1
+    1546:	18 95       	reti
+
+00001548 <MCAL_UART_SendCallBack>:
+    1548:	cf 93       	push	r28
+    154a:	df 93       	push	r29
+    154c:	00 d0       	rcall	.+0      	; 0x154e <MCAL_UART_SendCallBack+0x6>
+    154e:	0f 92       	push	r0
+    1550:	cd b7       	in	r28, 0x3d	; 61
+    1552:	de b7       	in	r29, 0x3e	; 62
+    1554:	9b 83       	std	Y+3, r25	; 0x03
+    1556:	8a 83       	std	Y+2, r24	; 0x02
+    1558:	81 e0       	ldi	r24, 0x01	; 1
+    155a:	89 83       	std	Y+1, r24	; 0x01
+    155c:	8a 81       	ldd	r24, Y+2	; 0x02
+    155e:	9b 81       	ldd	r25, Y+3	; 0x03
+    1560:	89 2b       	or	r24, r25
+    1562:	c9 f0       	breq	.+50     	; 0x1596 <MCAL_UART_SendCallBack+0x4e>
+    1564:	8a e2       	ldi	r24, 0x2A	; 42
+    1566:	90 e0       	ldi	r25, 0x00	; 0
+    1568:	fc 01       	movw	r30, r24
+    156a:	20 81       	ld	r18, Z
+    156c:	8a e2       	ldi	r24, 0x2A	; 42
+    156e:	90 e0       	ldi	r25, 0x00	; 0
+    1570:	28 60       	ori	r18, 0x08	; 8
+    1572:	fc 01       	movw	r30, r24
+    1574:	20 83       	st	Z, r18
+    1576:	8a 81       	ldd	r24, Y+2	; 0x02
+    1578:	9b 81       	ldd	r25, Y+3	; 0x03
+    157a:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <UART_UDR_CallBack+0x1>
+    157e:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <UART_UDR_CallBack>
+    1582:	8a e2       	ldi	r24, 0x2A	; 42
+    1584:	90 e0       	ldi	r25, 0x00	; 0
+    1586:	fc 01       	movw	r30, r24
+    1588:	20 81       	ld	r18, Z
+    158a:	8a e2       	ldi	r24, 0x2A	; 42
+    158c:	90 e0       	ldi	r25, 0x00	; 0
+    158e:	20 62       	ori	r18, 0x20	; 32
+    1590:	fc 01       	movw	r30, r24
+    1592:	20 83       	st	Z, r18
+    1594:	01 c0       	rjmp	.+2      	; 0x1598 <MCAL_UART_SendCallBack+0x50>
+    1596:	19 82       	std	Y+1, r1	; 0x01
+    1598:	89 81       	ldd	r24, Y+1	; 0x01
+    159a:	0f 90       	pop	r0
+    159c:	0f 90       	pop	r0
+    159e:	0f 90       	pop	r0
+    15a0:	df 91       	pop	r29
+    15a2:	cf 91       	pop	r28
+    15a4:	08 95       	ret
+
+000015a6 <__vector_14>:
+    15a6:	1f 92       	push	r1
+    15a8:	0f 92       	push	r0
+    15aa:	0f b6       	in	r0, 0x3f	; 63
+    15ac:	0f 92       	push	r0
+    15ae:	11 24       	eor	r1, r1
+    15b0:	2f 93       	push	r18
+    15b2:	3f 93       	push	r19
+    15b4:	8f 93       	push	r24
+    15b6:	9f 93       	push	r25
+    15b8:	ef 93       	push	r30
+    15ba:	ff 93       	push	r31
+    15bc:	cf 93       	push	r28
+    15be:	df 93       	push	r29
+    15c0:	cd b7       	in	r28, 0x3d	; 61
+    15c2:	de b7       	in	r29, 0x3e	; 62
+    15c4:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <UART_UDR_CallBack>
+    15c8:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <UART_UDR_CallBack+0x1>
+    15cc:	fc 01       	movw	r30, r24
+    15ce:	20 81       	ld	r18, Z
+    15d0:	31 81       	ldd	r19, Z+1	; 0x01
+    15d2:	8c e2       	ldi	r24, 0x2C	; 44
+    15d4:	90 e0       	ldi	r25, 0x00	; 0
+    15d6:	fc 01       	movw	r30, r24
+    15d8:	20 83       	st	Z, r18
+    15da:	00 00       	nop
+    15dc:	8b e2       	ldi	r24, 0x2B	; 43
+    15de:	90 e0       	ldi	r25, 0x00	; 0
+    15e0:	fc 01       	movw	r30, r24
+    15e2:	80 81       	ld	r24, Z
+    15e4:	82 95       	swap	r24
+    15e6:	86 95       	lsr	r24
+    15e8:	86 95       	lsr	r24
+    15ea:	83 70       	andi	r24, 0x03	; 3
+    15ec:	88 2f       	mov	r24, r24
+    15ee:	90 e0       	ldi	r25, 0x00	; 0
+    15f0:	81 70       	andi	r24, 0x01	; 1
+    15f2:	99 27       	eor	r25, r25
+    15f4:	01 97       	sbiw	r24, 0x01	; 1
+    15f6:	91 f7       	brne	.-28     	; 0x15dc <__vector_14+0x36>
+    15f8:	8b e2       	ldi	r24, 0x2B	; 43
+    15fa:	90 e0       	ldi	r25, 0x00	; 0
+    15fc:	fc 01       	movw	r30, r24
+    15fe:	20 81       	ld	r18, Z
+    1600:	8b e2       	ldi	r24, 0x2B	; 43
+    1602:	90 e0       	ldi	r25, 0x00	; 0
+    1604:	20 64       	ori	r18, 0x40	; 64
+    1606:	fc 01       	movw	r30, r24
+    1608:	20 83       	st	Z, r18
+    160a:	8a e2       	ldi	r24, 0x2A	; 42
+    160c:	90 e0       	ldi	r25, 0x00	; 0
+    160e:	fc 01       	movw	r30, r24
+    1610:	20 81       	ld	r18, Z
+    1612:	8a e2       	ldi	r24, 0x2A	; 42
+    1614:	90 e0       	ldi	r25, 0x00	; 0
+    1616:	2f 7d       	andi	r18, 0xDF	; 223
+    1618:	fc 01       	movw	r30, r24
+    161a:	20 83       	st	Z, r18
+    161c:	00 00       	nop
+    161e:	df 91       	pop	r29
+    1620:	cf 91       	pop	r28
+    1622:	ff 91       	pop	r31
+    1624:	ef 91       	pop	r30
+    1626:	9f 91       	pop	r25
+    1628:	8f 91       	pop	r24
+    162a:	3f 91       	pop	r19
+    162c:	2f 91       	pop	r18
+    162e:	0f 90       	pop	r0
+    1630:	0f be       	out	0x3f, r0	; 63
+    1632:	0f 90       	pop	r0
+    1634:	1f 90       	pop	r1
+    1636:	18 95       	reti
+
+00001638 <main>:
+    1638:	cf 93       	push	r28
+    163a:	df 93       	push	r29
+    163c:	00 d0       	rcall	.+0      	; 0x163e <main+0x6>
+    163e:	cd b7       	in	r28, 0x3d	; 61
+    1640:	de b7       	in	r29, 0x3e	; 62
+    1642:	0e 94 b5 04 	call	0x96a	; 0x96a <MCAL_SPI_SlaveInit>
+    1646:	85 e3       	ldi	r24, 0x35	; 53
+    1648:	90 e0       	ldi	r25, 0x00	; 0
+    164a:	fc 01       	movw	r30, r24
+    164c:	80 81       	ld	r24, Z
+    164e:	41 e0       	ldi	r20, 0x01	; 1
+    1650:	62 e0       	ldi	r22, 0x02	; 2
+    1652:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_u8SetPinDir>
+    1656:	ce 01       	movw	r24, r28
+    1658:	02 96       	adiw	r24, 0x02	; 2
+    165a:	bc 01       	movw	r22, r24
+    165c:	89 81       	ldd	r24, Y+1	; 0x01
+    165e:	0e 94 56 05 	call	0xaac	; 0xaac <MCAL_SPI_Slave_DataBusyWait>
+    1662:	8a 81       	ldd	r24, Y+2	; 0x02
+    1664:	81 33       	cpi	r24, 0x31	; 49
+    1666:	49 f4       	brne	.+18     	; 0x167a <main+0x42>
+    1668:	88 e3       	ldi	r24, 0x38	; 56
+    166a:	90 e0       	ldi	r25, 0x00	; 0
+    166c:	fc 01       	movw	r30, r24
+    166e:	80 81       	ld	r24, Z
+    1670:	41 e0       	ldi	r20, 0x01	; 1
+    1672:	60 e0       	ldi	r22, 0x00	; 0
+    1674:	0e 94 46 01 	call	0x28c	; 0x28c <MCAL_DIO_u8SetPinValue>
+    1678:	ee cf       	rjmp	.-36     	; 0x1656 <main+0x1e>
+    167a:	8a 81       	ldd	r24, Y+2	; 0x02
+    167c:	80 33       	cpi	r24, 0x30	; 48
+    167e:	59 f7       	brne	.-42     	; 0x1656 <main+0x1e>
+    1680:	88 e3       	ldi	r24, 0x38	; 56
+    1682:	90 e0       	ldi	r25, 0x00	; 0
+    1684:	fc 01       	movw	r30, r24
+    1686:	80 81       	ld	r24, Z
+    1688:	40 e0       	ldi	r20, 0x00	; 0
+    168a:	60 e0       	ldi	r22, 0x00	; 0
+    168c:	0e 94 46 01 	call	0x28c	; 0x28c <MCAL_DIO_u8SetPinValue>
+    1690:	e2 cf       	rjmp	.-60     	; 0x1656 <main+0x1e>
+
+00001692 <__umoddi3>:
+    1692:	68 94       	set
+    1694:	01 c0       	rjmp	.+2      	; 0x1698 <__udivdi3_umoddi3>
+
+00001696 <__udivdi3>:
+    1696:	e8 94       	clt
+
+00001698 <__udivdi3_umoddi3>:
+    1698:	8f 92       	push	r8
+    169a:	9f 92       	push	r9
+    169c:	cf 93       	push	r28
+    169e:	df 93       	push	r29
+    16a0:	0e 94 57 0b 	call	0x16ae	; 0x16ae <__udivmod64>
+    16a4:	df 91       	pop	r29
+    16a6:	cf 91       	pop	r28
+    16a8:	9f 90       	pop	r9
+    16aa:	8f 90       	pop	r8
+    16ac:	08 95       	ret
+
+000016ae <__udivmod64>:
+    16ae:	88 24       	eor	r8, r8
+    16b0:	99 24       	eor	r9, r9
+    16b2:	f4 01       	movw	r30, r8
+    16b4:	e4 01       	movw	r28, r8
+    16b6:	b0 e4       	ldi	r27, 0x40	; 64
+    16b8:	9f 93       	push	r25
+    16ba:	aa 27       	eor	r26, r26
+    16bc:	9a 15       	cp	r25, r10
+    16be:	8b 04       	cpc	r8, r11
+    16c0:	9c 04       	cpc	r9, r12
+    16c2:	ed 05       	cpc	r30, r13
+    16c4:	fe 05       	cpc	r31, r14
+    16c6:	cf 05       	cpc	r28, r15
+    16c8:	d0 07       	cpc	r29, r16
+    16ca:	a1 07       	cpc	r26, r17
+    16cc:	98 f4       	brcc	.+38     	; 0x16f4 <__udivmod64+0x46>
+    16ce:	ad 2f       	mov	r26, r29
+    16d0:	dc 2f       	mov	r29, r28
+    16d2:	cf 2f       	mov	r28, r31
+    16d4:	fe 2f       	mov	r31, r30
+    16d6:	e9 2d       	mov	r30, r9
+    16d8:	98 2c       	mov	r9, r8
+    16da:	89 2e       	mov	r8, r25
+    16dc:	98 2f       	mov	r25, r24
+    16de:	87 2f       	mov	r24, r23
+    16e0:	76 2f       	mov	r23, r22
+    16e2:	65 2f       	mov	r22, r21
+    16e4:	54 2f       	mov	r21, r20
+    16e6:	43 2f       	mov	r20, r19
+    16e8:	32 2f       	mov	r19, r18
+    16ea:	22 27       	eor	r18, r18
+    16ec:	b8 50       	subi	r27, 0x08	; 8
+    16ee:	31 f7       	brne	.-52     	; 0x16bc <__udivmod64+0xe>
+    16f0:	bf 91       	pop	r27
+    16f2:	27 c0       	rjmp	.+78     	; 0x1742 <__udivmod64+0x94>
+    16f4:	1b 2e       	mov	r1, r27
+    16f6:	bf 91       	pop	r27
+    16f8:	bb 27       	eor	r27, r27
+    16fa:	22 0f       	add	r18, r18
+    16fc:	33 1f       	adc	r19, r19
+    16fe:	44 1f       	adc	r20, r20
+    1700:	55 1f       	adc	r21, r21
+    1702:	66 1f       	adc	r22, r22
+    1704:	77 1f       	adc	r23, r23
+    1706:	88 1f       	adc	r24, r24
+    1708:	99 1f       	adc	r25, r25
+    170a:	88 1c       	adc	r8, r8
+    170c:	99 1c       	adc	r9, r9
+    170e:	ee 1f       	adc	r30, r30
+    1710:	ff 1f       	adc	r31, r31
+    1712:	cc 1f       	adc	r28, r28
+    1714:	dd 1f       	adc	r29, r29
+    1716:	aa 1f       	adc	r26, r26
+    1718:	bb 1f       	adc	r27, r27
+    171a:	8a 14       	cp	r8, r10
+    171c:	9b 04       	cpc	r9, r11
+    171e:	ec 05       	cpc	r30, r12
+    1720:	fd 05       	cpc	r31, r13
+    1722:	ce 05       	cpc	r28, r14
+    1724:	df 05       	cpc	r29, r15
+    1726:	a0 07       	cpc	r26, r16
+    1728:	b1 07       	cpc	r27, r17
+    172a:	48 f0       	brcs	.+18     	; 0x173e <__udivmod64+0x90>
+    172c:	8a 18       	sub	r8, r10
+    172e:	9b 08       	sbc	r9, r11
+    1730:	ec 09       	sbc	r30, r12
+    1732:	fd 09       	sbc	r31, r13
+    1734:	ce 09       	sbc	r28, r14
+    1736:	df 09       	sbc	r29, r15
+    1738:	a0 0b       	sbc	r26, r16
+    173a:	b1 0b       	sbc	r27, r17
+    173c:	21 60       	ori	r18, 0x01	; 1
+    173e:	1a 94       	dec	r1
+    1740:	e1 f6       	brne	.-72     	; 0x16fa <__udivmod64+0x4c>
+    1742:	2e f4       	brtc	.+10     	; 0x174e <__udivmod64+0xa0>
+    1744:	94 01       	movw	r18, r8
+    1746:	af 01       	movw	r20, r30
+    1748:	be 01       	movw	r22, r28
+    174a:	cd 01       	movw	r24, r26
+    174c:	00 0c       	add	r0, r0
+    174e:	08 95       	ret
+
+00001750 <__ashldi3>:
+    1750:	00 2e       	mov	r0, r16
+    1752:	08 30       	cpi	r16, 0x08	; 8
+    1754:	90 f0       	brcs	.+36     	; 0x177a <__ashldi3+0x2a>
+    1756:	98 2f       	mov	r25, r24
+    1758:	87 2f       	mov	r24, r23
+    175a:	76 2f       	mov	r23, r22
+    175c:	65 2f       	mov	r22, r21
+    175e:	54 2f       	mov	r21, r20
+    1760:	43 2f       	mov	r20, r19
+    1762:	32 2f       	mov	r19, r18
+    1764:	22 27       	eor	r18, r18
+    1766:	08 50       	subi	r16, 0x08	; 8
+    1768:	f4 cf       	rjmp	.-24     	; 0x1752 <__ashldi3+0x2>
+    176a:	22 0f       	add	r18, r18
+    176c:	33 1f       	adc	r19, r19
+    176e:	44 1f       	adc	r20, r20
+    1770:	55 1f       	adc	r21, r21
+    1772:	66 1f       	adc	r22, r22
+    1774:	77 1f       	adc	r23, r23
+    1776:	88 1f       	adc	r24, r24
+    1778:	99 1f       	adc	r25, r25
+    177a:	0a 95       	dec	r16
+    177c:	b2 f7       	brpl	.-20     	; 0x176a <__ashldi3+0x1a>
+    177e:	00 2d       	mov	r16, r0
+    1780:	08 95       	ret
+
+00001782 <__cmpsf2>:
+    1782:	0e 94 f5 0b 	call	0x17ea	; 0x17ea <__fp_cmp>
+    1786:	08 f4       	brcc	.+2      	; 0x178a <__cmpsf2+0x8>
+    1788:	81 e0       	ldi	r24, 0x01	; 1
+    178a:	08 95       	ret
+
+0000178c <__fixunssfsi>:
+    178c:	0e 94 21 0c 	call	0x1842	; 0x1842 <__fp_splitA>
+    1790:	88 f0       	brcs	.+34     	; 0x17b4 <__fixunssfsi+0x28>
+    1792:	9f 57       	subi	r25, 0x7F	; 127
+    1794:	98 f0       	brcs	.+38     	; 0x17bc <__fixunssfsi+0x30>
+    1796:	b9 2f       	mov	r27, r25
+    1798:	99 27       	eor	r25, r25
+    179a:	b7 51       	subi	r27, 0x17	; 23
+    179c:	b0 f0       	brcs	.+44     	; 0x17ca <__fixunssfsi+0x3e>
+    179e:	e1 f0       	breq	.+56     	; 0x17d8 <__fixunssfsi+0x4c>
+    17a0:	66 0f       	add	r22, r22
+    17a2:	77 1f       	adc	r23, r23
+    17a4:	88 1f       	adc	r24, r24
+    17a6:	99 1f       	adc	r25, r25
+    17a8:	1a f0       	brmi	.+6      	; 0x17b0 <__fixunssfsi+0x24>
+    17aa:	ba 95       	dec	r27
+    17ac:	c9 f7       	brne	.-14     	; 0x17a0 <__fixunssfsi+0x14>
+    17ae:	14 c0       	rjmp	.+40     	; 0x17d8 <__fixunssfsi+0x4c>
+    17b0:	b1 30       	cpi	r27, 0x01	; 1
+    17b2:	91 f0       	breq	.+36     	; 0x17d8 <__fixunssfsi+0x4c>
+    17b4:	0e 94 3b 0c 	call	0x1876	; 0x1876 <__fp_zero>
+    17b8:	b1 e0       	ldi	r27, 0x01	; 1
+    17ba:	08 95       	ret
+    17bc:	0c 94 3b 0c 	jmp	0x1876	; 0x1876 <__fp_zero>
+    17c0:	67 2f       	mov	r22, r23
+    17c2:	78 2f       	mov	r23, r24
+    17c4:	88 27       	eor	r24, r24
+    17c6:	b8 5f       	subi	r27, 0xF8	; 248
+    17c8:	39 f0       	breq	.+14     	; 0x17d8 <__fixunssfsi+0x4c>
+    17ca:	b9 3f       	cpi	r27, 0xF9	; 249
+    17cc:	cc f3       	brlt	.-14     	; 0x17c0 <__fixunssfsi+0x34>
+    17ce:	86 95       	lsr	r24
+    17d0:	77 95       	ror	r23
+    17d2:	67 95       	ror	r22
+    17d4:	b3 95       	inc	r27
+    17d6:	d9 f7       	brne	.-10     	; 0x17ce <__fixunssfsi+0x42>
+    17d8:	3e f4       	brtc	.+14     	; 0x17e8 <__fixunssfsi+0x5c>
+    17da:	90 95       	com	r25
+    17dc:	80 95       	com	r24
+    17de:	70 95       	com	r23
+    17e0:	61 95       	neg	r22
+    17e2:	7f 4f       	sbci	r23, 0xFF	; 255
+    17e4:	8f 4f       	sbci	r24, 0xFF	; 255
+    17e6:	9f 4f       	sbci	r25, 0xFF	; 255
+    17e8:	08 95       	ret
+
+000017ea <__fp_cmp>:
+    17ea:	99 0f       	add	r25, r25
+    17ec:	00 08       	sbc	r0, r0
+    17ee:	55 0f       	add	r21, r21
+    17f0:	aa 0b       	sbc	r26, r26
+    17f2:	e0 e8       	ldi	r30, 0x80	; 128
+    17f4:	fe ef       	ldi	r31, 0xFE	; 254
+    17f6:	16 16       	cp	r1, r22
+    17f8:	17 06       	cpc	r1, r23
+    17fa:	e8 07       	cpc	r30, r24
+    17fc:	f9 07       	cpc	r31, r25
+    17fe:	c0 f0       	brcs	.+48     	; 0x1830 <__fp_cmp+0x46>
+    1800:	12 16       	cp	r1, r18
+    1802:	13 06       	cpc	r1, r19
+    1804:	e4 07       	cpc	r30, r20
+    1806:	f5 07       	cpc	r31, r21
+    1808:	98 f0       	brcs	.+38     	; 0x1830 <__fp_cmp+0x46>
+    180a:	62 1b       	sub	r22, r18
+    180c:	73 0b       	sbc	r23, r19
+    180e:	84 0b       	sbc	r24, r20
+    1810:	95 0b       	sbc	r25, r21
+    1812:	39 f4       	brne	.+14     	; 0x1822 <__fp_cmp+0x38>
+    1814:	0a 26       	eor	r0, r26
+    1816:	61 f0       	breq	.+24     	; 0x1830 <__fp_cmp+0x46>
+    1818:	23 2b       	or	r18, r19
+    181a:	24 2b       	or	r18, r20
+    181c:	25 2b       	or	r18, r21
+    181e:	21 f4       	brne	.+8      	; 0x1828 <__fp_cmp+0x3e>
+    1820:	08 95       	ret
+    1822:	0a 26       	eor	r0, r26
+    1824:	09 f4       	brne	.+2      	; 0x1828 <__fp_cmp+0x3e>
+    1826:	a1 40       	sbci	r26, 0x01	; 1
+    1828:	a6 95       	lsr	r26
+    182a:	8f ef       	ldi	r24, 0xFF	; 255
+    182c:	81 1d       	adc	r24, r1
+    182e:	81 1d       	adc	r24, r1
+    1830:	08 95       	ret
+
+00001832 <__fp_split3>:
+    1832:	57 fd       	sbrc	r21, 7
+    1834:	90 58       	subi	r25, 0x80	; 128
+    1836:	44 0f       	add	r20, r20
+    1838:	55 1f       	adc	r21, r21
+    183a:	59 f0       	breq	.+22     	; 0x1852 <__fp_splitA+0x10>
+    183c:	5f 3f       	cpi	r21, 0xFF	; 255
+    183e:	71 f0       	breq	.+28     	; 0x185c <__fp_splitA+0x1a>
+    1840:	47 95       	ror	r20
+
+00001842 <__fp_splitA>:
+    1842:	88 0f       	add	r24, r24
+    1844:	97 fb       	bst	r25, 7
+    1846:	99 1f       	adc	r25, r25
+    1848:	61 f0       	breq	.+24     	; 0x1862 <__fp_splitA+0x20>
+    184a:	9f 3f       	cpi	r25, 0xFF	; 255
+    184c:	79 f0       	breq	.+30     	; 0x186c <__fp_splitA+0x2a>
+    184e:	87 95       	ror	r24
+    1850:	08 95       	ret
+    1852:	12 16       	cp	r1, r18
+    1854:	13 06       	cpc	r1, r19
+    1856:	14 06       	cpc	r1, r20
+    1858:	55 1f       	adc	r21, r21
+    185a:	f2 cf       	rjmp	.-28     	; 0x1840 <__fp_split3+0xe>
+    185c:	46 95       	lsr	r20
+    185e:	f1 df       	rcall	.-30     	; 0x1842 <__fp_splitA>
+    1860:	08 c0       	rjmp	.+16     	; 0x1872 <__fp_splitA+0x30>
+    1862:	16 16       	cp	r1, r22
+    1864:	17 06       	cpc	r1, r23
+    1866:	18 06       	cpc	r1, r24
+    1868:	99 1f       	adc	r25, r25
+    186a:	f1 cf       	rjmp	.-30     	; 0x184e <__fp_splitA+0xc>
+    186c:	86 95       	lsr	r24
+    186e:	71 05       	cpc	r23, r1
+    1870:	61 05       	cpc	r22, r1
+    1872:	08 94       	sec
+    1874:	08 95       	ret
+
+00001876 <__fp_zero>:
+    1876:	e8 94       	clt
+
+00001878 <__fp_szero>:
+    1878:	bb 27       	eor	r27, r27
+    187a:	66 27       	eor	r22, r22
+    187c:	77 27       	eor	r23, r23
+    187e:	cb 01       	movw	r24, r22
+    1880:	97 f9       	bld	r25, 7
+    1882:	08 95       	ret
+
+00001884 <__gesf2>:
+    1884:	0e 94 f5 0b 	call	0x17ea	; 0x17ea <__fp_cmp>
+    1888:	08 f4       	brcc	.+2      	; 0x188c <__gesf2+0x8>
+    188a:	8f ef       	ldi	r24, 0xFF	; 255
+    188c:	08 95       	ret
+
+0000188e <__mulsf3>:
+    188e:	0e 94 5a 0c 	call	0x18b4	; 0x18b4 <__mulsf3x>
+    1892:	0c 94 cb 0c 	jmp	0x1996	; 0x1996 <__fp_round>
+    1896:	0e 94 bd 0c 	call	0x197a	; 0x197a <__fp_pscA>
+    189a:	38 f0       	brcs	.+14     	; 0x18aa <__mulsf3+0x1c>
+    189c:	0e 94 c4 0c 	call	0x1988	; 0x1988 <__fp_pscB>
+    18a0:	20 f0       	brcs	.+8      	; 0x18aa <__mulsf3+0x1c>
+    18a2:	95 23       	and	r25, r21
+    18a4:	11 f0       	breq	.+4      	; 0x18aa <__mulsf3+0x1c>
+    18a6:	0c 94 b4 0c 	jmp	0x1968	; 0x1968 <__fp_inf>
+    18aa:	0c 94 ba 0c 	jmp	0x1974	; 0x1974 <__fp_nan>
+    18ae:	11 24       	eor	r1, r1
+    18b0:	0c 94 3c 0c 	jmp	0x1878	; 0x1878 <__fp_szero>
+
+000018b4 <__mulsf3x>:
+    18b4:	0e 94 19 0c 	call	0x1832	; 0x1832 <__fp_split3>
+    18b8:	70 f3       	brcs	.-36     	; 0x1896 <__mulsf3+0x8>
+
+000018ba <__mulsf3_pse>:
+    18ba:	95 9f       	mul	r25, r21
+    18bc:	c1 f3       	breq	.-16     	; 0x18ae <__mulsf3+0x20>
+    18be:	95 0f       	add	r25, r21
+    18c0:	50 e0       	ldi	r21, 0x00	; 0
+    18c2:	55 1f       	adc	r21, r21
+    18c4:	62 9f       	mul	r22, r18
+    18c6:	f0 01       	movw	r30, r0
+    18c8:	72 9f       	mul	r23, r18
+    18ca:	bb 27       	eor	r27, r27
+    18cc:	f0 0d       	add	r31, r0
+    18ce:	b1 1d       	adc	r27, r1
+    18d0:	63 9f       	mul	r22, r19
+    18d2:	aa 27       	eor	r26, r26
+    18d4:	f0 0d       	add	r31, r0
+    18d6:	b1 1d       	adc	r27, r1
+    18d8:	aa 1f       	adc	r26, r26
+    18da:	64 9f       	mul	r22, r20
+    18dc:	66 27       	eor	r22, r22
+    18de:	b0 0d       	add	r27, r0
+    18e0:	a1 1d       	adc	r26, r1
+    18e2:	66 1f       	adc	r22, r22
+    18e4:	82 9f       	mul	r24, r18
+    18e6:	22 27       	eor	r18, r18
+    18e8:	b0 0d       	add	r27, r0
+    18ea:	a1 1d       	adc	r26, r1
+    18ec:	62 1f       	adc	r22, r18
+    18ee:	73 9f       	mul	r23, r19
+    18f0:	b0 0d       	add	r27, r0
+    18f2:	a1 1d       	adc	r26, r1
+    18f4:	62 1f       	adc	r22, r18
+    18f6:	83 9f       	mul	r24, r19
+    18f8:	a0 0d       	add	r26, r0
+    18fa:	61 1d       	adc	r22, r1
+    18fc:	22 1f       	adc	r18, r18
+    18fe:	74 9f       	mul	r23, r20
+    1900:	33 27       	eor	r19, r19
+    1902:	a0 0d       	add	r26, r0
+    1904:	61 1d       	adc	r22, r1
+    1906:	23 1f       	adc	r18, r19
+    1908:	84 9f       	mul	r24, r20
+    190a:	60 0d       	add	r22, r0
+    190c:	21 1d       	adc	r18, r1
+    190e:	82 2f       	mov	r24, r18
+    1910:	76 2f       	mov	r23, r22
+    1912:	6a 2f       	mov	r22, r26
+    1914:	11 24       	eor	r1, r1
+    1916:	9f 57       	subi	r25, 0x7F	; 127
+    1918:	50 40       	sbci	r21, 0x00	; 0
+    191a:	9a f0       	brmi	.+38     	; 0x1942 <__mulsf3_pse+0x88>
+    191c:	f1 f0       	breq	.+60     	; 0x195a <__mulsf3_pse+0xa0>
+    191e:	88 23       	and	r24, r24
+    1920:	4a f0       	brmi	.+18     	; 0x1934 <__mulsf3_pse+0x7a>
+    1922:	ee 0f       	add	r30, r30
+    1924:	ff 1f       	adc	r31, r31
+    1926:	bb 1f       	adc	r27, r27
+    1928:	66 1f       	adc	r22, r22
+    192a:	77 1f       	adc	r23, r23
+    192c:	88 1f       	adc	r24, r24
+    192e:	91 50       	subi	r25, 0x01	; 1
+    1930:	50 40       	sbci	r21, 0x00	; 0
+    1932:	a9 f7       	brne	.-22     	; 0x191e <__mulsf3_pse+0x64>
+    1934:	9e 3f       	cpi	r25, 0xFE	; 254
+    1936:	51 05       	cpc	r21, r1
+    1938:	80 f0       	brcs	.+32     	; 0x195a <__mulsf3_pse+0xa0>
+    193a:	0c 94 b4 0c 	jmp	0x1968	; 0x1968 <__fp_inf>
+    193e:	0c 94 3c 0c 	jmp	0x1878	; 0x1878 <__fp_szero>
+    1942:	5f 3f       	cpi	r21, 0xFF	; 255
+    1944:	e4 f3       	brlt	.-8      	; 0x193e <__mulsf3_pse+0x84>
+    1946:	98 3e       	cpi	r25, 0xE8	; 232
+    1948:	d4 f3       	brlt	.-12     	; 0x193e <__mulsf3_pse+0x84>
+    194a:	86 95       	lsr	r24
+    194c:	77 95       	ror	r23
+    194e:	67 95       	ror	r22
+    1950:	b7 95       	ror	r27
+    1952:	f7 95       	ror	r31
+    1954:	e7 95       	ror	r30
+    1956:	9f 5f       	subi	r25, 0xFF	; 255
+    1958:	c1 f7       	brne	.-16     	; 0x194a <__mulsf3_pse+0x90>
+    195a:	fe 2b       	or	r31, r30
+    195c:	88 0f       	add	r24, r24
+    195e:	91 1d       	adc	r25, r1
+    1960:	96 95       	lsr	r25
+    1962:	87 95       	ror	r24
+    1964:	97 f9       	bld	r25, 7
+    1966:	08 95       	ret
+
+00001968 <__fp_inf>:
+    1968:	97 f9       	bld	r25, 7
+    196a:	9f 67       	ori	r25, 0x7F	; 127
+    196c:	80 e8       	ldi	r24, 0x80	; 128
+    196e:	70 e0       	ldi	r23, 0x00	; 0
+    1970:	60 e0       	ldi	r22, 0x00	; 0
+    1972:	08 95       	ret
+
+00001974 <__fp_nan>:
+    1974:	9f ef       	ldi	r25, 0xFF	; 255
+    1976:	80 ec       	ldi	r24, 0xC0	; 192
+    1978:	08 95       	ret
+
+0000197a <__fp_pscA>:
+    197a:	00 24       	eor	r0, r0
+    197c:	0a 94       	dec	r0
+    197e:	16 16       	cp	r1, r22
+    1980:	17 06       	cpc	r1, r23
+    1982:	18 06       	cpc	r1, r24
+    1984:	09 06       	cpc	r0, r25
+    1986:	08 95       	ret
+
+00001988 <__fp_pscB>:
+    1988:	00 24       	eor	r0, r0
+    198a:	0a 94       	dec	r0
+    198c:	12 16       	cp	r1, r18
+    198e:	13 06       	cpc	r1, r19
+    1990:	14 06       	cpc	r1, r20
+    1992:	05 06       	cpc	r0, r21
+    1994:	08 95       	ret
+
+00001996 <__fp_round>:
+    1996:	09 2e       	mov	r0, r25
+    1998:	03 94       	inc	r0
+    199a:	00 0c       	add	r0, r0
+    199c:	11 f4       	brne	.+4      	; 0x19a2 <__fp_round+0xc>
+    199e:	88 23       	and	r24, r24
+    19a0:	52 f0       	brmi	.+20     	; 0x19b6 <__fp_round+0x20>
+    19a2:	bb 0f       	add	r27, r27
+    19a4:	40 f4       	brcc	.+16     	; 0x19b6 <__fp_round+0x20>
+    19a6:	bf 2b       	or	r27, r31
+    19a8:	11 f4       	brne	.+4      	; 0x19ae <__fp_round+0x18>
+    19aa:	60 ff       	sbrs	r22, 0
+    19ac:	04 c0       	rjmp	.+8      	; 0x19b6 <__fp_round+0x20>
+    19ae:	6f 5f       	subi	r22, 0xFF	; 255
+    19b0:	7f 4f       	sbci	r23, 0xFF	; 255
+    19b2:	8f 4f       	sbci	r24, 0xFF	; 255
+    19b4:	9f 4f       	sbci	r25, 0xFF	; 255
+    19b6:	08 95       	ret
+
+000019b8 <_exit>:
+    19b8:	f8 94       	cli
+
+000019ba <__stop_program>:
+    19ba:	ff cf       	rjmp	.-2      	; 0x19ba <__stop_program>
